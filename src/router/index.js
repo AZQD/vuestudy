@@ -21,6 +21,8 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  // mode: 'hash',//hash模式下，浏览器地址不规整,带有#
+  mode: 'history',//history模式下，浏览器地址规整，但需要后台支持
   routes
 })
 
