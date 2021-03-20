@@ -60,6 +60,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     5.keep-alive作用；
     6.常用命令；
     7.导航守卫；
+    8.this.$router和this.$route的区别；
 ```
 
 ---

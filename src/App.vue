@@ -1,21 +1,34 @@
 <template>
   <div id="app">
     <div id="nav">
+
+      <!--跳转到制定路由，比a标签好用，有多个属性可以定义-->
+      <!--参考文档：https://router.vuejs.org/zh/api/#router-link-->
+
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
-      <router-link to="/command">Command</router-link>
+      <!--<router-link to="/demo1">Demo1</router-link>-->
+      <!--<router-link :to = "'/demo1/'+type">Demo1</router-link>-->
 
-      <!--跳转到制定路由，比a标签好用-->
-      <!--参考文档：https://router.vuejs.org/zh/api/#router-link-->
-      <!--<router-link replace active-class="active" tag="button" :to="{ path: '/command', query: { a: '1' }}">Command</router-link>-->
+      <router-link replace active-class="active" tag="span" :to="{ path: '/demo1', query: { a: '1' }}">Demo1</router-link>
     </div>
 
     <!--参考文档：https://router.vuejs.org/zh/api/#router-view-->
     <router-view/>
-    <!--有一个name属性，表示路由为command时，加载的是components里面key为commandAddComp的组件-->
-    <!--<router-view name="commandAddComp"/>-->
+    <!--有一个name属性，表示路由为demo1时，加载的是components里面key为demo1AddComp的组件-->
+    <!--<router-view name="demo1AddComp"/>-->
   </div>
 </template>
+
+<script>
+  export default {
+    data(){
+      return {
+        type: 1
+      }
+    },
+  }
+</script>
 
 <style lang="scss">
 #app {
