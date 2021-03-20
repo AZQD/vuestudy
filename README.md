@@ -24,6 +24,11 @@ yarn lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
+### 官网
+
+[Vue](https://cn.vuejs.org/v2/guide/)
+[Vue Router](https://router.vuejs.org/zh/)
+
 
 ### 常见问题总结
 
@@ -37,8 +42,24 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ---
 
 ```
-    2.控制台报错：Maximum call stack size exceeded
+    2.router 属性 name的作用：
+```
+
+---
+
+```
+    3.控制台报错：Maximum call stack size exceeded
     调用栈溢出了，需要检查代码有没有出现死循环调用，或者大量的递归调用。
+```
+
+---
+
+```
+    4.Vue中的router-view、router-link作用；
+    
+    5.keep-alive作用；
+    6.常用命令；
+    7.导航守卫；
 ```
 
 ---
