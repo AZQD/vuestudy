@@ -50,6 +50,9 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ```
     3.控制台报错：Maximum call stack size exceeded
     调用栈溢出了，需要检查代码有没有出现死循环调用，或者大量的递归调用。
+    
+    Eslint报错：TypeError: this.CliEngine is not a constructor
+    解决方案：https://blog.csdn.net/qq_34817440/article/details/104278778
 ```
 
 ---
