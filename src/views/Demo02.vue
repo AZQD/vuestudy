@@ -23,7 +23,7 @@
 
     created () {
       // console.log('this.$router', this.$router);
-      // console.log('this.$route', this.$route);
+      console.log('this.$route', this.$route);
       console.log('this.$route.params', this.$route.params);
     },
 

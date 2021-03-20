@@ -80,6 +80,9 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
          https://router.vuejs.org/zh/guide/essentials/navigation.html
          https://router.vuejs.org/zh/api/#router-push
     
+    通过router-link跳转，和this.$router跳转逻辑相似，尤其需要记忆"命名的路由"；
+    
+    
     9.mode: 'history'；// 值为history或hash路由方式是否加#号；
 ```
 
