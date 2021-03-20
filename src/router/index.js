@@ -21,10 +21,10 @@ const routes = [
   {
     path: '/command',
     name: 'Command',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Command.vue')
+    components: {
+      default: () => import('../views/Command.vue'),
+      commandAddComp: () => import('../views/Command.vue')
+    },
   }
 ]
 

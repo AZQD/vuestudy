@@ -5,7 +5,11 @@
       <router-link to="/about">About</router-link> |
       <router-link to="/command">Command</router-link>
     </div>
+
+    <!--参考文档：https://router.vuejs.org/zh/api/#router-view-->
     <router-view/>
+    <!--有一个name属性，表示路由为command时，加载的是components里面key为commandAddComp的组件-->
+    <router-view name="commandAddComp"/>
   </div>
 </template>
 
