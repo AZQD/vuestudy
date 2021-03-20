@@ -15,7 +15,7 @@
       <!--命名的路由：-->
       <!--// name字段，也就是src/router/index.js:38里面，对应的Demo02；-->
       <!--// type这个键名，需要和/demo02/:type对应；-->
-      <router-link :to="{ name: 'Demo02', params: { type: 123 }}">Demo02</router-link>
+      <!--<router-link :to="{ name: 'Demo02', params: { type: 123 }}">Demo02</router-link>-->
 
       <router-link to="/demo03">Demo03</router-link> |
 
