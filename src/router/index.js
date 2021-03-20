@@ -41,6 +41,7 @@ const routes = [
 
 
   // 学习重点：有子路由children的场景
+  // 参考：https://zhuanlan.zhihu.com/p/95074683
   {
     path: '/demo03',
     name: 'Demo03',
