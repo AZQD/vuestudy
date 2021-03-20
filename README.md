@@ -55,7 +55,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ---
 
 ```
-    4.Vue中的router-view、router-link作用；
+    4.Vue中的router-link、router-view作用；
     
     5.keep-alive作用；
     6.常用命令；

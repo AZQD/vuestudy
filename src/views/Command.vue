@@ -1,6 +1,9 @@
 <template>
-  <div class="commandBox">
-    <p class="text">hello Command.vue</p>
+  <div class="commandBox"><!--最外层必须有标签-->
+    <p class="text">累加器</p>
+    <button v-on:click="sub">-</button>
+    <input v-model="number" type="text" />
+    <button @click="add">+</button>
   </div>
 </template>
 <script>
@@ -12,7 +15,29 @@
     // 3.当你用vue-tools
     name: 'Command',
     components: {
-    }
+    },
+
+    data(){
+      return {
+        number: 1
+      }
+    },
+
+    created(){
+      // console.log(123, this);
+      // console.log(123, this.$toast);
+      // console.log(123, this.$router.push({ name: "userinfo" }));
+    },
+    methods: {
+      sub(){
+        console.log('sub');
+        this.number --
+      },
+      add(){
+        console.log('add');
+        this.number ++
+      }
+    },
   }
 
 </script>
