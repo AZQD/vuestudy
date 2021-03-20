@@ -1,6 +1,13 @@
 <template>
   <div class="box">
-    Demo02
+    <h1>This is Demo2 page</h1>
+
+    <button @click="toDemo03Fun">跳转到Demo03</button>
+    <button @click="toDemo031Fun">跳转到Demo031</button>
+    <button @click="toDemo032Fun">跳转到Demo032</button>
+    <br/>
+    <button @click="backFun">后退</button>
+    <button @click="forwardFun">前进</button>
   </div>
 </template>
 <script>
@@ -20,7 +27,30 @@
       console.log('this.$route.params', this.$route.params);
     },
 
-    methods: {},
+    methods: {
+      toDemo03Fun(){
+        this.$router.push('/demo03');
+      },
+      toDemo031Fun(){
+        // 带查询参数，变成 /***?a=1
+        this.$router.push({ path: '/demo03/demo031', query: { userId: '123' }})
+      },
+      toDemo032Fun(){
+        // 命名的路由：
+        // 参考文档：https://router.vuejs.org/zh/guide/essentials/navigation.html
+        // replace相当于替换当前路由
+        // name字段，也就是src/router/index.js:57里面，对应的Demo032；
+        // id这个键名，需要和/demo03/demo032/:id对应；
+        this.$router.replace({ name: 'Demo032', params: { id: '123' }});
+      },
+      backFun(){
+        // this.$router.go(-1);
+        this.$router.back();
+      },
+      forwardFun(){
+        this.$router.forward();
+      }
+    },
   }
 
 </script>

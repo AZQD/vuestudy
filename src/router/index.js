@@ -32,7 +32,7 @@ const routes = [
   },
 
 
-  // 学习重点：获取参数
+  // 学习重点：获取参数；this.$router多种跳转方式；
   {
     path: '/demo02/:type', // type为动态参数
     name: 'Demo02',
@@ -53,7 +53,7 @@ const routes = [
         component: () => import('../views/Demo031.vue'),
       },
       {
-        path: '/demo03/demo032',
+        path: '/demo03/demo032/:id',
         name: 'Demo032',
         component: () => import('../views/Demo032.vue'),
       }
