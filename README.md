@@ -53,7 +53,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     参考：https://www.jianshu.com/p/b052fb3c23f1
     
     
-    
     2.this.$router和this.$route的区别；
     this.$route是路由参数对象，所有路由中的参数，name，path，params，query都属于它。
     this.$router 是一个路由（导航对象），用它方便的使用js 代码，实现路由的前进，后退，跳转到新的url地址。
