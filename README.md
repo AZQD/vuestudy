@@ -35,3 +35,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ```
 
 ---
+
+```
+    2.控制台报错：Maximum call stack size exceeded
+    调用栈溢出了，需要检查代码有没有出现死循环调用，或者大量的递归调用。
+```
+
+---
