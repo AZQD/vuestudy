@@ -27,10 +27,9 @@
     },
 
     created(){
-      console.log('this.$router:', this.$router);
-      console.log('this.$route:', this.$route);
-      console.log('this.$route:', this.$route.query);
-      console.log('this.$route:', this.$route.params);
+      // console.log('this.$router', this.$router);
+      // console.log('this.$route', this.$route);
+      console.log('this.$route.query', this.$route.query);
     },
     methods: {
       sub(){

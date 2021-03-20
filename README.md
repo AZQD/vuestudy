@@ -59,11 +59,14 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ```
     4.Vue中的router-link、router-view作用；
+    详见：src/App.vue
     
     5.keep-alive作用；
     6.常用命令；
     7.导航守卫；
     8.this.$router和this.$route的区别；
+    9.mode: 'history'；// 值为history或hash路由方式是否加#号；
+    10.获取URL的参数，两种方式：1./user/123，2./user?type=123；
 ```
 
 ---

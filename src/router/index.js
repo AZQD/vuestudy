@@ -21,11 +21,17 @@ const routes = [
   {
     path: '/demo01',
     name: 'Demo01',
+    // components：可匹配多路由，router-view组件根据name属性渲染对应组件
     components: {
       default: () => import('../views/Demo01.vue'),
       demo01AddComp: () => import('../views/Demo01.vue')
     },
-  }
+  },
+  {
+    path: '/demo02/:type', // type为动态参数
+    name: 'Demo02',
+    component: () => import('../views/Demo02.vue')
+  },
 ]
 
 const router = new VueRouter({

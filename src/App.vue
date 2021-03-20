@@ -7,15 +7,16 @@
 
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
-      <!--<router-link to="/demo01">Demo01</router-link>-->
-      <!--<router-link :to = "'/demo01/'+type">Demo01</router-link>-->
 
-      <router-link replace active-class="active" tag="span" :to="{ path: '/demo01', query: { a: '1' }}">Demo01</router-link>
+      <router-link :to="{ path: '/demo01', query: { a: '1' }}">Demo01</router-link> |
+      <!--<router-link replace active-class="active" tag="span" :to="{ path: '/demo01', query: { a: '1' }}">Demo01</router-link>-->
+      <router-link :to = "'/demo02/'+type">Demo02</router-link>
+
     </div>
 
     <!--参考文档：https://router.vuejs.org/zh/api/#router-view-->
+    <!--可以存在多个router-view组件，该组件有一个name属性，表示路由为demo01时，加载的是components里面key为demo01AddComp的组件-->
     <router-view/>
-    <!--有一个name属性，表示路由为demo01时，加载的是components里面key为demo01AddComp的组件-->
     <!--<router-view name="demo01AddComp"/>-->
   </div>
 </template>
@@ -50,8 +51,8 @@
       color: #42b983;
     }
   }
-}
   .active{
     color: red;
   }
+}
 </style>
