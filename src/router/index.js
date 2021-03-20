@@ -19,11 +19,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/demo1',
-    name: 'Demo1',
+    path: '/demo01',
+    name: 'Demo01',
     components: {
-      default: () => import('../views/Demo1.vue'),
-      demo1AddComp: () => import('../views/Demo1.vue')
+      default: () => import('../views/Demo01.vue'),
+      demo01AddComp: () => import('../views/Demo01.vue')
     },
   }
 ]
