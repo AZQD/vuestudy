@@ -10,7 +10,9 @@
 
       <router-link :to="{ path: '/demo01', query: { a: '1' }}">Demo01</router-link> |
       <!--<router-link replace active-class="active" tag="span" :to="{ path: '/demo01', query: { a: '1' }}">Demo01</router-link>-->
-      <router-link :to = "'/demo02/'+type">Demo02</router-link>
+      <router-link :to = "'/demo02/'+type">Demo02</router-link> |
+
+      <router-link to="/demo03">Demo03</router-link> |
 
     </div>
 

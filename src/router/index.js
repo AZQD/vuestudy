@@ -18,6 +18,9 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
+
+
+  // 学习重点：router-link、router-view、获取参数
   {
     path: '/demo01',
     name: 'Demo01',
@@ -27,10 +30,33 @@ const routes = [
       demo01AddComp: () => import('../views/Demo01.vue')
     },
   },
+
+
+  // 学习重点：获取参数
   {
     path: '/demo02/:type', // type为动态参数
     name: 'Demo02',
     component: () => import('../views/Demo02.vue')
+  },
+
+
+  // 学习重点：有子路由children的场景
+  {
+    path: '/demo03',
+    name: 'Demo03',
+    component: () => import('../views/Demo03.vue'),
+    children: [
+      {
+        path: '/demo03/demo031',
+        name: 'Demo031',
+        component: () => import('../views/Demo031.vue'),
+      },
+      {
+        path: '/demo03/demo032',
+        name: 'Demo032',
+        component: () => import('../views/Demo032.vue'),
+      }
+    ]
   },
 ]
 

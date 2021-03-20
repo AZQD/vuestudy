@@ -1,13 +1,15 @@
 <template>
   <div class="about">
-    <h1>This is about page</h1>
+    <h1>This is Demo3 page</h1>
+
+    <router-view/>
   </div>
 </template>
 
 <script>
   export default {
 
-    name: 'about',
+    name: 'Demo3',
 
     components: {},
 
