@@ -76,6 +76,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     5.keep-alive作用；
     6.常用命令；
     7.导航守卫；
+    8.引入第三方工具，如vant；
     
     8.this.$router和this.$route的区别；
     this.$route是路由参数对象，所有路由中的参数，name，path，params，query都属于它。
