@@ -22,7 +22,7 @@
     </div>
 
     <!--参考文档：https://router.vuejs.org/zh/api/#router-view-->
-    <!--可以存在多个router-view组件，该组件有一个name属性，表示路由为demo01时，加载的是components里面key为demo01AddComp的组件-->
+    <!--可以存在多个router-view组件，该组件只有一个name属性，表示路由为demo01时，加载的是components里面key为demo01AddComp的组件-->
     <router-view/>
     <!--<router-view name="demo01AddComp"/>-->
   </div>

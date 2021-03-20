@@ -35,6 +35,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ```
     1.vue 组件属性 name的作用：
+    name属性作用：
+    1.配置<keep-alive>标签的exclude或者include属性做组件筛选
+    2.DOM做递归组件
+    3.用vue-tools调试
     https://cn.vuejs.org/v2/api/#name
     https://blog.csdn.net/kangkang_style/article/details/88689821
 ```
@@ -43,6 +47,12 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ```
     2.router 属性 name的作用：
+    (1).使用$router.name获取组件name值；
+    (2).通过router-link、this.$router跳转，使用的是"命名的路由"方式，使用name字段；
+    参考：https://www.jianshu.com/p/f86fea2cd109
+    （该文章说的第一种方式不符；官方的标准描述：<router-view>设置了name名称，则会渲染对应的路由配置中 components 下的相应组件。
+    参考：https://router.vuejs.org/zh/api/#router-view-props）
+    
 ```
 
 ---
