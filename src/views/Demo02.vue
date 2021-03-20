@@ -2,9 +2,9 @@
   <div class="box">
     <h1>This is Demo2 page</h1>
 
-    <button @click="toDemo03Fun">跳转到Demo03</button>
-    <button @click="toDemo031Fun">跳转到Demo031</button>
-    <button @click="toDemo032Fun">跳转到Demo032</button>
+    <button @click="toDemo03Fun">push方式跳转到Demo03</button>
+    <button @click="toDemo031Fun">push方式跳转到Demo031</button>
+    <button @click="toDemo032Fun">replace方式跳转到Demo032</button>
     <br/>
     <button @click="backFun">后退</button>
     <button @click="forwardFun">前进</button>
