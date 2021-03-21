@@ -76,6 +76,13 @@ const routes = [
     name: 'Demo04',
     component: () => import('../views/Demo04.vue')
   },
+
+  // 学习重点：插槽
+  {
+    path: '/demo05',
+    name: 'Demo05',
+    component: () => import('../views/Demo05.vue')
+  },
 ]
 
 const router = new VueRouter({
