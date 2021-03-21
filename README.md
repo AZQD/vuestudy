@@ -112,11 +112,20 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     
     
     class样式用法；
+    参考：src/views/Demo04.vue:20
     7.导航守卫；
     8.引入第三方工具，如vant；
     插槽；
     高阶组件使用：https://www.jianshu.com/p/8b650a0f274a；
     插件；
     vuex;
+    
+    axios
+    https://autumnfish.cn/comment/music?id=186016&limit=1
+    https://autumnfish.cn/api/joke/list?num=10
+    
+    axios.post("https://autumnfish.cn/api/user/reg",{username:"太子殿下"})
+    
+    mock
    
 ```
