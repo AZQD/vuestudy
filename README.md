@@ -103,6 +103,15 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     参考：src/views/Demo04.vue
     
     6.常用命令；
+    参考：src/views/Demo04.vue
+    绑定事件：v-on:click  简写为 @click  @click.stop  @click.prevent  @click.stop.prevent
+    @keyup.enter  @keyup.13  v-on:click.once  参考：https://cn.vuejs.org/v2/api/#v-on
+    绑定属性：v-bind:src  简写为 :src
+    v-if v-else-if v-else
+    v-model 数据的双向绑定：表单元素的值，如input，textarea，select；
+    
+    
+    class样式用法；
     7.导航守卫；
     8.引入第三方工具，如vant；
     插槽；

@@ -9,6 +9,11 @@
     <button @click="fun1">触发事件（不传参）</button>
     <button @click="fun2(123)">触发事件（传参）</button>
     <button @click="fun3($event, 123)">触发事件（event、传参）</button>
+
+    <br/>
+    <br/>
+    <input type="text" @keyup.enter="submit">
+    <input type="text" @keyup.enter.once="submit"><!--执行一次-->
   </div>
 </template>
 
@@ -72,6 +77,10 @@
       fun3(e, params){
         console.log('fun3-e', e);
         console.log('fun3-params', params);
+      },
+
+      submit(){
+        console.log('提交');
       }
     },
   }
