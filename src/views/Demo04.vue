@@ -6,7 +6,6 @@
     <button @click="add">+</button>
     <br/>
     <br/>
-    <button @click="toHomeFun">通过replace跳转到Home</button>
   </div>
 </template>
 
@@ -57,10 +56,6 @@
       add(){
         console.log('add');
         this.number ++
-      },
-      toHomeFun(){
-        // this.$router.replace('/');
-        window.location.reload()
       }
     },
   }
