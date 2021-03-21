@@ -51,6 +51,14 @@
         this.$router.forward();
       }
     },
+
+    // activated 和 deactivated：被keep-alive包裹的组件，特有的两个生命周期；
+    activated(){
+      console.log('activated，组件激活时调用（包含初始化）');
+    },
+    deactivated(){
+      console.log('deactivated，组件停用时调用');
+    },
   }
 
 </script>

@@ -36,6 +36,9 @@ const routes = [
   {
     path: '/demo02/:type', // type为动态参数
     name: 'Demo02',
+    meta: {
+      keepAlive: true
+    },
     component: () => import('../views/Demo02.vue')
   },
 

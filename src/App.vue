@@ -23,8 +23,38 @@
 
     <!--参考文档：https://router.vuejs.org/zh/api/#router-view-->
     <!--可以存在多个router-view组件，该组件只有一个name属性，表示路由为demo01时，加载的是components里面key为demo01AddComp的组件-->
-    <router-view/>
+    <!--<router-view/>-->
     <!--<router-view name="demo01AddComp"/>-->
+
+    <!--
+    keep-alive：缓存组件,避免多次加载相应的组件,减少性能消耗；
+    被 keep-alive 包裹的组件被缓存之后有两个独有的生命周期： activated 和 deactivated。
+    activated 生命周期在组件激活时调用（包含初始化）、deactivated 生命周期在组件停用时调用。
+    参考文档：https://www.jianshu.com/p/e565cfef48e7
+    https://www.jb51.net/article/179487.htm
+    -->
+
+    <!--keep-alive的两种使用方式：-->
+    <!--(方式1)：使用router.meta属性；如对/demo02路由配置meta.keepAlive为true，即缓存该组件-->
+    <!--
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive"/>
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"/>
+    -->
+
+    <!--(方式2).使用新增属性inlcude(包含)/exclude(不包含)-->
+    <!--只包含Demo02，其他不使用keep-alive；（Demo02为该组件内定义的name，文件位置：src/views/Demo02.vue:16）-->
+
+    <!--include和exclude属性允许组件有条件地缓存。二者都可以用逗号分割字符串、正则表达式、数组等三种方式。-->
+    <!--如include="Demo01,Demo02"、:include="/Demo01|Demo02/"、:include="['Demo01', 'Demo02']"-->
+    <keep-alive include="Demo01,Demo02">
+      <router-view/>
+    </keep-alive>
+    <!--不包含Demo02，其他都使用keep-alive；-->
+    <!--<keep-alive exclude="Demo02">
+      <router-view/>
+    </keep-alive>-->
   </div>
 </template>
 
@@ -35,6 +65,9 @@
         type: 1
       }
     },
+    created(){
+      console.log('App.vue ---- created');
+    }
   }
 </script>
 

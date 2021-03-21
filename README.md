@@ -90,8 +90,13 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     
     
     5.keep-alive作用；
+    参考：src/App.vue:36 
+   
+    生命周期；
+    
     6.常用命令；
     7.导航守卫；
     8.引入第三方工具，如vant；
     插槽；
+    高阶组件使用：https://www.jianshu.com/p/8b650a0f274a；
 ```
