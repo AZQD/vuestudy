@@ -89,20 +89,23 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     5.mode: 'history'；// 值为history或hash路由方式是否加#号；
     
     
-    var vm=new Vue({});
+    6.var vm=new Vue({});
     官网原话：虽然没有完全遵循 MVVM 模型，但是 Vue 的设计也受到了它的启发。因此在文档中经常会使用 vm (ViewModel 的缩写) 这个变量名表示 Vue 实例。
     
-    5.keep-alive作用；
+    
+    7.keep-alive作用；
     参考：src/App.vue:36 
    
-    生命周期；
+   
+    8.生命周期；
     参考：src/views/Demo04.vue
     
     
-    事件调用传参；event使用；
+    9.事件调用传参；event使用；
     参考：src/views/Demo04.vue
     
-    6.常用命令；
+    
+    10.常用命令；
     参考：src/views/Demo04.vue
     绑定事件：v-on:click  简写为 @click  @click.stop  @click.prevent  @click.stop.prevent
     @keyup.enter  @keyup.13  v-on:click.once  参考：https://cn.vuejs.org/v2/api/#v-on
@@ -111,14 +114,16 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     v-model 数据的双向绑定：表单元素的值，如input，textarea，select；
     
     
-    class样式用法；
+    11.class样式用法；
     参考：src/views/Demo04.vue:20
     class类添加data-v；
     
-    7.导航守卫：导航守卫主要用来通过跳转或取消的方式守卫导航；
+    
+    12.导航守卫：导航守卫主要用来通过跳转或取消的方式守卫导航；
     全局前置守卫、全局后置钩子、路由独享的守卫、组件内的守卫；
     参考：src/router/index.js:12；src/views/Demo01.vue:19；
     参考文档：https://router.vuejs.org/zh/guide/advanced/navigation-guards.html
+    
     
     8.引入第三方工具，如vant；
     插槽；
