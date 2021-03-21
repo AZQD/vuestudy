@@ -89,14 +89,21 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     5.mode: 'history'；// 值为history或hash路由方式是否加#号；
     
     
+    var vm=new Vue({});
+    官网原话：虽然没有完全遵循 MVVM 模型，但是 Vue 的设计也受到了它的启发。因此在文档中经常会使用 vm (ViewModel 的缩写) 这个变量名表示 Vue 实例。
+    
     5.keep-alive作用；
     参考：src/App.vue:36 
    
     生命周期；
+    事件调用传参；event使用；
     
     6.常用命令；
     7.导航守卫；
     8.引入第三方工具，如vant；
     插槽；
     高阶组件使用：https://www.jianshu.com/p/8b650a0f274a；
+    插件；
+    vuex;
+   
 ```
