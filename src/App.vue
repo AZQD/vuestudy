@@ -18,6 +18,7 @@
       <!--<router-link :to="{ name: 'Demo02', params: { type: 123 }}">Demo02</router-link>-->
 
       <router-link to="/demo03">Demo03</router-link> |
+      <router-link to="/demo04">Demo04</router-link> |
 
     </div>
 

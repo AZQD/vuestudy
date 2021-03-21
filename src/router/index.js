@@ -62,6 +62,13 @@ const routes = [
       }
     ]
   },
+
+  // 学习重点：vue组件生命周期
+  {
+    path: '/demo04',
+    name: 'Demo04',
+    component: () => import('../views/Demo04.vue')
+  },
 ]
 
 const router = new VueRouter({
