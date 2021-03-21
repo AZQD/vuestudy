@@ -8,7 +8,7 @@
     <br/>
     <button @click="fun1">触发事件（不传参）</button>
     <button @click="fun2(123)">触发事件（传参）</button>
-    <button @click="fun3($event, 123)">触发事件（传参、event）</button>
+    <button @click="fun3($event, 123)">触发事件（event、传参）</button>
   </div>
 </template>
 
