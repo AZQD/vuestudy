@@ -96,7 +96,11 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     参考：src/App.vue:36 
    
     生命周期；
+    参考：src/views/Demo04.vue
+    
+    
     事件调用传参；event使用；
+    参考：src/views/Demo04.vue
     
     6.常用命令；
     7.导航守卫；

@@ -6,6 +6,9 @@
     <button @click="add">+</button>
     <br/>
     <br/>
+    <button @click="fun1">触发事件（不传参）</button>
+    <button @click="fun2(123)">触发事件（传参）</button>
+    <button @click="fun3($event, 123)">触发事件（传参、event）</button>
   </div>
 </template>
 
@@ -56,6 +59,19 @@
       add(){
         console.log('add');
         this.number ++
+      },
+
+      fun1(e){
+        console.log('fun1', e);
+      },
+
+      fun2(params){
+        console.log('fun2', params);
+      },
+
+      fun3(e, params){
+        console.log('fun3-e', e);
+        console.log('fun3-params', params);
       }
     },
   }
