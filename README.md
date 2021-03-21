@@ -113,7 +113,13 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     
     class样式用法；
     参考：src/views/Demo04.vue:20
-    7.导航守卫；
+    class类添加data-v；
+    
+    7.导航守卫：导航守卫主要用来通过跳转或取消的方式守卫导航；
+    全局前置守卫、全局后置钩子、路由独享的守卫、组件内的守卫；
+    参考：src/router/index.js:12；src/views/Demo01.vue:19；
+    参考文档：https://router.vuejs.org/zh/guide/advanced/navigation-guards.html
+    
     8.引入第三方工具，如vant；
     插槽；
     高阶组件使用：https://www.jianshu.com/p/8b650a0f274a；

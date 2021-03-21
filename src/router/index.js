@@ -8,7 +8,14 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    beforeEnter: (to, from, next) => {
+      console.log('路由独享的守卫');
+      console.log('to', to);
+      console.log('from', from);
+      console.log('next', next);
+      next();
+    }
   },
   {
     path: '/about',
@@ -76,5 +83,21 @@ const router = new VueRouter({
   mode: 'history',//history模式下，浏览器地址规整，但需要后台支持
   routes
 })
+
+// 全局前置守卫
+router.beforeEach((to, from, next) => {
+  console.log('全局前置守卫');
+  console.log('to', to);
+  console.log('from', from);
+  console.log('next', next);
+  next();
+});
+
+// 全局后置钩子
+router.afterEach((to, from) => {
+  console.log('全局后置钩子');
+  console.log('to', to);
+  console.log('from', from);
+});
 
 export default router
