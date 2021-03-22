@@ -125,8 +125,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     参考文档：https://router.vuejs.org/zh/guide/advanced/navigation-guards.html
     
     
+    13.插槽；
+    参考：Demo05.vue
+    
     8.引入第三方工具，如vant；
-    插槽；
     高阶组件使用：https://www.jianshu.com/p/8b650a0f274a；
     插件；
     vuex;
