@@ -126,6 +126,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     
     
     13.插槽；
+    v-slot:header 可以被重写为 #header
     参考：Demo05.vue
     
     8.引入第三方工具，如vant；
