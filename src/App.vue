@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
 
-      <!--跳转到制定路由，比a标签好用，有多个属性可以定义-->
+      <!--跳转到指定路由，比a标签好用，有多个属性可以定义-->
       <!--参考文档：https://router.vuejs.org/zh/api/#router-link-->
 
       <router-link to="/">Home</router-link> |
