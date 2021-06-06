@@ -143,3 +143,16 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     mock
    
 ```
+传统方式：
+父子：v-bind属性绑定；
+子父：v-on属性绑定；
+兄弟：EventBus：
+    $on   接收数据的组件
+    $emit 发送数据的组件
+
+Vuex：
+共享数据存在vuex；私有数据存在组件内即可；
+
+vue ui vue可视化界面
+
+vscode使用
