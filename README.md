@@ -158,3 +158,143 @@ Vuex：
 vue ui vue可视化界面
 
 vscode使用
+
+
+Vuex的核心概念：
+
+一、State
+组件访问State中数据的方式：
+方式1.this.$store.state.count;
+方式2.使用mapState;
+...js
+   computed(){
+    ...mapState(['count']);
+   }
+...
+
+二、Mutation 用于变更Store中的数据
+1.更改Store中的状态的唯一方法；
+2.必须是同步的；
+3.触发Mutation函数写法：
+方式1：
+...js
+    // 定义
+    mutations: {
+        add(state){
+            state.count ++;
+        }
+        // 传参
+        add2(state, step){
+            state.count += step;
+        }
+    }
+
+    // 业务触发 （commit就是调用mutations里面的函数）
+    this.$store.commit('add');
+    this.$store.commit('add', 10); // 传参
+...
+
+方式2.使用mapMutations：
+...js
+    // 定义
+    mutations: {
+        add(state){
+            state.count ++;
+        }
+        // 传参
+        add2(state, step){
+            state.count += step;
+        }
+    }
+
+    // 业务触发
+    methods: {
+        ...mapMutations('add', 'add2');
+    }
+
+    this.add();
+    this.add2(10); // 传参
+
+...
+
+三、Action 用于处理异步任务；
+触发Mutation函数写法：
+方式1.
+...js
+    // 定义：
+    actions: {
+        addAsync(context){
+            setTimeout(() => {
+                // 必须通过 context.commit 触发某个 mutation 才行；
+                context.commit('add');
+            }, 1000);
+        }
+        // 传参
+        addAsync2(context, step){
+            setTimeout(() => {
+                // 必须通过 context.commit 触发某个 mutation 才行；
+                context.commit('add', step);
+            }, 1000);
+        }
+    }
+
+    // 业务触发 （这里的dispatch函数专门用来触发 action）
+    this.$store.dispatch('addAsync');
+    this.$store.dispatch('addAsync', 10); // 传参
+...
+
+方式2.使用mapActions：
+...js
+    // 定义：
+        actions: {
+            addAsync(context){
+                setTimeout(() => {
+                    // 必须通过 context.commit 触发某个 mutation 才行；
+                    context.commit('add');
+                }, 1000);
+            }
+            // 传参
+            addAsync2(context, step){
+                setTimeout(() => {
+                    // 必须通过 context.commit 触发某个 mutation 才行；
+                    context.commit('add', step);
+                }, 1000);
+            }
+        }
+
+    // 业务触发
+    methods: {
+        ...mapActions('add', 'add2');
+    }
+
+    this.add();
+    this.add2(10); // 传参
+
+...
+
+四、Getter 对store的数据起到计算属性作用，不会改变store；
+定义：
+...js
+    // 定义：
+    getter: {
+        doubleCount(state){
+                return state.count * 2
+            }
+    }
+...
+触发Getter写法：
+方式1.this.$store.getter.名称
+方式2.
+...js
+    computed: {
+        ...mapGetters('doubleCount');
+    }
+...
+
+五、Mudules：分模块管理
+...js
+    modules: {
+        a: moduleA
+        b: moduleB
+    }
+...
