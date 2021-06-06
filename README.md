@@ -141,6 +141,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     axios.post("https://autumnfish.cn/api/user/reg",{username:"太子殿下"})
     
     mock
+    
+    vuex
    
 ```
 传统方式：
