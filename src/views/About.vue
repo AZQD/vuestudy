@@ -24,10 +24,11 @@
 
 </script>
 
-<style lang="scss">
+<!--scoped：样式作用域为当前组件-->
+<style lang="scss" scoped>
 
-  .box {
-
+  *{
+    background-color: lightpink;
   }
 
 </style>
