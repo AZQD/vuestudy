@@ -2,6 +2,7 @@
   <div class="block">
     <span class="demonstration">单选选择任意一级选项</span>
     <el-cascader
+            v-model="defaultVal"
             :options="options"
             :props="{ checkStrictly: true, expandTrigger: 'click' }"
             clearable
@@ -22,6 +23,7 @@
 
     data () {
       return {
+        defaultVal: 'daohang',
         options: [
           {
           value: 'zhinan',
