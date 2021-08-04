@@ -4,6 +4,16 @@ import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
+// 报错：NavigationDuplicated: Avoided redundant navigation to current location: “/“
+// 原因：路由重复导致
+//解决方案：
+// 获取原型对象上的push函数
+const originalPush = VueRouter.prototype.push
+//修改原型对象中的push方法
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
 const routes = [
   {
     path: '/',
@@ -17,15 +27,6 @@ const routes = [
       next();
     }
   },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  },
-
 
   // 学习重点：router-link、router-view、获取参数
   {
@@ -33,7 +34,7 @@ const routes = [
     name: 'Demo01',
     // components：可匹配多路由，router-view组件根据name属性渲染对应组件
     components: {
-      default: () => import('../views/Demo01.vue'),
+      default: () => import('../views/Demo01.vue'), // 路由懒加载：动态import
       demo01AddComp: () => import('../views/Demo01.vue')
     },
   },
