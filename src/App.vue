@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
+      <el-button type="success">成功按钮</el-button>
 
       <!--跳转到指定路由，比a标签好用，有多个属性可以定义-->
       <!--参考文档：https://router.vuejs.org/zh/api/#router-link-->
