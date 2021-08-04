@@ -302,14 +302,15 @@ Vuex的核心概念：
    2.Eslint报错：TypeError: this.CliEngine is not a constructor
    解决方案：https://blog.csdn.net/qq_34817440/article/details/104278778
 
-   3.ElementUI：el-cascader 隐藏单选框 点击直接选中
-      解决方案：https://blog.csdn.net/qq_34817440/article/details/104278778
+   3.路由重复导致报错：NavigationDuplicated: Avoided redundant navigation to current location: "/"
+      解决方案：src/router/index.js:9
 ```
 
 
 ### ElementUI总结
 
 ```
-   1.el-cascader 级联选择器， 隐藏单选框，点击直接选中
+   1.el-cascader 级联选择器，如何隐藏单选框，点击文本直接选中：
    参考：https://blog.csdn.net/cc25485697/article/details/107164094
+
 ```
