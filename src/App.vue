@@ -38,6 +38,7 @@
               <el-menu-item index="/demo03">Demo03</el-menu-item>
               <el-menu-item index="/demo04">Demo04</el-menu-item>
               <el-menu-item index="/demo05">Demo05</el-menu-item>
+              <el-menu-item index="/cascader">Cascader 级联选择器</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
@@ -121,7 +122,7 @@
 </script>
 
 <!--scoped：样式作用域为当前组件-->
-<style lang="scss" scoped>
+<style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -145,4 +146,20 @@
       display: block;
     }
   }
+
+
+.el-cascader-panel .el-radio{
+  z-index: 10;
+  width: 99%;
+  height: 99%;
+  position: absolute;
+  top: 10px;
+  right: -12px;
+}
+.el-cascader-panel .el-radio__input{
+  visibility: hidden;
+}
+.el-cascader-panel .el-cascader-node__postfix{
+  top: 10px;
+}
 </style>

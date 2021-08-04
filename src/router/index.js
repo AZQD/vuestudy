@@ -84,6 +84,13 @@ const routes = [
     name: 'Demo05',
     component: () => import('../views/Demo05.vue')
   },
+
+  // 学习重点：级联选择器
+  {
+    path: '/cascader',
+    name: 'Cascader',
+    component: () => import('../views/elementUI/Cascader.vue')
+  },
 ]
 
 const router = new VueRouter({
