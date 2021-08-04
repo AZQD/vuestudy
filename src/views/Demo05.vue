@@ -1,7 +1,7 @@
 <template>
   <div class="box">
 
-    <h1>This is Demo05 page</h1>
+    <h3>学习重点：插槽</h3>
     <hr>
 
     <Demo051 :parentMsg="msg">

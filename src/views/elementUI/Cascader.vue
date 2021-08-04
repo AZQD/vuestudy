@@ -1,5 +1,6 @@
 <template>
   <div class="block">
+    <h3>学习重点：级联选择器</h3>
     <span class="demonstration">单选选择任意一级选项</span>
     <el-cascader
             v-model="defaultVal"

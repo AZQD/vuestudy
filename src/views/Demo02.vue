@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <h1>This is Demo2 page</h1>
+    <h3>学习重点：获取参数；this.$router多种跳转方式；</h3>
 
     <button @click="toDemo03Fun">push方式跳转到Demo03</button>
     <button @click="toDemo031Fun">push方式跳转到Demo031</button>

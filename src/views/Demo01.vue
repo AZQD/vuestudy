@@ -1,5 +1,6 @@
 <template>
   <div class="box"><!--最外层必须有标签-->
+    <h3>学习重点：router-link、router-view、获取参数</h3>
     <p class="text">累加器</p>
     <button v-on:click="sub">-</button>
     <input v-model="number" type="text" />

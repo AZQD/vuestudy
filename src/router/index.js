@@ -71,7 +71,7 @@ const routes = [
     ]
   },
 
-  // 学习重点：vue组件生命周期
+  // 学习重点：vue组件生命周期、触发事件、动态更新class样式
   {
     path: '/demo04',
     name: 'Demo04',

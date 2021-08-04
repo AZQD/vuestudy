@@ -37,7 +37,7 @@
               <el-menu-item :index="'/demo02/'+type">Demo02</el-menu-item>
               <el-menu-item index="/demo03">Demo03</el-menu-item>
               <el-menu-item index="/demo04">Demo04</el-menu-item>
-              <el-menu-item index="/demo05">Demo05</el-menu-item>
+              <el-menu-item index="/demo05">Demo05 插槽</el-menu-item>
               <el-menu-item index="/cascader">Cascader 级联选择器</el-menu-item>
             </el-menu-item-group>
           </el-submenu>

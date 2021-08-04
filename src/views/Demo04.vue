@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <h1>This is Demo04 page</h1>
+    <h4>学习重点：vue组件生命周期、触发事件、动态更新class样式</h4>
 
     <input v-model="number" type="text" />
     <button @click="add">+</button>
