@@ -5,10 +5,11 @@
     <el-cascader
             v-model="defaultVal"
             :options="options"
-            :props="{ checkStrictly: true, expandTrigger: 'click' }"
+            :props="{ checkStrictly: true, expandTrigger: 'hover' }"
             clearable
             filterable
             :show-all-levels="false"
+            ref="ref_cascader"
             @change="changeFun"
     >
     </el-cascader>
@@ -234,6 +235,7 @@
     methods: {
       changeFun(val){
         console.log(val);
+        this.$refs.ref_cascader.dropDownVisible = false; //  选中后，隐藏选择框
       }
     },
   }
