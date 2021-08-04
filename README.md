@@ -30,18 +30,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 [Vue Router](https://router.vuejs.org/zh/)
 
 
-### 常见报错总结
-
-
-```
-   1.控制台报错：Maximum call stack size exceeded
-   调用栈溢出了，需要检查代码有没有出现死循环调用，或者大量的递归调用。
-   
-   2.Eslint报错：TypeError: this.CliEngine is not a constructor
-   解决方案：https://blog.csdn.net/qq_34817440/article/details/104278778 
-```
-
-
 ### 常见问题总结
 
 
@@ -300,3 +288,28 @@ Vuex的核心概念：
 ...
 
 组件使用是否必须驼峰；
+
+
+
+
+### 常见报错总结
+
+
+```
+   1.控制台报错：Maximum call stack size exceeded
+   调用栈溢出了，需要检查代码有没有出现死循环调用，或者大量的递归调用。
+
+   2.Eslint报错：TypeError: this.CliEngine is not a constructor
+   解决方案：https://blog.csdn.net/qq_34817440/article/details/104278778
+
+   3.ElementUI：el-cascader 隐藏单选框 点击直接选中
+      解决方案：https://blog.csdn.net/qq_34817440/article/details/104278778
+```
+
+
+### ElementUI总结
+
+```
+   1.el-cascader 级联选择器， 隐藏单选框，点击直接选中
+   参考：https://blog.csdn.net/cc25485697/article/details/107164094
+```
