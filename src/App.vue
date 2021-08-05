@@ -45,7 +45,7 @@
             <template slot="title"><i class="el-icon-menu"></i>ElementUI总结</template>
             <el-menu-item-group>
               <el-menu-item index="/cascader">Cascader 级联选择器</el-menu-item>
-              <el-menu-item index="/dialog">Dialog抽离组件</el-menu-item>
+              <el-menu-item index="/dialogParent">Dialog抽离组件</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 

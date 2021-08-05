@@ -94,8 +94,8 @@ const routes = [
 
   // 学习重点：Dialog组件抽离
   {
-    path: '/dialog',
-    name: 'Dialog',
+    path: '/dialogParent',
+    name: 'DialogParent',
     component: () => import('../views/elementUI/dialog/DialogParent.vue')
   },
 ]
