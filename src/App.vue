@@ -44,8 +44,9 @@
           <el-submenu index="2"><!--第二部分-->
             <template slot="title"><i class="el-icon-menu"></i>ElementUI总结</template>
             <el-menu-item-group>
-              <el-menu-item index="/cascader">Cascader 级联选择器</el-menu-item>
-              <el-menu-item index="/dialogParent">Dialog抽离组件</el-menu-item>
+              <el-menu-item index="/cascader">Cascader级联选择器</el-menu-item>
+              <el-menu-item index="/dialogParent">Dialog组件抽离</el-menu-item>
+              <el-menu-item index="/dialogHeight">Dialog高度自适应</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
@@ -155,6 +156,8 @@
   }
 
 
+//el-cascader 级联选择器，如何隐藏单选框，点击文本直接选中：
+//参考：https://blog.csdn.net/cc25485697/article/details/107164094
 .el-cascader-panel .el-radio{
   z-index: 10;
   width: 99%;
@@ -168,5 +171,31 @@
 }
 .el-cascader-panel .el-cascader-node__postfix{
   top: 10px;
+}
+
+
+//el-dialog自适应高度，仅body内容部分滚动
+//参考链接：https://blog.csdn.net/zhaou_csdn/article/details/105242724
+.abow_dialog {
+  display: flex;
+  justify-content: center;
+  align-items: Center;
+  overflow: hidden;
+  .el-dialog {
+    margin: 0 auto !important;
+    height: 90%;
+    overflow: hidden;
+    .el-dialog__body {
+      position: absolute;
+      left: 0;
+      top: 54px;
+      bottom: 0;
+      right: 0;
+      padding: 0;
+      z-index: 1;
+      overflow: hidden;
+      overflow-y: auto;
+    }
+  }
 }
 </style>

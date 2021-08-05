@@ -98,6 +98,13 @@ const routes = [
     name: 'DialogParent',
     component: () => import('../views/elementUI/dialog/DialogParent.vue')
   },
+
+  // 学习重点：Dialog高度自适应
+  {
+    path: '/dialogHeight',
+    name: 'DialogHeight',
+    component: () => import('../views/elementUI/dialog/DialogHeight.vue')
+  },
 ]
 
 const router = new VueRouter({
