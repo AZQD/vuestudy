@@ -91,6 +91,13 @@ const routes = [
     name: 'Cascader',
     component: () => import('../views/elementUI/Cascader.vue')
   },
+
+  // 学习重点：Dialog组件抽离
+  {
+    path: '/dialog',
+    name: 'Dialog',
+    component: () => import('../views/elementUI/dialog/DialogParent.vue')
+  },
 ]
 
 const router = new VueRouter({

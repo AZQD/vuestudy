@@ -8,7 +8,7 @@
       </div>
 
       <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-        <el-menu :default-openeds="['1']" router :default-active="$route.path">
+        <el-menu :default-openeds="['2']" router :default-active="$route.path">
 
           <el-submenu index="1"><!--第一部分-->
 
@@ -30,7 +30,7 @@
             <router-link to="/demo04">Demo04</router-link> |
             <router-link to="/demo05">Demo05</router-link> |-->
 
-            <template slot="title"><i class="el-icon-menu"></i>Demo汇总</template>
+            <template slot="title"><i class="el-icon-menu"></i>Vue基础总结</template>
             <el-menu-item-group>
               <el-menu-item index="/">Home</el-menu-item>
               <el-menu-item index="/demo01" :route="{ path: '/demo01', query: { a: '1' }}">Demo01</el-menu-item>
@@ -38,12 +38,19 @@
               <el-menu-item index="/demo03">Demo03</el-menu-item>
               <el-menu-item index="/demo04">Demo04</el-menu-item>
               <el-menu-item index="/demo05">Demo05 插槽</el-menu-item>
-              <el-menu-item index="/cascader">Cascader 级联选择器</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
           <el-submenu index="2"><!--第二部分-->
-            <template slot="title"><i class="el-icon-menu"></i>导航二</template>
+            <template slot="title"><i class="el-icon-menu"></i>ElementUI总结</template>
+            <el-menu-item-group>
+              <el-menu-item index="/cascader">Cascader 级联选择器</el-menu-item>
+              <el-menu-item index="/dialog">Dialog抽离组件</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+
+          <el-submenu index="3"><!--第二部分-->
+            <template slot="title"><i class="el-icon-menu"></i>导航菜单</template>
             <el-menu-item-group>
               <template slot="title">分组一</template>
               <el-menu-item index="2-1">选项1</el-menu-item>
