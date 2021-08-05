@@ -304,6 +304,9 @@ Vuex的核心概念：
 
    3.路由重复导致报错：NavigationDuplicated: Avoided redundant navigation to current location: "/"
       解决方案：src/router/index.js:9
+
+   4.Vue:Avoid mutating a prop directly since the value will be overwritten ...警告解决方法
+    原因就是props值不能被改变
 ```
 
 
