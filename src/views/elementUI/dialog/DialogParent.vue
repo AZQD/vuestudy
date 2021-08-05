@@ -7,6 +7,7 @@
 </template>
 
 <script>
+// 参考文档：https://www.cnblogs.com/yeqrblog/p/9141701.html
 import DialogChild from "@/views/elementUI/dialog/DialogChild";
   export default {
 

@@ -1,6 +1,6 @@
 <template>
   <el-dialog title="dialog子组件详情" :visible.sync="open" width="800" :close-on-click-modal="false" destroy-on-close :before-close="beforeCloseFun">
-    士大夫
+    content
   </el-dialog>
 </template>
 
