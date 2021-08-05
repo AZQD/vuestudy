@@ -1,7 +1,7 @@
 <template>
   <div class="block">
     <h3>学习重点：Dialog组件抽离</h3>
-    <el-button @click="clickFun">打开Dialog子组件</el-button>
+    <el-button type="primary" @click="clickFun">打开Dialog子组件</el-button>
     <DialogChild :open.sync="open" />
   </div>
 </template>
