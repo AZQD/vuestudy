@@ -47,6 +47,7 @@
               <el-menu-item index="/cascader">Cascader级联选择器</el-menu-item>
               <el-menu-item index="/dialogParent">Dialog组件抽离</el-menu-item>
               <el-menu-item index="/dialogHeight">Dialog高度自适应</el-menu-item>
+              <el-menu-item index="/textareaHeight">Textarea高度自适应</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
@@ -198,4 +199,11 @@
     }
   }
 }
+
+
+//自定义textarea的高度，一般用不到，使用autosize即可；
+//.el-textarea__inner{
+//  height: 90px;
+//  overflow-y: auto; // 兼容ie
+//}
 </style>

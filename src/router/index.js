@@ -105,6 +105,13 @@ const routes = [
     name: 'DialogHeight',
     component: () => import('../views/elementUI/dialog/DialogHeight.vue')
   },
+
+  // 学习重点：Textarea高度自适应
+  {
+    path: '/textareaHeight',
+    name: 'TextareaHeight',
+    component: () => import('../views/elementUI/TextareaHeight.vue')
+  },
 ]
 
 const router = new VueRouter({
