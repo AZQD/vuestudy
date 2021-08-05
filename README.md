@@ -307,6 +307,8 @@ Vuex的核心概念：
 
    4.Vue:Avoid mutating a prop directly since the value will be overwritten ...警告解决方法
     原因就是props值不能被改变
+
+   5.WangEditor在vue中使用，初始化代码需要放在mounted;
 ```
 
 
