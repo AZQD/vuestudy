@@ -112,6 +112,13 @@ const routes = [
     name: 'TextareaHeight',
     component: () => import('../views/elementUI/TextareaHeight.vue')
   },
+
+  // 学习重点：WangEditor富文本编辑器
+  {
+    path: '/wangEditor',
+    name: 'WangEditor',
+    component: () => import('../views/WangEditor.vue')
+  },
 ]
 
 const router = new VueRouter({
