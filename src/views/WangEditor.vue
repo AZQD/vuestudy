@@ -52,6 +52,19 @@ import E from 'wangeditor'
       // console.log('获取编辑区内容方式2：', editor.txt.html()); // 获取html
       // console.log('获取编辑区内容方式3：', editor.txt.text()); // 获取text
       // editor.txt.clear(); // 清空编辑器内容
+      // editor.disable(); // 禁用编辑器
+      // editor.enable(); // 接触禁用
+
+      // mounted() {
+      //   // 创建编辑器
+      //   this.editor = new E(`#demo`)
+      //   this.editor.create()
+      // },
+      // beforeDestroy() {
+      //   // 销毁编辑器
+      //   this.editor.destroy()
+      //   this.editor = null
+      // }
     },
 
     methods: {},
