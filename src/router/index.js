@@ -85,6 +85,13 @@ const routes = [
     component: () => import('../views/Demo05.vue')
   },
 
+  // 学习重点：组件自调用
+  {
+    path: '/compSelf',
+    name: 'CompSelf',
+    component: () => import('../views/CompSelf.vue')
+  },
+
   // 学习重点：级联选择器
   {
     path: '/cascader',
