@@ -2,13 +2,11 @@
   <div class="box">
 
     <div class="testBox">
-      <button @click="clickFun">新增</button>
-      <div v-for="item in contentListNew" :key="item.id">
-        <span class="title border-bottom">
-          {{item.title}}
-        </span>
+      <div v-for="(item, index) in contentListNew" :key="item.id">
+        <span>{{`第${level}层-第${index + 1}条数据`}}</span>
+        <button @click="clickFun(index)">新增子分组</button>
         <div v-if="item.inner" class="item.inner">
-          <detail-content :contentList="item.inner" />
+          <detail-content :level='level + 1' :contentList="item.inner" />
         </div>
       </div>
     </div>
@@ -28,6 +26,9 @@ export default {
       default: function () {
         return []
       }
+    },
+    level: {
+      type: Number
     }
   },
   data() {
@@ -37,20 +38,19 @@ export default {
   },
 
   created () {
+    console.log(this.level);
+    console.log(this.$bus);
   },
 
   methods: {
-    clickFun(){
-      this.contentListNew.push(
-          {
-            inner: [
-              {
-                id: 'test' + new Date().getTime(),
-                title: '新增数据',
-              }
-            ]
-          }
-      )
+    clickFun(index){
+      if(this.contentListNew[index].inner){
+        this.contentListNew[index].inner.push({});
+      }else{
+        let item = this.contentListNew[index];
+        item.inner = [{}]
+        this.contentListNew.splice(index, 1, item)
+      }
     }
   },
 }

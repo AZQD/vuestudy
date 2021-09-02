@@ -3,7 +3,7 @@
 
     <h3>学习重点：组件自调用2</h3>
     <hr>
-    <CompSelf2Child :contentList="contentList" />
+    <CompSelf2Child :contentList="contentList" :level='1' />
 
 
   </div>
@@ -22,14 +22,22 @@ import CompSelf2Child from './CompSelf2Child'
         contentList: [
           {
             id: '001',
-            title: '一级标题001',
+            data: 'something',
             inner: [
               {
                 id: '00101',
-                title: '二级标题00101',
+                data: 'something',
                 inner: [
-                  { id: '00101a', title: '三级标题00101a' },
-                  { id: '00101b', title: '三级标题00101b' }
+                  { id: '00101a', data: 'something', },
+                  { id: '00101b', data: 'something', }
+                ]
+              },
+              {
+                id: '00102',
+                data: 'something',
+                inner: [
+                  { id: '00101a', data: 'something', },
+                  { id: '00101b', data: 'something', }
                 ]
               }
             ]
