@@ -309,6 +309,9 @@ Vuex的核心概念：
     原因就是props值不能被改变
 
    5.WangEditor在vue中使用，初始化代码需要放在mounted;
+
+   6.vue 中 Type of the default value for ‘data’ prop must be a function的解决方案
+    props: { testObj: {type: Object, default: function(){return {}}} }
 ```
 
 
