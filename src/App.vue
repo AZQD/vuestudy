@@ -40,6 +40,7 @@
               <el-menu-item index="/demo05">Demo05 插槽</el-menu-item>
               <el-menu-item index="/compSelf">组件自调用</el-menu-item>
               <el-menu-item index="/compSelf2">组件自调用2</el-menu-item>
+<!--              <el-menu-item index="/compSelf3">组件自调用3</el-menu-item>-->
             </el-menu-item-group>
           </el-submenu>
 
