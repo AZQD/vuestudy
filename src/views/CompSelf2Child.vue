@@ -1,18 +1,14 @@
 <template>
-  <div class="box">
-
-    <div class="testBox">
-      <div v-for="(item, index) in contentListNew" :key="item.id">
-        <span>{{`第${level}层-第${index + 1}条数据`}}</span>
-        <button @click="siblingFun(index)">新增同级分组</button>
-        <button @click="addChildFun(index)">新增子分组</button>
-        <div v-if="item.inner" class="item.inner">
-          <detail-content :level='level + 1' :contentList="item.inner" />
-        </div>
+  <div class="testBox">
+    <div v-for="(item, index) in listDataNew" :key="item.id">
+      <span>{{`第${level}层-第${index}条数据`}}</span>
+      <button @click="siblingFun(index)">新增同级分组</button>
+      <button @click="addChildFun(index)">新增子分组</button>
+      <div v-if="item.children" class="item.children">
+        <!--组件自调用，递归嵌套，使用当前组件的name属性即可-->
+        <detail-content :level='level + 1' :listData="item.children" />
       </div>
     </div>
-
-
   </div>
 </template>
 
@@ -22,39 +18,41 @@ export default {
 
   name: 'DetailContent',
   props:{
-    contentList: {
+    // 当前组件的数据
+    listData: {
       type: Array,
       default: function () {
         return []
       }
     },
+    // 当前组件层级
     level: {
       type: Number
     }
   },
   data() {
     return {
-      contentListNew: this.contentList
+      listDataNew: this.listData
     }
   },
 
   created () {
-    console.log(this.level);
+    console.log('层级：', this.level);
   },
 
   methods: {
     // 新增同级分组
     siblingFun(){
-      this.contentListNew.push({});
+      this.listDataNew.push({});
     },
     // 新增子分组
     addChildFun(index){
-      if(this.contentListNew[index].inner){
-        this.contentListNew[index].inner.push({});
+      if(this.listDataNew[index].children){
+        this.listDataNew[index].children.push({});
       }else{
-        let item = this.contentListNew[index];
-        item.inner = [{}]
-        this.contentListNew.splice(index, 1, item)
+        let item = this.listDataNew[index];
+        item.children = [{}]
+        this.listDataNew.splice(index, 1, item)
       }
     }
   },
@@ -64,9 +62,6 @@ export default {
 
 <style lang="scss">
 
-.box {
-
-}
 .testBox{
   padding: 20px 0 20px 20px;
   border: 1px solid pink;

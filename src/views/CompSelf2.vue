@@ -3,7 +3,7 @@
 
     <h3>学习重点：组件自调用2</h3>
     <hr>
-    <CompSelf2Child :contentList="contentList" :level='1' />
+    <CompSelf2Child :listData="listData" :level='0' />
 
 
   </div>
@@ -19,15 +19,15 @@ import CompSelf2Child from './CompSelf2Child'
     },
     data() {
       return {
-        contentList: [
+        listData: [
           {
             id: '001',
             data: 'something',
-            inner: [
+            children: [
               {
                 id: '00101',
                 data: 'something',
-                inner: [
+                children: [
                   { id: '00101a', data: 'something', },
                   { id: '00101b', data: 'something', }
                 ]
