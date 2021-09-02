@@ -31,14 +31,6 @@ import CompSelf2Child from './CompSelf2Child'
                   { id: '00101a', data: 'something', },
                   { id: '00101b', data: 'something', }
                 ]
-              },
-              {
-                id: '00102',
-                data: 'something',
-                inner: [
-                  { id: '00101a', data: 'something', },
-                  { id: '00101b', data: 'something', }
-                ]
               }
             ]
           }

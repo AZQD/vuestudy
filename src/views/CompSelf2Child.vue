@@ -4,7 +4,8 @@
     <div class="testBox">
       <div v-for="(item, index) in contentListNew" :key="item.id">
         <span>{{`第${level}层-第${index + 1}条数据`}}</span>
-        <button @click="clickFun(index)">新增子分组</button>
+        <button @click="siblingFun(index)">新增同级分组</button>
+        <button @click="addChildFun(index)">新增子分组</button>
         <div v-if="item.inner" class="item.inner">
           <detail-content :level='level + 1' :contentList="item.inner" />
         </div>
@@ -39,11 +40,15 @@ export default {
 
   created () {
     console.log(this.level);
-    console.log(this.$bus);
   },
 
   methods: {
-    clickFun(index){
+    // 新增同级分组
+    siblingFun(){
+      this.contentListNew.push({});
+    },
+    // 新增子分组
+    addChildFun(index){
       if(this.contentListNew[index].inner){
         this.contentListNew[index].inner.push({});
       }else{
@@ -63,10 +68,8 @@ export default {
 
 }
 .testBox{
+  padding: 20px 0 20px 20px;
   border: 1px solid pink;
-  //padding: 20px;
-  //margin: 10px;
-  padding-left: 20px;
 }
 
 </style>
