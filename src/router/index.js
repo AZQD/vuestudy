@@ -92,6 +92,13 @@ const routes = [
     component: () => import('../views/CompSelf.vue')
   },
 
+  // 学习重点：组件自调用2
+  {
+    path: '/compSelf2',
+    name: 'CompSelf2',
+    component: () => import('../views/CompSelf2.vue')
+  },
+
   // 学习重点：级联选择器
   {
     path: '/cascader',
