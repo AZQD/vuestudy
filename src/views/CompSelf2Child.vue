@@ -4,9 +4,9 @@
     <div class="testBox">
       <button @click="clickFun">新增</button>
       <div v-for="item in contentListNew" :key="item.id">
-        <div class="title border-bottom">
+        <span class="title border-bottom">
           {{item.title}}
-        </div>
+        </span>
         <div v-if="item.inner" class="item.inner">
           <detail-content :contentList="item.inner" />
         </div>
@@ -43,8 +43,6 @@ export default {
     clickFun(){
       this.contentListNew.push(
           {
-            id: 'test' + new Date().getTime(),
-            title: '新增数据',
             inner: [
               {
                 id: 'test' + new Date().getTime(),
@@ -66,8 +64,9 @@ export default {
 }
 .testBox{
   border: 1px solid pink;
-  padding: 20px;
-  margin: 10px;
+  //padding: 20px;
+  //margin: 10px;
+  padding-left: 20px;
 }
 
 </style>

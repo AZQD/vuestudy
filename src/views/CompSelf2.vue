@@ -50,7 +50,7 @@ import CompSelf2Child from './CompSelf2Child'
 <style lang="scss">
 
   .box {
-
+    text-align: left;
   }
 
 </style>
