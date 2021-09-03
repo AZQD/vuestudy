@@ -22,14 +22,14 @@ import CompSelf2Child from './CompSelf2Child'
         listData: [
           {
             id: '001',
-            data: 'something',
+            value: 'something',
             children: [
               {
                 id: '00101',
-                data: 'something',
+                value: 'something',
                 children: [
-                  { id: '00101a', data: 'something', },
-                  { id: '00101b', data: 'something', }
+                  { id: '00101a', value: 'something', },
+                  { id: '00101b', value: 'something', }
                 ]
               }
             ]

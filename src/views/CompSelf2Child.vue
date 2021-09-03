@@ -1,7 +1,8 @@
 <template>
   <div class="testBox">
     <div v-for="(item, index) in listDataNew" :key="item.id">
-      <span>{{`第${level}层-第${index}条数据`}}</span>
+      <span>{{`第${level}层-第${index}条数据：`}}</span>
+      <el-input v-model="item.value" type="text" size="mini" style="width: 100px;" />
       <button @click="siblingFun(index)">新增同级分组</button>
       <button @click="addChildFun(index)">新增子分组</button>
       <div v-if="item.children" class="item.children">
@@ -47,9 +48,11 @@ export default {
     },
     // 新增子分组
     addChildFun(index){
+      // 如果已有子分组，则对children进行push
       if(this.listDataNew[index].children){
         this.listDataNew[index].children.push({});
       }else{
+        // 如果没有子分组，则新增children
         let item = this.listDataNew[index];
         item.children = [{}]
         this.listDataNew.splice(index, 1, item)
