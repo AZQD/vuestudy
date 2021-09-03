@@ -43,8 +43,10 @@ export default {
 
   methods: {
     // 新增同级分组
-    siblingFun(){
+    siblingFun(index){
+      // 注册触发事件并传值
       this.listDataNew.push({});
+      this.$bus.$emit('showNewListData', this.level, index);
     },
     // 新增子分组
     addChildFun(index){

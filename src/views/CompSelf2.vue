@@ -39,6 +39,10 @@ import CompSelf2Child from './CompSelf2Child'
     },
 
     created () {
+      this.$bus.$on('showNewListData', (level, index) => {
+        console.log(`点击了：第${level}层-第${index}条数据`);
+        console.log('最近数组为：', this.listData);
+      });
     },
 
     methods: {
