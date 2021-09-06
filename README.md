@@ -312,6 +312,11 @@ Vuex的核心概念：
 
    6.vue 中 Type of the default value for ‘data’ prop must be a function的解决方案
     props: { testObj: {type: Object, default: function(){return {}}} }
+
+    7.this.$refs打印为undefined解决方法
+        如果在mounted里获取，此时dom还未完全加载，所以拿不到
+        update() {}完成了数据更新到dom的阶段，此时使用this.$refs可以获取到
+        methods: {}可以使用this.$nextTick(_ => {})，等页面渲染好再调用
 ```
 
 
