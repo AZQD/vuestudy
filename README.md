@@ -65,7 +65,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     参考：https://router.vuejs.org/zh/api/#router-view-props）
     
     
-    4.vue 组件属性 name的作用：
+    4.vue 组件属性 
+    name属性命名规范：
+    有两种方式：(1)分隔符：'my-component-name'；(2)驼峰命名：'MyComponentName';
+    
     name属性作用：
     (1).配置<keep-alive>标签的exclude或者include属性做组件筛选
     (2).DOM做递归组件
