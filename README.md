@@ -302,6 +302,9 @@ this.$options.data() 获取该组件初始状态下的data
 重置data：
 Object.assign(this.$data, this.$options.data())
 
+在vue路由器中获取所有路由
+$router.options.routes
+
 
 
 
