@@ -66,15 +66,17 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     
     
     4.vue 组件属性 
-    name属性命名规范：
+    4.1：name属性命名规范：
     有两种方式：(1)分隔符：'my-component-name'；(2)驼峰命名：'MyComponentName';
     
-    name属性作用：
+    4.2：name属性作用：
     (1).配置<keep-alive>标签的exclude或者include属性做组件筛选
     (2).DOM做递归组件
     (3).用vue-tools调试
     https://cn.vuejs.org/v2/api/#name
     https://blog.csdn.net/kangkang_style/article/details/88689821
+
+    4.3：keep-alive不能缓存多层级路由菜单问题
     
     
     5.mode: 'history'；// 值为history或hash路由方式是否加#号；
@@ -291,6 +293,14 @@ Vuex的核心概念：
 ...
 
 组件使用是否必须驼峰；
+
+
+vue中：
+this.$data 获取当前状态下的data
+this.$options.data() 获取该组件初始状态下的data
+
+重置data：
+Object.assign(this.$data, this.$options.data())
 
 
 
