@@ -58,6 +58,7 @@
             <template slot="title"><i class="el-icon-menu"></i>WangEditor总结</template>
             <el-menu-item-group>
               <el-menu-item index="/wangEditor">WangEditor富文本</el-menu-item>
+              <el-menu-item index="/wangEditor2">dialog中的WangEditor富文本</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 

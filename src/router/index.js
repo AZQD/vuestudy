@@ -133,6 +133,13 @@ const routes = [
     name: 'WangEditor',
     component: () => import('../views/WangEditor.vue')
   },
+
+  // 学习重点：dialog中的WangEditor富文本
+  {
+    path: '/wangEditor2',
+    name: 'WangEditor2',
+    component: () => import('../views/WangEditor2.vue')
+  },
 ]
 
 const router = new VueRouter({
