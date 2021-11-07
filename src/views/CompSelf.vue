@@ -1,11 +1,8 @@
 <template>
   <div class="box">
 
-    <h3>学习重点：组件自调用</h3>
-    <hr>
     <button @click="testFun">组件自调用</button>
     <CompSelf v-if="show"></CompSelf>
-
 
   </div>
 </template>
