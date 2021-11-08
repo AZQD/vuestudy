@@ -3,8 +3,16 @@
     <h3>学习重点：dialog中的WangEditor富文本</h3>
 
     <el-dialog class="abow_dialog" title="提示" :visible.sync="open" width="60%">
-      <div id="div1"></div>
+      <div id="editorBox"></div>
     </el-dialog>
+
+
+<!--    <div class="bg">-->
+<!--      <div class="content">-->
+<!--        <div id="editorBox"></div>-->
+<!--      </div>-->
+<!--    </div>-->
+
   </div>
 </template>
 
@@ -28,7 +36,7 @@ import E from 'wangeditor'
 
     mounted () {
       this.$nextTick(() => {
-        const editor = new E('#div1');
+        const editor = new E('#editorBox');
 
         // config写在create上面
         editor.config.height = 500; // 设置编辑区域高度为 500px（注意，先配置 height ，再执行 create()）
@@ -81,8 +89,21 @@ import E from 'wangeditor'
 
 <style lang="scss">
 
-  .box {
+  .bg {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,.5);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .content{
+      padding: 20%;
 
+    }
   }
 
 </style>
