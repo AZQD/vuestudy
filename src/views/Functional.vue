@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>学习重点：函数式组件</h3>
-    <FunctionalList title="hello" :items="[11, 22]" />
+    <FunctionalList title="hello" :listData="listData" :editorFun="editorFun" :deleteFun="deleteFun" />
   </div>
 </template>
 
@@ -16,14 +16,37 @@ import FunctionalList from './FunctionalList'
     },
 
     data () {
-      return {}
+      return {
+        listData: [
+          {
+            modelId: 'modelId1',
+            modelName: '模型A',
+          },
+          {
+            modelId: 'modelId2',
+            modelName: '模型B',
+          },
+          {
+            modelId: 'modelId3',
+            modelName: '模型C',
+          }
+        ]
+      }
     },
 
     created () {
 
     },
 
-    methods: {},
+    methods: {
+      editorFun(row, index) {
+        console.log('编辑：', row, index);
+      },
+      deleteFun(row, index) {
+        console.log('删除：', row, index);
+        this.listData.splice(index, 1);
+      }
+    },
   }
 
 </script>
