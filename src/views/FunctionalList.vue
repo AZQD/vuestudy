@@ -1,7 +1,7 @@
 <template functional>
   <div v-bind="data.attrs" v-on="listeners">
     <h1>{{ props.title }}</h1>
-    <div>
+    <div :class="[data.class, data.staticClass]" :style="data.staticStyle">
       <p v-for="(item,index) in props.listData" :key="index">{{ item }}</p>
     </div>
     <el-table :data="props.listData" border style="width: 100%">
@@ -17,3 +17,4 @@
     </el-table>
   </div>
 </template>
+

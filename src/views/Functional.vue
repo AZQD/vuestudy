@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h3>学习重点：函数式组件</h3>
-    <FunctionalList title="hello" :listData="listData" :editorFun="editorFun" :deleteFun="deleteFun" />
+<!--    <h3>学习重点：函数式组件</h3>-->
+    <FunctionalList title="函数式组件" :listData="listData" :editorFun="editorFun" :deleteFun="deleteFun" />
   </div>
 </template>
 
