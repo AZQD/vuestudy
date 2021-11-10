@@ -54,7 +54,10 @@ import E from 'wangeditor'
       // editor.txt.clear(); // 清空编辑器内容
       // editor.disable(); // 禁用编辑器
       // editor.enable(); // 接触禁用
-
+      editor.txt.html(`
+        <div style="color: red;">content...</div>
+        <img class="img" src="x" onerror="alert('xss攻击')">
+`     )
       // mounted() {
       //   // 创建编辑器
       //   this.editor = new E(`#demo`)
