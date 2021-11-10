@@ -106,6 +106,13 @@ const routes = [
     component: () => import('../views/Functional.vue')
   },
 
+  // 学习重点：函数式组件
+  {
+    path: '/xss',
+    name: 'Xss',
+    component: () => import('../views/Xss.vue')
+  },
+
   // 学习重点：级联选择器
   {
     path: '/cascader',
