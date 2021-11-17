@@ -107,7 +107,7 @@
         <router-view v-if="!$route.meta.keepAlive"/>
         -->
 
-        <!--(方式2).使用新增属性inlcude(包含)/exclude(不包含)-->
+        <!--(方式2).使用新增属性include(包含)/exclude(不包含)-->
         <!--只包含Demo02，其他不使用keep-alive；（Demo02为该组件内定义的name（这里一定要注意！！！），文件位置：src/views/Demo02.vue:16）-->
 
         <!--include和exclude属性允许组件有条件地缓存。二者都可以用逗号分割字符串、正则表达式、数组等三种方式。-->
