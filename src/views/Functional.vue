@@ -41,6 +41,7 @@ import FunctionalList from './FunctionalList'
     methods: {
       editorFun(row, index) {
         console.log('编辑：', row, index);
+        alert(row.modelName);
       },
       deleteFun(row, index) {
         console.log('删除：', row, index);
