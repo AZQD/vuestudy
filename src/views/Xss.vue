@@ -2,10 +2,9 @@
   <div class="box">
     <h3>学习重点：XSS</h3>
 
-    <img class="img" src="x" onerror="console.log(2)"><br/>
+    <img class="img" src="x" onerror="alert('xss攻击')"><br/>
 
     <div v-html="xssHtml"></div><br/>
-
     <div v-html="$xss(xssHtml)"></div>
   </div>
 </template>
