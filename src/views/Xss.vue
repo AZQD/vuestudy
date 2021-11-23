@@ -18,12 +18,12 @@
 
     data () {
       return {
-        xssHtml: `<a onclick='alert("xss攻击")'>超链接</a>`
+        xssHtml: `<a onclick='alert("xss攻击");console.log(document.cookie)'>超链接</a>`
       }
     },
 
     created () {
-
+      console.log(this.$nextTick.toString());
     },
 
     methods: {
