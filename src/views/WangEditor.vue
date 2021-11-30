@@ -54,11 +54,16 @@ import E from 'wangeditor'
       // editor.txt.clear(); // 清空编辑器内容
       // editor.disable(); // 禁用编辑器
       // editor.enable(); // 接触禁用
-      const htmlStr = `
-        <div style="color: red;">content...</div>
-        <img class="img" src="x" onerror="alert('xss攻击')">
+      // const htmlStr = `
+      //   <div style="color: red;">content...</div>
+      //   <img class="img" src="x" onerror="alert('xss攻击')">
+      //   `
+      const htmlStr2 = `
+        <svg onload="console.log(document.cookie)"></svg>
+        <iframe sameorigin width="100%" height="100%" src="https://www.dangerous.com"></iframe><>
         `
-      editor.txt.html(htmlStr)
+      // editor.txt.html(htmlStr)
+      editor.txt.html(htmlStr2)
       // mounted() {
       //   // 创建编辑器
       //   this.editor = new E(`#demo`)
