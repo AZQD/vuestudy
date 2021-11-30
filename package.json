@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "dompurify": "^2.3.3",
     "element-ui": "^2.15.5",
     "lodash": "^4.17.21",
     "vue": "^2.6.11",
