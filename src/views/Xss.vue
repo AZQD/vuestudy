@@ -11,6 +11,7 @@
   </div>
 </template>
 <script>
+import xss from 'xss'
 
   export default {
     name: 'Xss',
@@ -18,12 +19,15 @@
 
     data () {
       return {
-        xssHtml: `<a onclick='alert("xss攻击");console.log(document.cookie)'>超链接</a>`
+        xssHtml: `<a onclick='alert("xss攻击");console.log(document.cookie)'>超链接</a>`,
+        xssHtml2: `areaName=渭源县” bn=confirm(0) ><svg onload=confirm(0)><iframe src="https://www.baidu.com"></iframe><><img src=x onerror=alert(22);//>`
       }
     },
 
     created () {
       console.log(this.$nextTick.toString());
+      console.log(0, this.xssHtml2);
+      console.log(11, xss(this.xssHtml2));
     },
 
     methods: {
