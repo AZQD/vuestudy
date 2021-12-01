@@ -69,7 +69,7 @@ export default {
 
 .testBox{
   padding: 20px 0 20px 20px;
-  border: 1px solid pink;
+  border: 1px solid #3965B5;
 }
 
 </style>
