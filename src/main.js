@@ -3,6 +3,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import xss from 'xss'
+import formCreate from '@form-create/element-ui'
+import FcDesigner from '@form-create/designer'
 // Vue.prototype.$xss = xss
 Object.defineProperty(Vue.prototype, '$xss', {
   value: xss
@@ -16,6 +18,9 @@ import VueBus from 'vue-bus';
 Vue.use(VueBus);
 
 Vue.config.productionTip = false // 阻止显示生产模式的消息。
+
+Vue.use(formCreate)
+Vue.use(FcDesigner)
 
 new Vue({
   router,
