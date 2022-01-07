@@ -52,6 +52,7 @@
               <el-menu-item index="/dialogParent">Dialog组件抽离</el-menu-item>
               <el-menu-item index="/dialogHeight">Dialog高度自适应</el-menu-item>
               <el-menu-item index="/textareaHeight">Textarea高度自适应</el-menu-item>
+              <el-menu-item index="/selectLoadMore">SelectLoadMore</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 

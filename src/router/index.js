@@ -141,6 +141,13 @@ const routes = [
     component: () => import('../views/elementUI/TextareaHeight.vue')
   },
 
+  // 学习重点：el-select数据过多，分页加载的解决方案
+  {
+    path: '/selectLoadMore',
+    name: 'SelectLoadMore',
+    component: () => import('../views/elementUI/SelectLoadMore.vue')
+  },
+
   // 学习重点：WangEditor富文本编辑器
   {
     path: '/wangEditor',
