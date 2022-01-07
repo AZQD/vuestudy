@@ -22,6 +22,9 @@ Vue.config.productionTip = false // 阻止显示生产模式的消息。
 Vue.use(formCreate)
 Vue.use(FcDesigner)
 
+import directive from './directive' // 使用自定义指令
+Vue.use(directive)
+
 new Vue({
   router,
   store, // 将共享数据挂载到Vue实例中
