@@ -28,8 +28,8 @@
     data () {
       return {
         rangeNumber: 30, // 初始化select加载数据条数
-        // currentChecked: '', // 选中的数据
-        currentChecked: 'value100', // 选中的数据
+        // currentChecked: '', // 选中的数据，无默认值
+        currentChecked: 'value100', // 选中的数据，有默认值
         listData: [], // 数据源
         listData_new: [], // 符合匹配条件的数据源
       }
@@ -50,7 +50,7 @@
         if(query) {
           this.listData_new = this.listData_new.filter(item => {
             if(item.label.includes(query)) {
-              return item
+              return item;
             }
           })
         }
@@ -72,9 +72,9 @@
               this.listData_new = Object.assign([], this.listData)
               this.listData_new = this.listData_new.sort(item => {
                 if (this.currentChecked === item.value) {
-                  return -1
+                  return -1;
                 }else {
-                  return 1
+                  return 1;
                 }
               });
             } else{
@@ -92,7 +92,3 @@
   }
 
 </script>
-
-<style lang="scss" scoped>
-
-</style>
