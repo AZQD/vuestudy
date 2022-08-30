@@ -1,3 +1,4 @@
+import Vue from 'vue'
 const install = function (Vue) {
     // el-select组件数据过多，使用翻页加载数据指令
     Vue.directive('el-select-loadmore', {
