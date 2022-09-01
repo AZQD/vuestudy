@@ -154,6 +154,11 @@ const routes = [
     name: 'UploadByPiecesDemo1',
     component: () => import('../views/UploadByPieces/demo1/index.vue')
   },
+  {
+    path: '/uploadByPieces/demo2',
+    name: 'UploadByPiecesDemo2',
+    component: () => import('../views/UploadByPieces/demo2/index.vue')
+  },
 
   // 学习重点：WangEditor富文本编辑器
   {
