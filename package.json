@@ -11,14 +11,18 @@
     "@form-create/designer": "^1.0.3",
     "axios": "^0.27.2",
     "core-js": "^3.6.5",
+    "crypto-js": "^4.1.1",
     "dompurify": "^2.3.3",
     "element-ui": "^2.15.5",
+    "jquery": "^3.6.1",
+    "js-base64": "^3.7.2",
     "lodash": "^4.17.21",
     "vue": "^2.6.11",
     "vue-bus": "^1.2.1",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0",
     "wangeditor": "^4.7.8",
+    "webuploader": "^0.1.8",
     "xss": "^1.0.10"
   },
   "devDependencies": {
