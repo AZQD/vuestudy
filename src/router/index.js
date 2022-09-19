@@ -160,6 +160,13 @@ const routes = [
     component: () => import('../views/UploadByPieces/demo2/index.vue')
   },
 
+  // 学习重点：vue-prism-editor代码块显示
+  {
+    path: '/vuePrismEditor',
+    name: 'VuePrismEditor',
+    component: () => import('../views/VuePrismEditor.vue')
+  },
+
   // 学习重点：WangEditor富文本编辑器
   {
     path: '/wangEditor',
