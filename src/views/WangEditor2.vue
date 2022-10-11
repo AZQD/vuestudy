@@ -45,6 +45,7 @@ import E from 'wangeditor'
         editor.config.focus = false; // 取消自动 focus
         editor.config.onchange = function (html) { // 监控内容变化
           console.log('获取编辑区内容方式1：', html);
+          console.log('获取编辑区内容方式2：', editor.txt.text()); // 获取text
         }
         editor.config.onblur = function (newHtml) {
           console.log('onblur', newHtml) // 获取最新的 html 内容

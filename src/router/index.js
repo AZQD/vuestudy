@@ -167,6 +167,13 @@ const routes = [
     component: () => import('../views/VuePrismEditor.vue')
   },
 
+  // 学习重点：vue中使用mergely.js进行字符串对比
+  {
+    path: '/mergely',
+    name: 'Mergely',
+    component: () => import('../views/Mergely.vue')
+  },
+
   // 学习重点：WangEditor富文本编辑器
   {
     path: '/wangEditor',
