@@ -5,6 +5,8 @@
 <!--    DEMO参考地址：https://blog.csdn.net/cindy6666/article/details/124703192-->
 <!--    Vue-super-flow使用说明：https://caohuatao.github.io/guide/#%E4%BB%8B%E7%BB%8D-->
 
+    注意：因为坐标数值是通过接口返回，因此不适合模型管理平台中使用。这个插件适合显示固定的流程图，不适合显示动态的流程图；
+
     <super-flow
         ref="superFlow"
         :linkEditable="false"
