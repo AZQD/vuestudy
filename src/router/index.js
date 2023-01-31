@@ -173,6 +173,12 @@ const routes = [
     name: 'Mergely',
     component: () => import('../views/Mergely.vue')
   },
+  // 学习重点：vue中使用vue-super-flow显示流程图
+  {
+    path: '/vueSuperFlow',
+    name: 'VueSuperFlow',
+    component: () => import('../views/VueSuperFlow.vue')
+  },
 
   // 学习重点：WangEditor富文本编辑器
   {

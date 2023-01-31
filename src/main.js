@@ -25,6 +25,11 @@ Vue.use(FcDesigner)
 import directive from './directive' // 使用自定义指令
 Vue.use(directive)
 
+import SuperFlow from 'vue-super-flow'
+import 'vue-super-flow/lib/index.css'
+
+Vue.use(SuperFlow)
+
 new Vue({
   router,
   store, // 将共享数据挂载到Vue实例中
