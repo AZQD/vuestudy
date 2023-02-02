@@ -180,11 +180,17 @@ const routes = [
     component: () => import('../views/VueSuperFlow.vue')
   },
 
-  // 学习重点：vue中使用@antv/x6显示流程图
+  // 学习重点：vue中使用@antv/x6显示流程图_BPMN
   {
     path: '/antvX6Bpmn',
     name: 'AntvX6Bpmn',
     component: () => import('../views/AntvX6Bpmn.vue')
+  },
+  // 学习重点：vue中使用@antv/x6显示流程图_设计
+  {
+    path: '/antvX6FlowDesign',
+    name: 'AntvX6FlowDesign',
+    component: () => import('../views/AntvX6FlowDesign.vue')
   },
 
   // 学习重点：WangEditor富文本编辑器
