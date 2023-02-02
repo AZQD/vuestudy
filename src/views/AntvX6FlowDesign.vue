@@ -1,8 +1,28 @@
 <template>
   <div class="super-flow-base-demo">
     <h3>学习重点：vue中使用@antv/x6显示流程图_设计</h3>
-    <el-button @click="exportFun">导出</el-button>
-    <div id="container" style="width: 600px; height: 400px"></div>
+
+    <div class="flow_wrapper">
+
+      <div id="container" style="width: 100%; height: 100%"></div>
+
+      <div class="ctrlBox">
+        <div class="export">
+          <el-button class="exportBtn" @click="exportFun">导出</el-button>
+        </div>
+
+
+        <div id="node-info">
+          <div class="node-item">
+            <div class="node-item-key">节点名称：</div>
+            <input class="node-item-value" type="text" id="node-name">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
   </div>
 </template>
 
@@ -53,27 +73,28 @@ export default {
         graph.fromJSON(flowDesignJson); // 初始化流程图
 
         // 更新流程图节点状态
-        const nodes = graph.getNodes();
-        console.log('所有节点：', nodes);
-        nodes.map(node => {
-          // 已完成的节点
-          if(['开始', '过程'].includes(node.label)) {
-            node.attr('body', {
-              stroke: '#334fd8',
-              fill: 'rgba(51,79,126,.2)'
-            })
-          }
-          // 正在进行中的节点
-          if(node.label === '可选过程') {
-            node.attr('body', {
-              stroke: '#334fd8',
-              fill: '#334fd8',
-            })
-            node.attr('text', {
-              fill: '#fff'
-            })
-          }
-        });
+        // const nodes = graph.getNodes();
+        // console.log('所有节点：', nodes);
+        // nodes.map(node => {
+        //   // 已完成的节点
+        //   if(['开始', '过程'].includes(node.label)) {
+        //     node.attr('body', {
+        //       stroke: '#334fd8',
+        //       fill: 'rgba(51,79,126,.2)'
+        //     })
+        //   }
+        //   // 正在进行中的节点
+        //   if(node.label === '可选过程') {
+        //     node.attr('body', {
+        //       stroke: '#334fd8',
+        //       fill: '#334fd8',
+        //     })
+        //     node.attr('text', {
+        //       fill: '#fff'
+        //     })
+        //   }
+        // });
+
       }, 0);
 
 
@@ -592,9 +613,94 @@ export default {
       }
 
 
+      /**
+       * 当前选中的节点
+       * */
+      var actionNode;
+      /**
+       * 监听lable变化
+       * */
+      // Object.defineProperty(actionNode, 'label', {
+      //     enumerable: true,
+      //     configurable: true,
+      //     set(newVal){
+      //         this.label=newVal
+      //         console.log('set:'+this.label)
+      //     },
+      //     get(){
+      //         console.log('get:'+this.label)
+      //         return this.label
+      //     }
+      // })
+      /**
+       * 节点点击事件
+       * */
+      graph.on('node:click', (event) => {
+        actionNode = event.node;
+        document.querySelector("#node-name").value = actionNode.label;
+        document.querySelector("#node-info").style.display  = "block";
+      })
+      /**
+       * 空白画布点击事件
+       * */
+      graph.on('blank:click', () => {
+        actionNode = null;
+        document.querySelector("#node-info").style.display  = "none";
+      })
+      /**
+       * 监听输入框修改事件，如果没有选择节点也不报错。
+       * */
+      document.querySelector("#node-name").addEventListener("input", (e)=>{
+        try{
+          actionNode.label = e.target.value
+        }catch(e){
+          console.log(e);
+        }
+      })
+
+
     }
   }
 }
 </script>
+
+<style lang="scss">
+
+.flow_wrapper {
+  height: 400px;
+  position: relative;
+
+  .ctrlBox{
+    position: absolute;
+    right: 0;
+    top: 0;
+    //width: 200px;
+    .export{
+      text-align: right;
+      .exportBtn{
+
+      }
+    }
+    #node-info{
+      display: none;
+      .node-item{
+        display: flex;
+        align-items: center;
+        color: #606266;
+        font-size: 14px;
+        padding: 10px 0;
+        .node-item-key{
+
+        }
+        .node-item-value{
+          width: 100px;
+          outline: none;
+        }
+      }
+    }
+  }
+}
+
+</style>
 
 

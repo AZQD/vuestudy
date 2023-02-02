@@ -1,1 +1,624 @@
-[{"shape":"edge","attrs":{"line":{"stroke":"#A2B1C3","targetMarker":{"name":"block","width":12,"height":8}}},"id":"b23b9a28-e55f-4203-8e7e-6d226515677c","zIndex":0,"source":{"cell":"e2a02154-094c-4633-87ce-542dd8fa9767","port":"523f9b40-b14b-46bb-9d72-3e6895a0a230"},"target":{"cell":"6cf732fc-cb28-404b-9cfc-38a3ea86d8db","port":"6941570a-910c-48fb-81cc-4f330bb00e98"}},{"shape":"edge","attrs":{"line":{"stroke":"#A2B1C3","targetMarker":{"name":"block","width":12,"height":8}}},"id":"745fde56-9fc4-4a2b-ae70-2939052e0172","zIndex":0,"source":{"cell":"6cf732fc-cb28-404b-9cfc-38a3ea86d8db","port":"bb91666f-d7b5-4a0b-9578-a91edf512fb3"},"target":{"cell":"01e6c663-5369-4297-90e2-e06a43d1b786","port":"e2d5258b-5941-4b85-9239-a4dfbf0caa03"}},{"shape":"edge","attrs":{"line":{"stroke":"#A2B1C3","targetMarker":{"name":"block","width":12,"height":8}}},"id":"20a65546-7e78-4018-8e2a-0d8edd833a3d","zIndex":0,"source":{"cell":"01e6c663-5369-4297-90e2-e06a43d1b786","port":"7b8ad2ec-d9af-4068-986e-2742e3a8b538"},"target":{"cell":"0a70a30a-3f50-4d36-9109-29084d07ccf6","port":"ab787c5d-1149-48b9-b846-df9e09004f88"}},{"shape":"edge","attrs":{"line":{"stroke":"#A2B1C3","targetMarker":{"name":"block","width":12,"height":8}}},"id":"24927d8e-7f28-4d08-87de-cdbd085577c6","zIndex":0,"source":{"cell":"0a70a30a-3f50-4d36-9109-29084d07ccf6","port":"9ec98707-37e4-43cc-ac67-f4c9f3e894fb"},"target":{"cell":"6375f963-68eb-4eef-a085-e66263ea95ce","port":"88f76cf5-6254-451d-893a-753943a9c2fd"}},{"position":{"x":110,"y":90},"size":{"width":70,"height":30},"attrs":{"text":{"text":"过程"},"body":{"stroke":"grey","fill":"grey"}},"visible":true,"shape":"custom-rect","ports":{"groups":{"top":{"position":"top","attrs":{"circle":{"r":4,"magnet":true,"stroke":"#5F95FF","strokeWidth":1,"fill":"#fff","style":{"visibility":"hidden"}}}},"right":{"position":"right","attrs":{"circle":{"r":4,"magnet":true,"stroke":"#5F95FF","strokeWidth":1,"fill":"#fff","style":{"visibility":"hidden"}}}},"bottom":{"position":"bottom","attrs":{"circle":{"r":4,"magnet":true,"stroke":"#5F95FF","strokeWidth":1,"fill":"#fff","style":{"visibility":"hidden"}}}},"left":{"position":"left","attrs":{"circle":{"r":4,"magnet":true,"stroke":"#5F95FF","strokeWidth":1,"fill":"#fff","style":{"visibility":"hidden"}}}}},"items":[{"group":"top","id":"6941570a-910c-48fb-81cc-4f330bb00e98"},{"group":"right","id":"502b95bb-50ce-4431-b492-c93a8b10b158"},{"group":"bottom","id":"bb91666f-d7b5-4a0b-9578-a91edf512fb3"},{"group":"left","id":"15abac8a-59de-441a-833f-b30c7531158d"}]},"id":"6cf732fc-cb28-404b-9cfc-38a3ea86d8db","zIndex":1},{"position":{"x":112,"y":22},"size":{"width":66,"height":36},"attrs":{"text":{"text":"开始"},"body":{"stroke":"grey","fill":"grey","rx":20,"ry":26}},"visible":true,"shape":"custom-rect","ports":{"groups":{"top":{"position":"top","attrs":{"circle":{"r":4,"magnet":true,"stroke":"#5F95FF","strokeWidth":1,"fill":"#fff","style":{"visibility":"hidden"}}}},"right":{"position":"right","attrs":{"circle":{"r":4,"magnet":true,"stroke":"#5F95FF","strokeWidth":1,"fill":"#fff","style":{"visibility":"hidden"}}}},"bottom":{"position":"bottom","attrs":{"circle":{"r":4,"magnet":true,"stroke":"#5F95FF","strokeWidth":1,"fill":"#fff","style":{"visibility":"hidden"}}}},"left":{"position":"left","attrs":{"circle":{"r":4,"magnet":true,"stroke":"#5F95FF","strokeWidth":1,"fill":"#fff","style":{"visibility":"hidden"}}}}},"items":[{"group":"top","id":"a543261c-1a26-41be-8cb6-9e867b22492e"},{"group":"right","id":"689e43e3-b015-4cc3-bcde-f0d40534d0c6"},{"group":"bottom","id":"523f9b40-b14b-46bb-9d72-3e6895a0a230"},{"group":"left","id":"16a79000-cb11-42ce-be65-bc5201e2bc89"}]},"id":"e2a02154-094c-4633-87ce-542dd8fa9767","zIndex":2},{"position":{"x":112,"y":146},"size":{"width":66,"height":36},"attrs":{"text":{"text":"可选过程"},"body":{"stroke":"red","fill":"red","rx":6,"ry":6}},"visible":true,"shape":"custom-rect","ports":{"groups":{"top":{"position":"top","attrs":{"circle":{"r":4,"magnet":true,"stroke":"#5F95FF","strokeWidth":1,"fill":"#fff","style":{"visibility":"hidden"}}}},"right":{"position":"right","attrs":{"circle":{"r":4,"magnet":true,"stroke":"#5F95FF","strokeWidth":1,"fill":"#fff","style":{"visibility":"hidden"}}}},"bottom":{"position":"bottom","attrs":{"circle":{"r":4,"magnet":true,"stroke":"#5F95FF","strokeWidth":1,"fill":"#fff","style":{"visibility":"hidden"}}}},"left":{"position":"left","attrs":{"circle":{"r":4,"magnet":true,"stroke":"#5F95FF","strokeWidth":1,"fill":"#fff","style":{"visibility":"hidden"}}}}},"items":[{"group":"top","id":"e2d5258b-5941-4b85-9239-a4dfbf0caa03"},{"group":"right","id":"3a36b2db-1144-4a95-92ce-ce04e848b6a9"},{"group":"bottom","id":"7b8ad2ec-d9af-4068-986e-2742e3a8b538"},{"group":"left","id":"86b8fdd3-d298-4f50-b88a-bf447da0aeaf"}]},"id":"01e6c663-5369-4297-90e2-e06a43d1b786","zIndex":3},{"position":{"x":122.5,"y":290},"size":{"width":45,"height":45},"attrs":{"text":{"text":"连接"}},"visible":true,"shape":"custom-circle","ports":{"groups":{"top":{"position":"top","attrs":{"circle":{"r":4,"magnet":true,"stroke":"#5F95FF","strokeWidth":1,"fill":"#fff","style":{"visibility":"hidden"}}}},"right":{"position":"right","attrs":{"circle":{"r":4,"magnet":true,"stroke":"#5F95FF","strokeWidth":1,"fill":"#fff","style":{"visibility":"hidden"}}}},"bottom":{"position":"bottom","attrs":{"circle":{"r":4,"magnet":true,"stroke":"#5F95FF","strokeWidth":1,"fill":"#fff","style":{"visibility":"hidden"}}}},"left":{"position":"left","attrs":{"circle":{"r":4,"magnet":true,"stroke":"#5F95FF","strokeWidth":1,"fill":"#fff","style":{"visibility":"hidden"}}}}},"items":[{"group":"top","id":"88f76cf5-6254-451d-893a-753943a9c2fd"},{"group":"right","id":"e9ee9cda-b8b6-4b5f-bc89-e69e4039f5a0"},{"group":"bottom","id":"fdc8ed2d-88cd-47dc-8cdd-5ddffacb106e"},{"group":"left","id":"d08f0810-ff0e-4b89-9527-5bd9dd23741c"}]},"id":"6375f963-68eb-4eef-a085-e66263ea95ce","zIndex":4},{"position":{"x":112,"y":214},"size":{"width":66,"height":36},"attrs":{"text":{"text":"数据"},"body":{"refPoints":"10,0 40,0 30,20 0,20"}},"visible":true,"shape":"custom-polygon","ports":{"groups":{"top":{"position":"top","attrs":{"circle":{"r":4,"magnet":true,"stroke":"#5F95FF","strokeWidth":1,"fill":"#fff","style":{"visibility":"hidden"}}}},"right":{"position":"right","attrs":{"circle":{"r":4,"magnet":true,"stroke":"#5F95FF","strokeWidth":1,"fill":"#fff","style":{"visibility":"hidden"}}}},"bottom":{"position":"bottom","attrs":{"circle":{"r":4,"magnet":true,"stroke":"#5F95FF","strokeWidth":1,"fill":"#fff","style":{"visibility":"hidden"}}}},"left":{"position":"left","attrs":{"circle":{"r":4,"magnet":true,"stroke":"#5F95FF","strokeWidth":1,"fill":"#fff","style":{"visibility":"hidden"}}}}},"items":[{"group":"top","id":"ab787c5d-1149-48b9-b846-df9e09004f88"},{"group":"bottom","id":"9ec98707-37e4-43cc-ac67-f4c9f3e894fb"}]},"id":"0a70a30a-3f50-4d36-9109-29084d07ccf6","zIndex":5}]
+[
+  {
+    "shape": "edge",
+    "attrs": {
+      "line": {
+        "stroke": "#A2B1C3",
+        "targetMarker": {
+          "name": "block",
+          "width": 12,
+          "height": 8
+        }
+      }
+    },
+    "id": "b23b9a28-e55f-4203-8e7e-6d226515677c",
+    "zIndex": 0,
+    "source": {
+      "cell": "e2a02154-094c-4633-87ce-542dd8fa9767",
+      "port": "523f9b40-b14b-46bb-9d72-3e6895a0a230"
+    },
+    "target": {
+      "cell": "6cf732fc-cb28-404b-9cfc-38a3ea86d8db",
+      "port": "6941570a-910c-48fb-81cc-4f330bb00e98"
+    }
+  },
+  {
+    "shape": "edge",
+    "attrs": {
+      "line": {
+        "stroke": "#A2B1C3",
+        "targetMarker": {
+          "name": "block",
+          "width": 12,
+          "height": 8
+        }
+      }
+    },
+    "id": "745fde56-9fc4-4a2b-ae70-2939052e0172",
+    "zIndex": 0,
+    "source": {
+      "cell": "6cf732fc-cb28-404b-9cfc-38a3ea86d8db",
+      "port": "bb91666f-d7b5-4a0b-9578-a91edf512fb3"
+    },
+    "target": {
+      "cell": "01e6c663-5369-4297-90e2-e06a43d1b786",
+      "port": "e2d5258b-5941-4b85-9239-a4dfbf0caa03"
+    }
+  },
+  {
+    "shape": "edge",
+    "attrs": {
+      "line": {
+        "stroke": "#A2B1C3",
+        "targetMarker": {
+          "name": "block",
+          "width": 12,
+          "height": 8
+        }
+      }
+    },
+    "id": "0f8bc9a0-a3b0-4eac-81ff-a34e28ab66d4",
+    "zIndex": 0,
+    "source": {
+      "cell": "2ed69996-5aa3-4d32-9904-d6be7d65e46e",
+      "port": "2a4eefd8-62fa-4aa1-b3dd-3ba1e92a3dee"
+    },
+    "target": {
+      "cell": "6a655d39-584c-4334-8ebb-2922fbf57b53",
+      "port": "5f03b9cf-b110-4ac1-9980-648fff08b5d6"
+    }
+  },
+  {
+    "shape": "edge",
+    "attrs": {
+      "line": {
+        "stroke": "#A2B1C3",
+        "targetMarker": {
+          "name": "block",
+          "width": 12,
+          "height": 8
+        }
+      }
+    },
+    "id": "5211fd5c-942b-4047-81cb-4f83536ba736",
+    "zIndex": 0,
+    "source": {
+      "cell": "01e6c663-5369-4297-90e2-e06a43d1b786",
+      "port": "7b8ad2ec-d9af-4068-986e-2742e3a8b538"
+    },
+    "target": {
+      "cell": "2ed69996-5aa3-4d32-9904-d6be7d65e46e",
+      "port": "e2ed94e7-db36-4907-ac3b-8cf082a7f5b3"
+    }
+  },
+  {
+    "position": {
+      "x": 120,
+      "y": 120
+    },
+    "size": {
+      "width": 70,
+      "height": 30
+    },
+    "attrs": {
+      "text": {
+        "text": "拆任务"
+      },
+      "body": {
+        "stroke": "#334fd8",
+        "fill": "rgba(51,79,126,.2)"
+      }
+    },
+    "visible": true,
+    "shape": "custom-rect",
+    "ports": {
+      "groups": {
+        "top": {
+          "position": "top",
+          "attrs": {
+            "circle": {
+              "r": 4,
+              "magnet": true,
+              "stroke": "#5F95FF",
+              "strokeWidth": 1,
+              "fill": "#fff",
+              "style": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        },
+        "right": {
+          "position": "right",
+          "attrs": {
+            "circle": {
+              "r": 4,
+              "magnet": true,
+              "stroke": "#5F95FF",
+              "strokeWidth": 1,
+              "fill": "#fff",
+              "style": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        },
+        "bottom": {
+          "position": "bottom",
+          "attrs": {
+            "circle": {
+              "r": 4,
+              "magnet": true,
+              "stroke": "#5F95FF",
+              "strokeWidth": 1,
+              "fill": "#fff",
+              "style": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        },
+        "left": {
+          "position": "left",
+          "attrs": {
+            "circle": {
+              "r": 4,
+              "magnet": true,
+              "stroke": "#5F95FF",
+              "strokeWidth": 1,
+              "fill": "#fff",
+              "style": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        }
+      },
+      "items": [
+        {
+          "group": "top",
+          "id": "6941570a-910c-48fb-81cc-4f330bb00e98"
+        },
+        {
+          "group": "right",
+          "id": "502b95bb-50ce-4431-b492-c93a8b10b158"
+        },
+        {
+          "group": "bottom",
+          "id": "bb91666f-d7b5-4a0b-9578-a91edf512fb3"
+        },
+        {
+          "group": "left",
+          "id": "15abac8a-59de-441a-833f-b30c7531158d"
+        }
+      ]
+    },
+    "id": "6cf732fc-cb28-404b-9cfc-38a3ea86d8db",
+    "zIndex": 1
+  },
+  {
+    "position": {
+      "x": 122,
+      "y": 52
+    },
+    "size": {
+      "width": 66,
+      "height": 36
+    },
+    "attrs": {
+      "text": {
+        "text": "开始"
+      },
+      "body": {
+        "stroke": "#334fd8",
+        "fill": "rgba(51,79,126,.2)",
+        "rx": 20,
+        "ry": 26
+      }
+    },
+    "visible": true,
+    "shape": "custom-rect",
+    "ports": {
+      "groups": {
+        "top": {
+          "position": "top",
+          "attrs": {
+            "circle": {
+              "r": 4,
+              "magnet": true,
+              "stroke": "#5F95FF",
+              "strokeWidth": 1,
+              "fill": "#fff",
+              "style": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        },
+        "right": {
+          "position": "right",
+          "attrs": {
+            "circle": {
+              "r": 4,
+              "magnet": true,
+              "stroke": "#5F95FF",
+              "strokeWidth": 1,
+              "fill": "#fff",
+              "style": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        },
+        "bottom": {
+          "position": "bottom",
+          "attrs": {
+            "circle": {
+              "r": 4,
+              "magnet": true,
+              "stroke": "#5F95FF",
+              "strokeWidth": 1,
+              "fill": "#fff",
+              "style": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        },
+        "left": {
+          "position": "left",
+          "attrs": {
+            "circle": {
+              "r": 4,
+              "magnet": true,
+              "stroke": "#5F95FF",
+              "strokeWidth": 1,
+              "fill": "#fff",
+              "style": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        }
+      },
+      "items": [
+        {
+          "group": "top",
+          "id": "a543261c-1a26-41be-8cb6-9e867b22492e"
+        },
+        {
+          "group": "right",
+          "id": "689e43e3-b015-4cc3-bcde-f0d40534d0c6"
+        },
+        {
+          "group": "bottom",
+          "id": "523f9b40-b14b-46bb-9d72-3e6895a0a230"
+        },
+        {
+          "group": "left",
+          "id": "16a79000-cb11-42ce-be65-bc5201e2bc89"
+        }
+      ]
+    },
+    "id": "e2a02154-094c-4633-87ce-542dd8fa9767",
+    "zIndex": 2
+  },
+  {
+    "position": {
+      "x": 122,
+      "y": 176
+    },
+    "size": {
+      "width": 66,
+      "height": 36
+    },
+    "attrs": {
+      "text": {
+        "fill": "#fff",
+        "text": "模型训练"
+      },
+      "body": {
+        "stroke": "#334fd8",
+        "fill": "#334fd8",
+        "rx": 6,
+        "ry": 6
+      }
+    },
+    "visible": true,
+    "shape": "custom-rect",
+    "ports": {
+      "groups": {
+        "top": {
+          "position": "top",
+          "attrs": {
+            "circle": {
+              "r": 4,
+              "magnet": true,
+              "stroke": "#5F95FF",
+              "strokeWidth": 1,
+              "fill": "#fff",
+              "style": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        },
+        "right": {
+          "position": "right",
+          "attrs": {
+            "circle": {
+              "r": 4,
+              "magnet": true,
+              "stroke": "#5F95FF",
+              "strokeWidth": 1,
+              "fill": "#fff",
+              "style": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        },
+        "bottom": {
+          "position": "bottom",
+          "attrs": {
+            "circle": {
+              "r": 4,
+              "magnet": true,
+              "stroke": "#5F95FF",
+              "strokeWidth": 1,
+              "fill": "#fff",
+              "style": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        },
+        "left": {
+          "position": "left",
+          "attrs": {
+            "circle": {
+              "r": 4,
+              "magnet": true,
+              "stroke": "#5F95FF",
+              "strokeWidth": 1,
+              "fill": "#fff",
+              "style": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        }
+      },
+      "items": [
+        {
+          "group": "top",
+          "id": "e2d5258b-5941-4b85-9239-a4dfbf0caa03"
+        },
+        {
+          "group": "right",
+          "id": "3a36b2db-1144-4a95-92ce-ce04e848b6a9"
+        },
+        {
+          "group": "bottom",
+          "id": "7b8ad2ec-d9af-4068-986e-2742e3a8b538"
+        },
+        {
+          "group": "left",
+          "id": "86b8fdd3-d298-4f50-b88a-bf447da0aeaf"
+        }
+      ]
+    },
+    "id": "01e6c663-5369-4297-90e2-e06a43d1b786",
+    "zIndex": 3
+  },
+  {
+    "position": {
+      "x": 122,
+      "y": 240
+    },
+    "size": {
+      "width": 66,
+      "height": 36
+    },
+    "attrs": {
+      "text": {
+        "text": "上线"
+      },
+      "body": {
+        "rx": 6,
+        "ry": 6
+      }
+    },
+    "visible": true,
+    "shape": "custom-rect",
+    "ports": {
+      "groups": {
+        "top": {
+          "position": "top",
+          "attrs": {
+            "circle": {
+              "r": 4,
+              "magnet": true,
+              "stroke": "#5F95FF",
+              "strokeWidth": 1,
+              "fill": "#fff",
+              "style": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        },
+        "right": {
+          "position": "right",
+          "attrs": {
+            "circle": {
+              "r": 4,
+              "magnet": true,
+              "stroke": "#5F95FF",
+              "strokeWidth": 1,
+              "fill": "#fff",
+              "style": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        },
+        "bottom": {
+          "position": "bottom",
+          "attrs": {
+            "circle": {
+              "r": 4,
+              "magnet": true,
+              "stroke": "#5F95FF",
+              "strokeWidth": 1,
+              "fill": "#fff",
+              "style": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        },
+        "left": {
+          "position": "left",
+          "attrs": {
+            "circle": {
+              "r": 4,
+              "magnet": true,
+              "stroke": "#5F95FF",
+              "strokeWidth": 1,
+              "fill": "#fff",
+              "style": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        }
+      },
+      "items": [
+        {
+          "group": "top",
+          "id": "e2ed94e7-db36-4907-ac3b-8cf082a7f5b3"
+        },
+        {
+          "group": "right",
+          "id": "ef3c2aa6-0eb0-4090-a97e-768627ae8a86"
+        },
+        {
+          "group": "bottom",
+          "id": "2a4eefd8-62fa-4aa1-b3dd-3ba1e92a3dee"
+        },
+        {
+          "group": "left",
+          "id": "decc01b6-e2b9-4524-89b2-e5c7aa56af1f"
+        }
+      ]
+    },
+    "id": "2ed69996-5aa3-4d32-9904-d6be7d65e46e",
+    "zIndex": 5
+  },
+  {
+    "position": {
+      "x": 122,
+      "y": 306
+    },
+    "size": {
+      "width": 66,
+      "height": 36
+    },
+    "attrs": {
+      "text": {
+        "text": "结束"
+      },
+      "body": {
+        "rx": 20,
+        "ry": 26
+      }
+    },
+    "visible": true,
+    "shape": "custom-rect",
+    "ports": {
+      "groups": {
+        "top": {
+          "position": "top",
+          "attrs": {
+            "circle": {
+              "r": 4,
+              "magnet": true,
+              "stroke": "#5F95FF",
+              "strokeWidth": 1,
+              "fill": "#fff",
+              "style": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        },
+        "right": {
+          "position": "right",
+          "attrs": {
+            "circle": {
+              "r": 4,
+              "magnet": true,
+              "stroke": "#5F95FF",
+              "strokeWidth": 1,
+              "fill": "#fff",
+              "style": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        },
+        "bottom": {
+          "position": "bottom",
+          "attrs": {
+            "circle": {
+              "r": 4,
+              "magnet": true,
+              "stroke": "#5F95FF",
+              "strokeWidth": 1,
+              "fill": "#fff",
+              "style": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        },
+        "left": {
+          "position": "left",
+          "attrs": {
+            "circle": {
+              "r": 4,
+              "magnet": true,
+              "stroke": "#5F95FF",
+              "strokeWidth": 1,
+              "fill": "#fff",
+              "style": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        }
+      },
+      "items": [
+        {
+          "group": "top",
+          "id": "5f03b9cf-b110-4ac1-9980-648fff08b5d6"
+        },
+        {
+          "group": "right",
+          "id": "2803813a-177b-4b5d-bbf8-94c52348c6df"
+        },
+        {
+          "group": "bottom",
+          "id": "c853ee4a-b839-4057-a058-18bc12daf49f"
+        },
+        {
+          "group": "left",
+          "id": "e25e7202-7c8a-402a-89a9-c9ab0c5382db"
+        }
+      ]
+    },
+    "id": "6a655d39-584c-4334-8ebb-2922fbf57b53",
+    "zIndex": 6
+  }
+]
