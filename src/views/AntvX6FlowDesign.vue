@@ -8,6 +8,7 @@
 
       <div class="ctrlBox">
         <div class="export">
+          导入：<input type="file" id="importIpt" @change="importFun"/>
           <el-button class="exportBtn" @click="exportFun">导出</el-button>
         </div>
 
@@ -55,6 +56,20 @@ export default {
   },
   methods: {
 
+    // 导入节点
+    importFun() {
+      let resultFile = document.getElementById('importIpt').files[0]
+      // 使用 FileReader 来读取文件
+      let reader = new FileReader()
+      // 读取纯文本文件,且编码格式为 utf-8
+      reader.readAsText(resultFile, 'UTF-8')
+      // 读取文件,会触发 onload 异步事件,可使用回调函数 来获取最终的值.
+      reader.onload = function (e) {
+        let fileContent = e.target.result
+        graph.fromJSON(JSON.parse(fileContent));
+      }
+    },
+    // 导出节点
     exportFun(){
       let cells = JSON.stringify(graph.toJSON().cells);
       const url = window.URL.createObjectURL(new Blob([cells], {type: 'text/json'}))
@@ -68,32 +83,33 @@ export default {
 
     initFun() {
 
+      // 模拟接口返回数据
       setTimeout(()=> {
 
         graph.fromJSON(flowDesignJson); // 初始化流程图
 
         // 更新流程图节点状态
-        // const nodes = graph.getNodes();
-        // console.log('所有节点：', nodes);
-        // nodes.map(node => {
-        //   // 已完成的节点
-        //   if(['开始', '过程'].includes(node.label)) {
-        //     node.attr('body', {
-        //       stroke: '#334fd8',
-        //       fill: 'rgba(51,79,126,.2)'
-        //     })
-        //   }
-        //   // 正在进行中的节点
-        //   if(node.label === '可选过程') {
-        //     node.attr('body', {
-        //       stroke: '#334fd8',
-        //       fill: '#334fd8',
-        //     })
-        //     node.attr('text', {
-        //       fill: '#fff'
-        //     })
-        //   }
-        // });
+        const nodes = graph.getNodes();
+        console.log('所有节点：', nodes);
+        nodes.map(node => {
+          // 已完成的节点
+          if(['开始', '过程'].includes(node.label)) {
+            node.attr('body', {
+              stroke: '#334fd8',
+              fill: 'rgba(51,79,126,.2)'
+            })
+          }
+          // 正在进行中的节点
+          if(node.label === '可选过程') {
+            node.attr('body', {
+              stroke: '#334fd8',
+              fill: '#334fd8',
+            })
+            node.attr('text', {
+              fill: '#fff'
+            })
+          }
+        });
 
       }, 0);
 
@@ -699,6 +715,10 @@ export default {
       }
     }
   }
+}
+
+#stencil{
+  //display: none;
 }
 
 </style>
