@@ -49,7 +49,31 @@ export default {
     initFun() {
 
       setTimeout(()=> {
+
         graph.fromJSON(flowDesignJson); // 初始化流程图
+
+        // 更新流程图节点状态
+        const nodes = graph.getNodes();
+        console.log('所有节点：', nodes);
+        nodes.map(node => {
+          // 已完成的节点
+          if(['开始', '过程'].includes(node.label)) {
+            node.attr('body', {
+              stroke: '#334fd8',
+              fill: 'rgba(51,79,126,.2)'
+            })
+          }
+          // 正在进行中的节点
+          if(node.label === '可选过程') {
+            node.attr('body', {
+              stroke: '#334fd8',
+              fill: '#334fd8',
+            })
+            node.attr('text', {
+              fill: '#fff'
+            })
+          }
+        });
       }, 0);
 
 
