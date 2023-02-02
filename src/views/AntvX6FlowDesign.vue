@@ -36,28 +36,21 @@ export default {
   methods: {
 
     exportFun(){
-      let exportFun = graph.toJSON();
-
-      console.log(11, exportFun);
-      console.log(22, JSON.stringify(exportFun.cells));
+      let cells = JSON.stringify(graph.toJSON().cells);
+      const url = window.URL.createObjectURL(new Blob([cells], {type: 'text/json'}))
+      const link = document.createElement('a');
+      let name = '流程图JSON_' + Date.now() + '.json';
+      link.href = url;
+      link.setAttribute('download', name);
+      document.body.appendChild(link);
+      link.click();
     },
 
     initFun() {
 
-      // setInterval(() => {
-      //   let exportFun = graph.toJSON();
-      //   console.log(11, exportFun);
-      //   console.log(22, JSON.stringify(exportFun.cells));
-      // }, 3000)
-
       setTimeout(()=> {
-        console.log(234, flowDesignJson);
-        graph.fromJSON(flowDesignJson)
-
-      }, 2000)
-
-
-
+        graph.fromJSON(flowDesignJson); // 初始化流程图
+      }, 0);
 
 
 // 为了协助代码演示
