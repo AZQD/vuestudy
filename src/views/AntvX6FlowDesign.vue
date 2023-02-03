@@ -7,11 +7,17 @@
       <div id="container" style="width: 100%; height: 100%"></div>
 
       <div class="ctrlBox" v-if="editableFlag">
-        <div class="export">
-          导入：<input type="file" id="importIpt" @change="importFun"/>
-          <el-button class="exportBtn" @click="exportFun">导出</el-button>
-        </div>
 
+        <div class="fileInfo">
+          <el-upload
+              class="upload-demo"
+              action=""
+              :http-request="importFun"
+              :show-file-list="false">
+            <el-button size="small" type="primary">导入流程图</el-button>
+          </el-upload>
+          <el-button type="primary" size="small" class="exportBtn" @click="exportFun">导出流程图</el-button>
+        </div>
 
         <div id="node-info">
           <div class="node-item">
@@ -59,18 +65,24 @@ export default {
   methods: {
 
     // 导入节点
-    importFun() {
-      let resultFile = document.getElementById('importIpt').files[0]
+    importFun(res) {
+      console.log('导入节点：', res);
+      let resultFile = res.file;
       // 使用 FileReader 来读取文件
       let reader = new FileReader()
       // 读取纯文本文件,且编码格式为 utf-8
       reader.readAsText(resultFile, 'UTF-8')
       // 读取文件,会触发 onload 异步事件,可使用回调函数 来获取最终的值.
-      reader.onload = function (e) {
+      reader.onload = (e) => {
         let fileContent = e.target.result
         graph.fromJSON(JSON.parse(fileContent));
+        this.$message({
+          message: '操作成功',
+          type: 'success'
+        });
       }
     },
+
     // 导出节点
     exportFun(){
       let cells = JSON.stringify(graph.toJSON().cells);
@@ -81,6 +93,10 @@ export default {
       link.setAttribute('download', name);
       document.body.appendChild(link);
       link.click();
+      this.$message({
+        message: '操作成功',
+        type: 'success'
+      });
     },
 
     initFun() {
@@ -703,11 +719,14 @@ export default {
     position: absolute;
     right: 0;
     top: 0;
-    //width: 200px;
-    .export{
-      text-align: right;
+    width: 200px;
+    padding: 12px;
+    .fileInfo{
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
       .exportBtn{
-
+        margin-left: 20px;
       }
     }
     #node-info{
@@ -719,11 +738,25 @@ export default {
         font-size: 14px;
         padding: 10px 0;
         .node-item-key{
-
         }
         .node-item-value{
-          width: 100px;
+          width: 0;
+          flex: 1;
+
+          -webkit-appearance: none;
+          background-color: #fff;
+          background-image: none;
+          border-radius: 4px;
+          border: 1px solid #dcdfe6;
+          box-sizing: border-box;
+          color: #606266;
+          display: inline-block;
+          font-size: inherit;
+          height: 32px;
+          line-height: 32px;
           outline: none;
+          padding: 0 15px;
+          transition: border-color .2s cubic-bezier(.645,.045,.355,1);
         }
       }
     }
