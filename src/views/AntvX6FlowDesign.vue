@@ -6,7 +6,7 @@
 
       <div id="container" style="width: 100%; height: 100%"></div>
 
-      <div class="ctrlBox">
+      <div class="ctrlBox" v-if="editableFlag">
         <div class="export">
           导入：<input type="file" id="importIpt" @change="importFun"/>
           <el-button class="exportBtn" @click="exportFun">导出</el-button>
@@ -46,7 +46,9 @@ export default {
   name: 'AntvX6FlowDesign',
 
   data() {
-    return {}
+    return {
+      editableFlag: true, // 流程图是否可编辑
+    }
   },
   created() {
 
@@ -88,28 +90,30 @@ export default {
 
         graph.fromJSON(flowDesignJson); // 初始化流程图
 
-        // 更新流程图节点状态
-        const nodes = graph.getNodes();
-        console.log('所有节点：', nodes);
-        nodes.map(node => {
-          // 已完成的节点
-          if(['开始', '过程'].includes(node.label)) {
-            node.attr('body', {
-              stroke: '#334fd8',
-              fill: 'rgba(51,79,126,.2)'
-            })
-          }
-          // 正在进行中的节点
-          if(node.label === '可选过程') {
-            node.attr('body', {
-              stroke: '#334fd8',
-              fill: '#334fd8',
-            })
-            node.attr('text', {
-              fill: '#fff'
-            })
-          }
-        });
+        // 不可编辑时，高亮流程图节点状态
+        if(!this.editableFlag) {
+          const nodes = graph.getNodes();
+          console.log('所有节点：', nodes);
+          nodes.map(node => {
+            // 已完成的节点
+            if(['开始', '拆任务'].includes(node.label)) {
+              node.attr('body', {
+                stroke: '#334fd8',
+                fill: 'rgba(51,79,126,.2)'
+              })
+            }
+            // 正在进行中的节点
+            if(node.label === '模型训练') {
+              node.attr('body', {
+                stroke: '#334fd8',
+                fill: '#334fd8',
+              })
+              node.attr('text', {
+                fill: '#fff'
+              })
+            }
+          });
+        }
 
       }, 0);
 
@@ -590,7 +594,8 @@ export default {
       border-right: 1px solid #dfe3e8;
     }
     #graph-container {
-      width: calc(100% - 180px);
+      // width: calc(100% - 180px);
+      width: 100%;
       height: 100%;
     }
     .x6-widget-stencil  {
@@ -648,6 +653,14 @@ export default {
       //         return this.label
       //     }
       // })
+
+      // 不可编辑时，更新界面
+      if(!this.editableFlag) {
+        document.getElementById('stencil').style.display = 'none'; // 隐藏左侧配置菜单
+        document.getElementById('graph-container').style.width = '100%'; // 流程图容器宽度占满屏幕
+        document.getElementById('graph-container').style.pointerEvents = 'none'; // 流程图容器不可点击
+      }
+
       /**
        * 节点点击事件
        * */
@@ -715,10 +728,6 @@ export default {
       }
     }
   }
-}
-
-#stencil{
-  //display: none;
 }
 
 </style>
