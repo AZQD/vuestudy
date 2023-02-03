@@ -695,14 +695,15 @@ export default {
       /**
        * 监听输入框修改事件，如果没有选择节点也不报错。
        * */
-      document.querySelector("#node-name").addEventListener("input", (e)=>{
-        try{
-          actionNode.label = e.target.value
-        }catch(e){
-          console.log(e);
-        }
-      })
-
+      if(this.editableFlag){
+        document.querySelector("#node-name").addEventListener("input", (e)=>{
+          try{
+            actionNode.label = e.target.value
+          }catch(e){
+            console.log(e);
+          }
+        })
+      }
 
     }
   }
