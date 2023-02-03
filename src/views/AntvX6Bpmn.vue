@@ -8,7 +8,7 @@
 
 <script>
 import {Graph} from '@antv/x6'
-import bpmnJson from './bpmn.json'
+import AntvX6BpmnJson from './AntvX6BpmnJson.json'
 
 
 export default {
@@ -129,7 +129,7 @@ export default {
 
       setTimeout(() => {
         const cells = []
-        bpmnJson.forEach((item) => {
+        AntvX6BpmnJson.forEach((item) => {
           if (item.shape === 'bpmn-edge') {
             cells.push(graph.createEdge(item))
           } else {

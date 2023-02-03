@@ -46,7 +46,7 @@ import { Clipboard } from '@antv/x6-plugin-clipboard'
 import { History } from '@antv/x6-plugin-history'
 import insertCss from 'insert-css'
 
-import flowDesignJson from './flowDesign.json'
+import AntvX6FlowDesignJson from './AntvX6FlowDesignJson.json'
 
 export default {
   name: 'AntvX6FlowDesign',
@@ -104,7 +104,7 @@ export default {
       // 模拟接口返回数据
       setTimeout(()=> {
 
-        graph.fromJSON(flowDesignJson); // 初始化流程图
+        graph.fromJSON(AntvX6FlowDesignJson); // 初始化流程图
 
         // 不可编辑时，高亮流程图节点状态
         if(!this.editableFlag) {
