@@ -36,14 +36,14 @@
 
 <script>
 let graph = null;
-import { Graph, Shape } from '@antv/x6'
-import { Stencil } from '@antv/x6-plugin-stencil'
-import { Transform } from '@antv/x6-plugin-transform'
-import { Selection } from '@antv/x6-plugin-selection'
-import { Snapline } from '@antv/x6-plugin-snapline'
-import { Keyboard } from '@antv/x6-plugin-keyboard'
-import { Clipboard } from '@antv/x6-plugin-clipboard'
-import { History } from '@antv/x6-plugin-history'
+import {Graph, Shape} from '@antv/x6'
+import {Stencil} from '@antv/x6-plugin-stencil'
+import {Transform} from '@antv/x6-plugin-transform'
+import {Selection} from '@antv/x6-plugin-selection'
+import {Snapline} from '@antv/x6-plugin-snapline'
+import {Keyboard} from '@antv/x6-plugin-keyboard'
+import {Clipboard} from '@antv/x6-plugin-clipboard'
+import {History} from '@antv/x6-plugin-history'
 import insertCss from 'insert-css'
 
 import AntvX6FlowDesignJson from './AntvX6FlowDesignJson.json'
@@ -84,7 +84,7 @@ export default {
     },
 
     // 导出节点
-    exportFun(){
+    exportFun() {
       let cells = JSON.stringify(graph.toJSON().cells);
       const url = window.URL.createObjectURL(new Blob([cells], {type: 'text/json'}))
       const link = document.createElement('a');
@@ -102,24 +102,24 @@ export default {
     initFun() {
 
       // 模拟接口返回数据
-      setTimeout(()=> {
+      setTimeout(() => {
 
         graph.fromJSON(AntvX6FlowDesignJson); // 初始化流程图
 
         // 不可编辑时，高亮流程图节点状态
-        if(!this.editableFlag) {
+        if (!this.editableFlag) {
           const nodes = graph.getNodes();
           console.log('所有节点：', nodes);
           nodes.map(node => {
             // 已完成的节点
-            if(['开始', '拆任务'].includes(node.label)) {
+            if (['开始', '拆任务'].includes(node.label)) {
               node.attr('body', {
                 stroke: '#334fd8',
                 fill: 'rgba(51,79,126,.2)'
               })
             }
             // 正在进行中的节点
-            if(node.label === '模型训练') {
+            if (node.label === '模型训练') {
               node.attr('body', {
                 stroke: '#334fd8',
                 fill: '#334fd8',
@@ -183,7 +183,7 @@ export default {
               zIndex: 0,
             })
           },
-          validateConnection({ targetMagnet }) {
+          validateConnection({targetMagnet}) {
             return !!targetMagnet
           },
         },
@@ -265,7 +265,7 @@ export default {
       })
       graph.bindKey(['meta+v', 'ctrl+v'], () => {
         if (!graph.isClipboardEmpty()) {
-          const cells = graph.paste({ offset: 32 })
+          const cells = graph.paste({offset: 32})
           graph.cleanSelection()
           graph.select(cells)
         }
@@ -435,7 +435,7 @@ export default {
                 fill: '#262626',
               },
             },
-            ports: { ...ports },
+            ports: {...ports},
           },
           true,
       )
@@ -489,7 +489,7 @@ export default {
                 fill: '#262626',
               },
             },
-            ports: { ...ports },
+            ports: {...ports},
           },
           true,
       )
@@ -533,7 +533,7 @@ export default {
                 fill: '#fff',
               },
             },
-            ports: { ...ports },
+            ports: {...ports},
           },
           true,
       )
@@ -671,7 +671,7 @@ export default {
       // })
 
       // 不可编辑时，更新界面
-      if(!this.editableFlag) {
+      if (!this.editableFlag) {
         document.getElementById('stencil').style.display = 'none'; // 隐藏左侧配置菜单
         document.getElementById('graph-container').style.width = '100%'; // 流程图容器宽度占满屏幕
         document.getElementById('graph-container').style.pointerEvents = 'none'; // 流程图容器不可点击
@@ -683,23 +683,23 @@ export default {
       graph.on('node:click', (event) => {
         actionNode = event.node;
         document.querySelector("#node-name").value = actionNode.label;
-        document.querySelector("#node-info").style.display  = "block";
+        document.querySelector("#node-info").style.display = "block";
       })
       /**
        * 空白画布点击事件
        * */
       graph.on('blank:click', () => {
         actionNode = null;
-        document.querySelector("#node-info").style.display  = "none";
+        document.querySelector("#node-info").style.display = "none";
       })
       /**
        * 监听输入框修改事件，如果没有选择节点也不报错。
        * */
-      if(this.editableFlag){
-        document.querySelector("#node-name").addEventListener("input", (e)=>{
-          try{
+      if (this.editableFlag) {
+        document.querySelector("#node-name").addEventListener("input", (e) => {
+          try {
             actionNode.label = e.target.value
-          }catch(e){
+          } catch (e) {
             console.log(e);
           }
         })
@@ -716,31 +716,37 @@ export default {
   height: 400px;
   position: relative;
 
-  .ctrlBox{
+  .ctrlBox {
     position: absolute;
     right: 0;
     top: 0;
     width: 200px;
     padding: 12px;
-    .fileInfo{
+
+    .fileInfo {
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      .exportBtn{
+
+      .exportBtn {
         margin-left: 20px;
       }
     }
-    #node-info{
+
+    #node-info {
       display: none;
-      .node-item{
+
+      .node-item {
         display: flex;
         align-items: center;
         color: #606266;
         font-size: 14px;
         padding: 10px 0;
-        .node-item-key{
+
+        .node-item-key {
         }
-        .node-item-value{
+
+        .node-item-value {
           width: 0;
           flex: 1;
 
@@ -757,7 +763,7 @@ export default {
           line-height: 32px;
           outline: none;
           padding: 0 15px;
-          transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+          transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
         }
       }
     }
