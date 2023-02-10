@@ -749,7 +749,6 @@ export default {
         .node-item-value {
           width: 0;
           flex: 1;
-
           -webkit-appearance: none;
           background-color: #fff;
           background-image: none;
