@@ -433,6 +433,10 @@ export default {
               text: {
                 fontSize: 12,
                 fill: '#262626',
+                textWrap: {
+                  ellipsis: false,
+                  breakWord: true
+                }
               },
             },
             ports: {...ports},
@@ -455,6 +459,10 @@ export default {
               text: {
                 fontSize: 12,
                 fill: '#262626',
+                textWrap: {
+                  ellipsis: false,
+                  breakWord: true
+                }
               },
             },
             ports: {
@@ -487,6 +495,10 @@ export default {
               text: {
                 fontSize: 12,
                 fill: '#262626',
+                textWrap: {
+                  ellipsis: false,
+                  breakWord: true
+                }
               },
             },
             ports: {...ports},
