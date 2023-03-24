@@ -206,6 +206,13 @@ const routes = [
     name: 'WangEditor2',
     component: () => import('../views/WangEditor2.vue')
   },
+
+  // 学习重点：vue中使用vue-drag-resize对元素任意拖拽缩放
+  {
+    path: '/vueDragResize',
+    name: 'VueDragResize',
+    component: () => import('../views/VueDragResize.vue')
+  },
 ]
 
 const router = new VueRouter({
