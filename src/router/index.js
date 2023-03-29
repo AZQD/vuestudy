@@ -213,6 +213,12 @@ const routes = [
     name: 'VueDragResize',
     component: () => import('../views/VueDragResize.vue')
   },
+  // 学习重点：vue中自定义组件对元素任意拖拽缩放
+  {
+    path: '/vueDragDefine',
+    name: 'VueDragDefine',
+    component: () => import('../views/VueDragDefine.vue')
+  },
 ]
 
 const router = new VueRouter({
