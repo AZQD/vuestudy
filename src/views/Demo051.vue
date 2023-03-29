@@ -6,7 +6,7 @@
     <slot :parentMsg="parentMsg"></slot>
 
     <slot name="test1"></slot>
-    <slot name="test2"></slot>
+    <slot name="test2">222ssfsds</slot>
     <slot name="test3"></slot>
 
     <slot name="test4" color="red" :child-msg="msg"></slot>

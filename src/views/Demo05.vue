@@ -19,7 +19,7 @@
       </template>
 
       <template v-slot:test2>
-        <h1>test2</h1>
+        <h1>test2dd</h1>
       </template>
 
       <template #test3>
