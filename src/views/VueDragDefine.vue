@@ -2,7 +2,7 @@
   <div>
 
 
-    <h3>学习重点：vue中自定义可拖拽悬浮组件</h3>
+    <h3>学习重点：vue中自定义可拖拽悬浮组件 </h3>
 <!--    参考文档：https://www.cnblogs.com/deng-jie/p/16408876.html vue2的写法-->
 
     <VueDragDefineComp>
