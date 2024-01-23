@@ -148,6 +148,13 @@ const routes = [
     component: () => import('../views/elementUI/SelectLoadMore.vue')
   },
 
+  // 学习重点：table相关
+  {
+    path: '/tableTest',
+    name: 'TableTest',
+    component: () => import('../views/elementUI/TableTest.vue')
+  },
+
   // 学习重点：el-uplad分片上传
   {
     path: '/uploadByPieces/demo1',
