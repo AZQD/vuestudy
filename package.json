@@ -23,7 +23,7 @@
     "core-js": "^3.6.5",
     "crypto-js": "^4.1.1",
     "dompurify": "^2.3.3",
-    "element-ui": "^2.15.5",
+    "element-ui": "^2.13.2",
     "insert-css": "^2.0.0",
     "jquery": "^3.6.1",
     "js-base64": "^3.7.2",
