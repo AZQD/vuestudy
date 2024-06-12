@@ -30,7 +30,7 @@
     "lodash": "^4.17.21",
     "mergely": "^4.1.0",
     "prismjs": "^1.29.0",
-    "vue": "^2.6.11",
+    "vue": "^2.7.16",
     "vue-bus": "^1.2.1",
     "vue-drag-resize": "^1.5.4",
     "vue-prism-editor": "^1.3.0",
