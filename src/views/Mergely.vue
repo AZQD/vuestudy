@@ -19,10 +19,10 @@
 // 实现方案：https://blog.csdn.net/qq_33697094/article/details/121767084
 // DEMO示例：https://www.jianshu.com/p/8e582a99ea89
 
-import 'codemirror/lib/codemirror.css'
-import 'codemirror/lib/codemirror.js'
-import 'mergely/lib/mergely.css'
-import 'mergely/lib/mergely.js'
+// import 'codemirror/lib/codemirror.css'
+// import 'codemirror/lib/codemirror.js'
+// import 'mergely/lib/mergely.css'
+// import 'mergely/lib/mergely.js'
 import jQuery from 'jquery'
 
 export default {
