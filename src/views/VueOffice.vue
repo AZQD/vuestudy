@@ -2,7 +2,7 @@
 
   <div class="box">
     <h3>学习重点：多种文件(docx、excel、pdf)预览</h3>
-    参考文档：https://501351981.github.io/vue-office/examples/docs/
+    参考文档：https://501351981.github.io/vue-office/examples/docs/guide/
 
     <div class="partItem">
       <p>预览excel:</p>
