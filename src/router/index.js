@@ -112,6 +112,12 @@ const routes = [
     name: 'Xss',
     component: () => import('../views/Xss.vue')
   },
+  // 学习重点：多种文件(docx、excel、pdf)预览
+  {
+    path: '/vueOffice',
+    name: 'VueOffice',
+    component: () => import('../views/VueOffice.vue')
+  },
 
   // 学习重点：级联选择器
   {
