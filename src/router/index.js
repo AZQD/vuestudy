@@ -118,6 +118,12 @@ const routes = [
     name: 'VueOffice',
     component: () => import('../views/VueOffice.vue')
   },
+  // 学习重点：Vue项目中使用mammoth库来转换Word文档(.docx)为HTML
+  {
+    path: '/vueMammoth',
+    name: 'VueMammoth',
+    component: () => import('../views/VueMammoth.vue')
+  },
 
   // 学习重点：级联选择器
   {

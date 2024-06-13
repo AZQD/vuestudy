@@ -1,3 +1,5 @@
 self.addEventListener('fetch', function(event) {
-    console.log('event', event);
+    if(event) {
+        // console.log('event', event);
+    }
 });
