@@ -18,6 +18,7 @@
     "@antv/x6-plugin-stencil": "^2.0.2",
     "@antv/x6-plugin-transform": "^2.1.5",
     "@form-create/designer": "^1.0.3",
+    "@kangc/v-md-editor": "^1.7.12",
     "@vue-office/docx": "^1.6.2",
     "@vue-office/excel": "^1.7.8",
     "@vue-office/pdf": "^2.0.2",
