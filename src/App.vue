@@ -44,6 +44,7 @@
               <el-menu-item index="/xss">XSS</el-menu-item>
               <el-menu-item index="/vueOffice">VueOffice</el-menu-item>
               <el-menu-item index="/vueMammoth">VueMammoth</el-menu-item>
+              <el-menu-item index="/vueQr">VueQr</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 

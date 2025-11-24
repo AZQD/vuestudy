@@ -124,6 +124,12 @@ const routes = [
     name: 'VueMammoth',
     component: () => import('../views/VueMammoth.vue')
   },
+  // 学习重点：Vue项目中生成二维码
+  {
+    path: '/vueQr',
+    name: 'VueQr',
+    component: () => import('../views/VueQr.vue')
+  },
 
   // 学习重点：级联选择器
   {

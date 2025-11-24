@@ -1,98 +1,50 @@
 <template>
   <div class="box">
 
-    <h3>学习重点：Vue项目中使用mammoth库来转换Word文档(.doc、.docx)为HTML</h3>
-    参考文档：https://www.npmjs.com/package/mammoth
+    <h3>学习重点：Vue项目中生成二维码</h3>
+    参考文档：
+    https://developer.aliyun.com/article/1269811 <br/>
+    https://blog.csdn.net/gitblog_01064/article/details/154975103
+
+    <br/>
+    <br/>
+    注意点：
+    中间带logo的二维码，如果logo周边想要留白，强烈不要使用logo-margin属性。
+    如果使用logo-margin属性，手机直接扫描二维码可以识别，但是从相册识别却不行。
+    推荐方式：
+    不适用logo-margin属性，而是编辑logo图片，周边留白，即可！
 
     <el-card>
-      <span>第一种方式：</span>
-      <el-upload
-          action="#"
-          :auto-upload="false"
-          :show-file-list="false"
-          :on-change="handleLocalDoc">
-        <el-button size="small" type="primary">转换本地文件</el-button>
-      </el-upload>
+      <VueQr
+          :text="`Hello World !`"
+          :size="200"
+          :logo-src="require(`@/assets/logo-margin.png`)"
+      />
     </el-card>
-    <br>
-
-    <el-card>
-      <span>第二种方式：</span>
-      <el-button size="small" type="primary" @click="handleOnlineDoc">转换外部文件</el-button>
-    </el-card>
-
-    <div v-html="htmlContent"></div>
   </div>
 </template>
 
 <script>
-import mammoth from "mammoth";
-import axios from "axios";
-
-// 在Node.js环境中，mammoth.convertToHtml方法可以直接传path参数；
-// 在浏览器环境中，需要将docx文件转化为arrayBuffer数组再传递给mammoth.convertToHtml方法；
+import VueQr from 'vue-qr';
 
 export default {
+  components: {
+    VueQr
+  },
   data() {
     return {
-      htmlContent: ''
     };
   },
   methods: {
 
-    // 第一种方式：预览本地文件
-    handleLocalDoc(file){
-      console.log('预览本地文件-file:', file);
-      this.arrayBufferFun(file.raw);
-    },
-
-    // 第二种方式：预览外部文件
-    handleOnlineDoc(){
-      axios({
-        url: 'http://static.shanhuxueyuan.com/test.docx',
-        // url: 'https://501351981.github.io/vue-office/examples/dist/static/test-files/test.docx',
-        method: "get",
-        responseType: 'blob',
-      }).then(res => {
-        console.log('预览外部文件-res:', res);
-        this.arrayBufferFun(res.data);
-      }).catch(err => {
-        console.log('err', err);
-      })
-    },
-
-    // 文件转化成arrayBuffer数据类型
-    arrayBufferFun(fileData){
-      const reader = new FileReader();
-      reader.onload = (loadEvent) => {
-        const arrayBuffer = loadEvent.target.result;
-        console.log('arrayBuffer:', arrayBuffer);
-        this.convertWordToHtml(arrayBuffer);
-      };
-      reader.readAsArrayBuffer(fileData); // 开始读取指定的Blob中的内容, 读取后数据格式为ArrayBuffer类型
-    },
-
-    // 转换为HTML格式
-    async convertWordToHtml(arrayBuffer) {
-      try {
-        const result = await mammoth.convertToHtml({ arrayBuffer });
-        console.log('convertToHtml:', result);
-        this.htmlContent = result.value;
-      } catch (err) {
-        console.error(err);
-      }
-    },
   }
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .box{
   .el-card{
     .el-card__body{
-      div{
-        display: inline-block;
-      }
     }
   }
 }
