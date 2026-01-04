@@ -114,6 +114,11 @@ const routes = [
   },
   // 学习重点：多种文件(docx、excel、pdf)预览
   {
+    path: '/vueOfficeDocx',
+    name: 'VueOfficeDocx',
+    component: () => import('../views/VueOfficeDocx.vue')
+  },
+  {
     path: '/vueOfficeExcel',
     name: 'VueOfficeExcel',
     component: () => import('../views/VueOfficeExcel.vue')
