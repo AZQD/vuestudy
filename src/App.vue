@@ -42,7 +42,7 @@
               <el-menu-item index="/compSelf2">组件自调用2</el-menu-item>
               <el-menu-item index="/functional">函数式组件</el-menu-item>
               <el-menu-item index="/xss">XSS</el-menu-item>
-              <el-menu-item index="/vueOffice">VueOffice</el-menu-item>
+              <el-menu-item index="/vueOfficeExcel">VueOfficeExcel</el-menu-item>
               <el-menu-item index="/vueMammoth">VueMammoth</el-menu-item>
               <el-menu-item index="/vueQr">VueQr</el-menu-item>
             </el-menu-item-group>

@@ -114,9 +114,9 @@ const routes = [
   },
   // 学习重点：多种文件(docx、excel、pdf)预览
   {
-    path: '/vueOffice',
-    name: 'VueOffice',
-    component: () => import('../views/VueOffice.vue')
+    path: '/vueOfficeExcel',
+    name: 'VueOfficeExcel',
+    component: () => import('../views/VueOfficeExcel.vue')
   },
   // 学习重点：Vue项目中使用mammoth库来转换Word文档(.docx)为HTML
   {
