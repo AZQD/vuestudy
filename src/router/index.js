@@ -112,6 +112,12 @@ const routes = [
     name: 'Xss',
     component: () => import('../views/Xss.vue')
   },
+  // 学习重点：百度智能云 智能文档分析平台 - 合同审查
+  {
+    path: '/contractReview',
+    name: 'ContractReview',
+    component: () => import('../views/contractReview.vue')
+  },
   // 学习重点：多种文件(docx、excel、pdf)预览
   {
     path: '/vueOfficeDocx',
