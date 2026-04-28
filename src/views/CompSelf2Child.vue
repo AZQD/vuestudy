@@ -65,7 +65,7 @@ export default {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 .testBox{
   padding: 20px 0 20px 20px;

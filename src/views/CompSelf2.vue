@@ -60,7 +60,7 @@ import CompSelf2Child from './CompSelf2Child'
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
   .box {
     text-align: left;

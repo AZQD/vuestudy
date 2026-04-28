@@ -38,7 +38,7 @@ import textreview from './textreview.json'
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .box {
 
   }

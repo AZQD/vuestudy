@@ -108,7 +108,7 @@ import 'prismjs/themes/prism-tomorrow.css'; // import syntax highlighting styles
 </script>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
 /* required class */
 .my-editor {
   /* we dont use `language-` classes anymore so thats why we need to add background and text color manually */

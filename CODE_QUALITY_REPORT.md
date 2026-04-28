@@ -348,11 +348,37 @@ methods: {}
 
 ### P2 — 中优先级（规范与可维护性）
 10. **添加 scoped 样式**：所有 `src/views/` 下的页面组件添加 `scoped`
+    - **自动修复内容**：已为 26 个文件添加 `scoped` 属性：
+      - `src/views/Demo01.vue`、`Demo02.vue`、`Demo03.vue`、`Demo031.vue`、`Demo032.vue`、`Demo04.vue`、`Demo05.vue`、`Demo051.vue`
+      - `src/views/Functional.vue`、`CompSelf.vue`、`CompSelf2.vue`、`CompSelf2Child.vue`
+      - `src/views/VuePrismEditor.vue`、`VueSuperFlow.vue`、`VueOfficeDocx.vue`、`VueOfficeExcel.vue`、`VueMammoth.vue`
+      - `src/views/WangEditor.vue`、`WangEditor2.vue`、`Xss.vue`
+      - `src/views/Mergely.vue`、`VueDragResize.vue`、`AntvX6FlowDesign.vue`
+      - `src/views/elementUI/TableTest.vue`
+      - `src/views/UploadByPieces/demo2/upload.vue`
 11. **迁移全局覆写样式**：将 `App.vue` 中的 `.el-cascader-panel`、`.abow_dialog` 等覆写迁移到 `src/styles/`
+    - **自动修复内容**：
+      - 新建 `src/styles/element-overrides.scss`，将 `.el-cascader-panel .el-radio`、`.abow_dialog` 等全局样式从 `App.vue` 迁移至此文件。
+      - `src/main.js:15` 新增 `import '@/styles/element-overrides.scss'` 全局引入。
+      - `App.vue:152-228` 移除已迁移的样式代码，保留仅作用于当前组件的样式（`#app`、`.el-header`、`.el-aside`、`.el-menu-item a`）。
+      - `App.vue` 的 `<style>` 标签添加 `scoped`，防止 App 壳层样式泄漏到子组件。
 12. **清理注释代码**：删除所有长期注释掉的代码块
+    - **自动修复内容**：**未执行**。用户反馈这些注释代码还需要参考，因此保留所有注释内容。
 13. **删除空壳 Vuex**：移除 `vuex` 依赖和 `src/store/`
+    - **自动修复内容**：
+      - 删除 `src/store/` 目录（包含 `index.js`）。
+      - `src/main.js:4`：删除 `import store from './store'`。
+      - `src/main.js:52-53`：Vue 实例中删除 `store` 属性。
+      - `package.json:46`：删除 `"vuex": "^3.4.0"` 依赖。
+      - `package.json:55`：删除 `@vue/cli-plugin-vuex` devDependency。
 14. **修复外部资源**：HTTP 改为 HTTPS，或内联静态资源
+    - **自动修复内容**：**未执行**。用户反馈该外部资源服务器不支持 HTTPS，硬改地址会导致请求失败，因此保留原始 HTTP 地址。
 15. **抽取硬编码数据**：`VueSuperFlow.vue`、`Cascader.vue` 的数据移入独立 JSON
+    - **自动修复内容**：
+      - 新建 `src/data/superFlowData.json`，包含 `nodeList`（14个节点）和 `linkList`（16条连线）数据。
+      - 新建 `src/data/cascaderOptions.json`，包含级联选择器的完整选项数据（~200行）。
+      - `src/views/VueSuperFlow.vue`：删除 `created()` 中内嵌的 300+ 行硬编码数据，改为 `import superFlowData from '@/data/superFlowData.json'` 并解构赋值。
+      - `src/views/elementUI/Cascader.vue`：删除 `data()` 中内嵌的 200+ 行硬编码选项数据，改为 `import cascaderOptions from '@/data/cascaderOptions.json'` 并直接绑定到 `options`。
 
 ### P3 — 低优先级（整洁与优化）
 16. 删除空对象/空方法定义

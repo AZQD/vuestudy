@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'
 import xss from 'xss'
 import formCreate from '@form-create/element-ui'
 import FcDesigner from '@form-create/designer'
@@ -12,6 +11,7 @@ Object.defineProperty(Vue.prototype, '$xss', {
 
 import ElementUI from 'element-ui' //element-ui的全部组件
 import 'element-ui/lib/theme-chalk/index.css'//element-ui的css
+import '@/styles/element-overrides.scss' // ElementUI 全局样式覆写
 Vue.use(ElementUI) //使用elementUI
 
 import VueBus from 'vue-bus';
@@ -50,6 +50,5 @@ Vue.use(SuperFlow)
 
 new Vue({
   router,
-  store, // 将共享数据挂载到Vue实例中
   render: h => h(App)
 }).$mount('#app')
