@@ -77,7 +77,8 @@ export default {
       try {
         const result = await mammoth.convertToHtml({ arrayBuffer });
         console.log('convertToHtml:', result);
-        this.htmlContent = result.value;
+        // 使用全局挂载的 xss 过滤器对转换后的 HTML 进行过滤，防止 XSS 攻击
+        this.htmlContent = this.$xss(result.value);
       } catch (err) {
         console.error(err);
       }

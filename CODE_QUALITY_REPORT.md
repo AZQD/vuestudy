@@ -312,9 +312,17 @@ methods: {}
 
 ### P0 — 紧急（涉及安全与崩溃）
 1. **修复 VueMammoth.vue XSS 漏洞**：`this.htmlContent = this.$xss(result.value)` 或 `DOMPurify.sanitize(result.value)`
+   - **自动修复内容**：已在 `src/views/VueMammoth.vue:80` 将 `this.htmlContent = result.value` 修改为 `this.htmlContent = this.$xss(result.value)`，使用 `main.js` 全局挂载的 xss 过滤器对 mammoth 转换后的 HTML 进行 XSS 过滤。
 2. **隔离/删除 XSS 测试代码**：`WangEditor.vue` 中的 `htmlStr2`、`Xss.vue` 中的 `xssHtml` 应加明确注释或移入 `src/demos/security/` 隔离目录
+   - **自动修复内容**：
+     - `src/views/WangEditor.vue:61-66`：已将 `htmlStr2` 变量及注入逻辑注释掉，并添加安全提示注释，说明该代码仅用于演示 XSS 风险，生产环境严禁使用。
+     - `src/views/Xss.vue:6`：已添加红色安全提示标签 "本页面仅用于演示 XSS 攻击原理及防御方案，请勿在生产环境中直接复制使用"，并为两个 `v-html` 区域分别标注 "未过滤（存在风险）" 和 "使用 $xss 过滤后（安全）"。
 3. **修复 CompSelf.vue 无限递归**：添加深度限制（如 `level < 10`）或改用迭代方案
+   - **自动修复内容**：已为 `src/views/CompSelf.vue` 添加 `depth` prop（默认 0），在 `testFun` 中增加递归深度检查 `if (this.depth >= 3) { alert(...); return; }`，并在模板中将 `<CompSelf>` 的 `depth` 绑定为 `:depth="depth + 1"`，确保递归深度不超过 3 层。
 4. **修复生命周期拼写错误**：`Demo04.vue` 的 `beforeDestory` → `beforeDestroy`，`VueDragDefineComp.vue` 的 `beforeUnmount` → `beforeDestroy`
+   - **自动修复内容**：
+     - `src/views/Demo04.vue:74`/`79`：已将 `beforeDestory` 修正为 `beforeDestroy`，`destoryed` 修正为 `destroyed`。
+     - `src/views/VueDragDefineComp.vue:76`：已将 `beforeUnmount` 修正为 `beforeDestroy`，使其在 Vue 2 生命周期中正确触发事件监听的移除逻辑。
 
 ### P1 — 高优先级（性能与稳定性）
 5. **优化 SelectLoadMore 算法**：将排序逻辑移出循环，复杂度从 O(n²) 降至 O(n log n)

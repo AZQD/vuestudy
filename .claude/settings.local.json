@@ -1,7 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git *)"
+      "Bash(git *)",
+      "Bash(npm run *)",
+      "Bash(npm uninstall *)",
+      "Bash(npm install *)",
+      "Bash(curl -s http://172.16.24.149:808)",
+      "Bash(curl *)",
+      "Bash(tasklist)"
     ]
   }
 }

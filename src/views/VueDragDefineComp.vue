@@ -72,7 +72,7 @@ export default {
     // this.isScrollHidden && window.addEventListener('scroll', this.handleScroll);
     window.addEventListener('resize', this.handleResize);
   },
-  beforeUnmount() {
+  beforeDestroy() {
     window.removeEventListener('scroll', this.handleScroll);
     window.removeEventListener('resize', this.handleResize);
   },

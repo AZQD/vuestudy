@@ -71,12 +71,12 @@
       console.log('Demo4 updated');
     },
 
-    beforeDestory () {
-      console.log('Demo4 beforeDestory');
+    beforeDestroy () {
+      console.log('Demo4 beforeDestroy');
     },
     // 一般用于清空数据，清除定时器，清除绑定事件等
-    destoryed () {
-      console.log('Demo4 destoryed');
+    destroyed () {
+      console.log('Demo4 destroyed');
     },
 
     methods: {

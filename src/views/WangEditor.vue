@@ -58,12 +58,13 @@ import E from 'wangeditor'
       //   <div style="color: red;">content...</div>
       //   <img class="img" src="x" onerror="alert('xss攻击')">
       //   `
-      const htmlStr2 = `
-        <svg onload="console.log(document.cookie)"></svg>
-        <iframe sameorigin width="100%" height="100%" src="https://www.dangerous.com"></iframe><>
-        `
-      // editor.txt.html(htmlStr)
-      editor.txt.html(htmlStr2)
+      // 安全提示：以下代码为 XSS 测试演示，仅用于学习了解富文本编辑器的安全风险
+      // 生产环境中严禁直接注入未过滤的 HTML 内容
+      // const htmlStr2 = `
+      //   <svg onload="console.log(document.cookie)"></svg>
+      //   <iframe sameorigin width="100%" height="100%" src="https://www.dangerous.com"></iframe><>
+      // `
+      // editor.txt.html(htmlStr2)
       // mounted() {
       //   // 创建编辑器
       //   this.editor = new E(`#demo`)
