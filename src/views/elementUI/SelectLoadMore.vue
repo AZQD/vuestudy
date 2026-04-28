@@ -46,18 +46,18 @@
       },
 
       filterListDataFun(query = '') {
-        this.listData_new = Object.assign([], this.listData)
+        this.listData_new = [...this.listData]
         if(query) {
           this.listData_new = this.listData_new.filter(item => {
             if(item.label.includes(query)) {
-              return item;
+              return true;
             }
           })
         }
       },
 
       handleSelectClear() { // 清空后重置列表
-        this.listData_new = Object.assign([], this.listData)
+        this.listData_new = [...this.listData]
       },
 
       getListData() {
@@ -67,26 +67,20 @@
               label: 'label' + i,
               value: 'value' + i,
             });
-            if(this.currentChecked) {
-              // 为已选的数据重新排序，把已选的数据放在列表的最前面
-              this.listData_new = Object.assign([], this.listData)
-              this.listData_new = this.listData_new.sort(item => {
-                if (this.currentChecked === item.value) {
-                  return -1;
-                }else {
-                  return 1;
-                }
-              });
-            } else{
-              this.listData_new = this.listData;
-            }
+          }
+          if(this.currentChecked) {
+            // 为已选的数据重新排序，把已选的数据放在列表的最前面
+            this.listData_new = [...this.listData].sort((a) => {
+              return a.value === this.currentChecked ? -1 : 1;
+            });
+          } else {
+            this.listData_new = [...this.listData];
           }
         }, 1000);
       },
 
       handleSelectChange(val){
         console.log(val);
-        this.$forceUpdate();
       }
     },
   }

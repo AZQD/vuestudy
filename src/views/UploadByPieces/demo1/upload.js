@@ -17,6 +17,19 @@ const upload = (url, data, headers = {}) => {
         })
     })
 }
+// 并发上传池：限制同时上传的分片数量
+async function uploadWithLimit(promiseFactories, limit = 3) {
+    const results = [];
+    const executing = [];
+    for (const factory of promiseFactories) {
+        const p = factory().then(r => { executing.splice(executing.indexOf(p), 1); return r; });
+        results.push(p);
+        executing.push(p);
+        if (executing.length >= limit) await Promise.race(executing);
+    }
+    return Promise.all(results);
+}
+
 //分片上传
 const uploadByPieces = async (url,{ fileName, file }) => {
     console.log(23, fileName);
@@ -57,13 +70,13 @@ const uploadByPieces = async (url,{ fileName, file }) => {
         fetchForm.append("chunkCount", chunkCount);
         return uploadChunk(fetchForm)
     };
-    // 针对每个文件进行chunk处理
-    const promiseList = []
+    // 针对每个文件进行chunk处理，使用并发池限制同时上传数量
+    const promiseFactories = []
     try {
         for (let index = 0; index < chunkCount; ++index) {
-            promiseList.push(readChunk(index))
+            promiseFactories.push(() => readChunk(index))
         }
-        const res = await Promise.all(promiseList)
+        const res = await uploadWithLimit(promiseFactories, 3)
         console.log(34, res);
         return res
     }catch (e) {

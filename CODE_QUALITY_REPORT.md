@@ -326,10 +326,25 @@ methods: {}
 
 ### P1 — 高优先级（性能与稳定性）
 5. **优化 SelectLoadMore 算法**：将排序逻辑移出循环，复杂度从 O(n²) 降至 O(n log n)
+   - **自动修复内容**：
+     - `src/views/elementUI/SelectLoadMore.vue:63-83`：已将 `Object.assign` + `sort` 移出 `for` 循环，循环仅负责 push 数据，排序在循环结束后执行一次。复杂度从 O(n²) 降至 O(n log n)。
+     - `src/views/elementUI/SelectLoadMore.vue:72`：`sort` 回调函数从返回 `item`（依赖类型隐式转换）改为返回 `-1` / `1`（标准比较函数）。
+     - `src/views/elementUI/SelectLoadMore.vue:49,60`：`Object.assign([], ...)` 替换为 `[...this.listData]` 展开语法，语义更清晰。
+     - `src/views/elementUI/SelectLoadMore.vue:88`：移除了 `handleSelectChange` 中的 `this.$forceUpdate()` 反模式调用，因为数据变更后 Vue 响应式系统已能正确触发视图更新。
+     - `src/views/elementUI/SelectLoadMore.vue:53`：`filter` 回调返回值从 `return item` 修正为 `return true`，符合规范的 boolean 返回值。
 6. **增加分片上传并发控制**：限制同时上传 3-5 个分片
+   - **自动修复内容**：
+     - `src/views/UploadByPieces/demo1/upload.js:21-32`：新增 `uploadWithLimit(promiseFactories, limit)` 并发池函数，通过 `Promise.race` 控制正在执行的 Promise 数量不超过 `limit`（默认 3 个）。
+     - `src/views/UploadByPieces/demo1/upload.js:61-71`：原 `Promise.all(promiseList)` 全量并发改为 `uploadWithLimit(promiseFactories, 3)`，分片上传请求以工厂函数形式按需触发，1GB 文件的 200 个分片将按 3 个并发批次依次上传，避免浏览器连接数耗尽。
 7. **统一依赖管理**：删除 `yarn.lock` 或 `package-lock.json` 之一
+   - **自动修复内容**：已删除项目根目录 `yarn.lock` 文件，保留 `package-lock.json` 与 CLAUDE.md 中"优先使用 npm"的指引保持一致。
 8. **更新弃用依赖**：`babel-eslint` → `@babel/eslint-parser`，`node-sass` → `sass`
+   - **自动修复内容**：
+     - `package.json:57`：`"babel-eslint": "^10.1.0"` 替换为 `"@babel/eslint-parser": "^7.28.0"`。
+     - `.eslintrc.js:11`：`parser: 'babel-eslint'` 替换为 `parser: '@babel/eslint-parser'`，并补充 `requireConfigFile: false`、`ecmaVersion: 2020`、`sourceType: 'module'` 配置。
+     - `node-sass` 不在当前 package.json 中（已使用 `sass` Dart Sass），无需额外处理。
 9. **修复 vue-template-compiler 版本**：与 `vue` 保持同一版本 `^2.7.16`
+   - **自动修复内容**：`package.json:62`：`"vue-template-compiler": "^2.6.11"` 更新为 `"vue-template-compiler": "^2.7.16"`，与 `vue` 主版本一致。
 
 ### P2 — 中优先级（规范与可维护性）
 10. **添加 scoped 样式**：所有 `src/views/` 下的页面组件添加 `scoped`
