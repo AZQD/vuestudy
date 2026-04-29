@@ -346,3 +346,6 @@ $router.options.routes
    参考：https://blog.csdn.net/cc25485697/article/details/107164094
 
 ```
+
+github没有contributions测试：
+test1
