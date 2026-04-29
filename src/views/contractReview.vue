@@ -10,9 +10,6 @@ import textreview from './textreview.json'
 
   export default {
     name: 'ContractReview',
-    components: {
-    },
-
     data(){
       return {
         textreview,

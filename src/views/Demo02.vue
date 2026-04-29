@@ -15,16 +15,18 @@
 
     name: 'Demo02',
 
-    components: {},
-
-    data () {
-      return {}
-    },
-
     created () {
       // console.log('this.$router', this.$router);
       console.log('this.$route', this.$route);
       console.log('this.$route.params', this.$route.params);
+    },
+
+    // activated 和 deactivated：被keep-alive包裹的组件，特有的两个生命周期；
+    activated(){
+      console.log('activated，组件激活时调用（包含初始化）');
+    },
+    deactivated(){
+      console.log('deactivated，组件停用时调用');
     },
 
     methods: {
@@ -52,13 +54,6 @@
       }
     },
 
-    // activated 和 deactivated：被keep-alive包裹的组件，特有的两个生命周期；
-    activated(){
-      console.log('activated，组件激活时调用（包含初始化）');
-    },
-    deactivated(){
-      console.log('deactivated，组件停用时调用');
-    },
   }
 
 </script>

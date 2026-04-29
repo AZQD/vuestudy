@@ -19,8 +19,6 @@ import dompurify from 'dompurify'
 
   export default {
     name: 'Xss',
-    components: {},
-
     data () {
       return {
         xssHtml: `<a onclick='alert("xss攻击");console.log(document.cookie)'>超链接</a>`,
@@ -35,13 +33,11 @@ import dompurify from 'dompurify'
       console.log(2, dompurify.sanitize(this.xssHtml2));
     },
 
-    methods: {
-    },
   }
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .box{
   .img{
     width: 200px;

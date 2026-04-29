@@ -51,10 +51,6 @@ export default {
     this.$nextTick(() => {
     })
   },
-  methods: {
-
-
-  }
 }
 </script>
 

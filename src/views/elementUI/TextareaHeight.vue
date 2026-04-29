@@ -47,13 +47,6 @@
       }
     },
 
-    created () {
-
-    },
-
-    methods: {
-
-    },
   }
 
 </script>

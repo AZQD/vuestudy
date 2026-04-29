@@ -22,16 +22,10 @@ import E from 'wangeditor'
 
     name: 'WangEditor2',
 
-    components: {},
-
     data () {
       return {
         open: true
       }
-    },
-
-    created () {
-
     },
 
     mounted () {
@@ -83,12 +77,11 @@ import E from 'wangeditor'
       })
     },
 
-    methods: {},
   }
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
   .bg {
     width: 100%;

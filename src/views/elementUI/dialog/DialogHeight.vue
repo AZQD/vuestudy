@@ -18,13 +18,6 @@
       }
     },
 
-    created () {
-
-    },
-
-    methods: {
-
-    },
   }
 
 </script>

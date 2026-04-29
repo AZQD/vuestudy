@@ -35,8 +35,6 @@
 
     name: 'Demo04',
 
-    components: {},
-
     data () {
       return {
         number: 1,
@@ -79,6 +77,14 @@
       console.log('Demo4 destroyed');
     },
 
+    computed: {
+      computedActive5: function () {
+        return {
+          active5: this.isActive1 && this.isActive2 && this.isActive31 && this.isActive32 && this.isActive4
+        }
+      }
+    },
+
     methods: {
       add(){
         console.log('add');
@@ -116,14 +122,6 @@
       },
       changeClassFun4(){
         this.isActive4 = !this.isActive4;
-      }
-    },
-
-    computed: {
-      computedActive5: function () {
-        return {
-          active5: this.isActive1 && this.isActive2 && this.isActive31 && this.isActive32 && this.isActive4
-        }
       }
     }
   }

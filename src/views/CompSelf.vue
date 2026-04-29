@@ -8,8 +8,6 @@
 <script>
   export default {
     name: 'CompSelf',
-    components: {
-    },
     props: {
       depth: {
         type: Number,
@@ -20,8 +18,6 @@
       return {
         show: false
       }
-    },
-    created () {
     },
     methods: {
       testFun(){

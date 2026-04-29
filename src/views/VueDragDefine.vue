@@ -23,11 +23,6 @@ export default {
   components: {
     VueDragDefineComp
   },
-  data() {
-    return {};
-  },
-  created() {
-  },
   methods: {
     clickFun() {
       console.log('clickFun2');

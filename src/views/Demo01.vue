@@ -14,7 +14,17 @@
 
   export default {
     name: 'Demo01',
-    components: {
+
+    data(){
+      return {
+        number: 1
+      }
+    },
+
+    created(){
+      // console.log('this.$router', this.$router);
+      console.log('this.$route', this.$route);
+      console.log('this.$route.query', this.$route.query);
     },
 
     beforeRouteEnter (to, from, next) {
@@ -42,17 +52,6 @@
       // 可以访问组件实例 `this`
     },
 
-    data(){
-      return {
-        number: 1
-      }
-    },
-
-    created(){
-      // console.log('this.$router', this.$router);
-      console.log('this.$route', this.$route);
-      console.log('this.$route.query', this.$route.query);
-    },
     methods: {
       sub(){
         console.log('sub');

@@ -134,128 +134,6 @@ export default{
       stopBtn: true
     }
   },
-  methods: {
-    /**
-     * 获取当前上传列表中的文件
-     * @returns {Array|*}
-     */
-    getFileList: function(){
-      return this.fileList;
-    },
-    //绑定事件
-    wul_init: function() {
-      //提示只能选择一个文件
-      this.wul_uploader.on('filesQueued', function (files) {
-        if (files.length > 1) {
-          this.$message({
-            message: '请选择一张图片',
-            type: 'error'
-          });
-          for (var i = 0; i < files.length; i++) {
-            this.wul_uploader.cancelFile(files[i]);
-          }
-          this.wul_uploader.reset();
-          this.wul_fileMd5 = "";
-          this.wul_size = 0;
-          this.wul_fileName = "";
-          this.wul_chunk = 0;  //当前切片数
-        }else{
-          if( this.fileList.length == this.countLimit ){
-            this.$message({
-              message: '已经达到上传文件限制数量',
-              type: 'error'
-            });
-          }else{
-            //此时往需要上传的文件列表中添加文件
-            let file = {
-              uid: Date.now() + this.tempIndex++,
-              name: files[0].name,
-              type: files[0].type,
-              ext: files[0].ext,
-              status: "ready",
-              percentage: 0
-            }
-            this.fileObject = file;
-            this.fileList.push(this.fileObject);
-          }
-        }
-      }.bind(this));
-
-      //文件校验格式和大小
-      this.wul_uploader.on('error', function (type) {
-        // debugger
-        if (type == 'Q_EXCEED_SIZE_LIMIT') {
-          this.$message({
-            message: '文件超过指定大小',
-            type: 'error'
-          });
-        }
-        if (type == 'Q_TYPE_DENIED') {
-          this.$message({
-            message: '文件格式错误，请选择文件',
-            type: 'error'
-          });
-        }
-        if (type == 'F_EXCEED_SIZE') {
-          this.$message({
-            message: "文件超过" + this.sizeLimit / 1024 / 1024 + "M",
-            type: 'error'
-          });
-        }
-      }.bind(this));
-
-      //上传进度
-      this.wul_uploader.on('uploadProgress', function (file, percentage) {
-        this.percentage = percentage * 100;
-        this.fileObject.status = "uploading";
-        this.fileObject.percentage = this.percentage;
-        console.log(this.fileObject.percentage);
-      }.bind(this));
-
-      //每次切片上传完成之后的判断
-      this.wul_uploader.on('uploadAccept', function (object, ret) {
-        if (ret.responseCode != 0) {
-          this.wul_uploader.cancelFile(this.wul_uploader.getFiles()[0].id);
-        }
-      });
-
-      this.wul_uploader.on('uploadBeforeSend', function(object, data, headers) {
-        console.log(object, data, headers);
-      });
-    },
-
-    option: function(key, val) {
-      this.wul_uploader.option(key, val);
-      var options = this.wul_uploader.options;
-      this.wul_uploader.destroy();  //注销uploader
-      this.wul_uploader = WebUploader.create(options);
-      this.wul_init();
-    },
-    start: function(){
-      if(this.wul_uploader.getFiles()[0] != null) {
-        this.wul_uploader.upload(this.wul_uploader.getFiles()[0].id);
-        this.uploadLoading = true;
-        this.stopBtn = false;
-      } else {
-        this.$message({
-          message: "请选择上传文件",
-          type: 'error'
-        });
-      }
-    },
-    stop: function(){
-      this.wul_uploader.cancelFile(this.wul_uploader.getFiles()[0].id);
-    },
-    removeFile: function(file){
-      this.fileList.splice(this.fileList.indexOf(file), 1);
-    },
-    change: function(){
-      this.option('accept', {
-        title: 'Images',
-        extensions: 'gif,jpg,jpeg,bmp,png'
-      });
-    }
-  },
   mounted(){
     WebUploader.Uploader.register({
       "before-send-file": "beforeSendFile",
@@ -427,6 +305,128 @@ export default{
       }
     });
     this.wul_init();
+  },
+  methods: {
+    /**
+     * 获取当前上传列表中的文件
+     * @returns {Array|*}
+     */
+    getFileList: function(){
+      return this.fileList;
+    },
+    //绑定事件
+    wul_init: function() {
+      //提示只能选择一个文件
+      this.wul_uploader.on('filesQueued', function (files) {
+        if (files.length > 1) {
+          this.$message({
+            message: '请选择一张图片',
+            type: 'error'
+          });
+          for (var i = 0; i < files.length; i++) {
+            this.wul_uploader.cancelFile(files[i]);
+          }
+          this.wul_uploader.reset();
+          this.wul_fileMd5 = "";
+          this.wul_size = 0;
+          this.wul_fileName = "";
+          this.wul_chunk = 0;  //当前切片数
+        }else{
+          if( this.fileList.length == this.countLimit ){
+            this.$message({
+              message: '已经达到上传文件限制数量',
+              type: 'error'
+            });
+          }else{
+            //此时往需要上传的文件列表中添加文件
+            let file = {
+              uid: Date.now() + this.tempIndex++,
+              name: files[0].name,
+              type: files[0].type,
+              ext: files[0].ext,
+              status: "ready",
+              percentage: 0
+            }
+            this.fileObject = file;
+            this.fileList.push(this.fileObject);
+          }
+        }
+      }.bind(this));
+
+      //文件校验格式和大小
+      this.wul_uploader.on('error', function (type) {
+        // debugger
+        if (type == 'Q_EXCEED_SIZE_LIMIT') {
+          this.$message({
+            message: '文件超过指定大小',
+            type: 'error'
+          });
+        }
+        if (type == 'Q_TYPE_DENIED') {
+          this.$message({
+            message: '文件格式错误，请选择文件',
+            type: 'error'
+          });
+        }
+        if (type == 'F_EXCEED_SIZE') {
+          this.$message({
+            message: "文件超过" + this.sizeLimit / 1024 / 1024 + "M",
+            type: 'error'
+          });
+        }
+      }.bind(this));
+
+      //上传进度
+      this.wul_uploader.on('uploadProgress', function (file, percentage) {
+        this.percentage = percentage * 100;
+        this.fileObject.status = "uploading";
+        this.fileObject.percentage = this.percentage;
+        console.log(this.fileObject.percentage);
+      }.bind(this));
+
+      //每次切片上传完成之后的判断
+      this.wul_uploader.on('uploadAccept', function (object, ret) {
+        if (ret.responseCode != 0) {
+          this.wul_uploader.cancelFile(this.wul_uploader.getFiles()[0].id);
+        }
+      });
+
+      this.wul_uploader.on('uploadBeforeSend', function(object, data, headers) {
+        console.log(object, data, headers);
+      });
+    },
+
+    option: function(key, val) {
+      this.wul_uploader.option(key, val);
+      var options = this.wul_uploader.options;
+      this.wul_uploader.destroy();  //注销uploader
+      this.wul_uploader = WebUploader.create(options);
+      this.wul_init();
+    },
+    start: function(){
+      if(this.wul_uploader.getFiles()[0] != null) {
+        this.wul_uploader.upload(this.wul_uploader.getFiles()[0].id);
+        this.uploadLoading = true;
+        this.stopBtn = false;
+      } else {
+        this.$message({
+          message: "请选择上传文件",
+          type: 'error'
+        });
+      }
+    },
+    stop: function(){
+      this.wul_uploader.cancelFile(this.wul_uploader.getFiles()[0].id);
+    },
+    removeFile: function(file){
+      this.fileList.splice(this.fileList.indexOf(file), 1);
+    },
+    change: function(){
+      this.option('accept', {
+        title: 'Images',
+        extensions: 'gif,jpg,jpeg,bmp,png'
+      });
+    }
   }
 }
 </script>

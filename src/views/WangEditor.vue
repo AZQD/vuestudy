@@ -11,16 +11,6 @@ import E from 'wangeditor'
 
     name: 'WangEditor',
 
-    components: {},
-
-    data () {
-      return {}
-    },
-
-    created () {
-
-    },
-
     mounted () {
       const editor = new E('#div1');
 
@@ -77,12 +67,11 @@ import E from 'wangeditor'
       // }
     },
 
-    methods: {},
   }
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
   .box {
 

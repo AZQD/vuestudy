@@ -68,11 +68,6 @@
       }
     },
 
-    created () {
-
-    },
-
-    methods: {},
   }
 
 </script>

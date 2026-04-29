@@ -14,17 +14,10 @@ import AntvX6BpmnJson from './AntvX6BpmnJson.json'
 export default {
   name: 'AntvX6Bpmn',
 
-  data() {
-    return {}
-  },
-  created() {
-
-  },
   mounted() {
     this.initFun();
   },
   methods: {
-
     initFun() {
 
       Graph.registerNode(

@@ -6,24 +6,14 @@
 
 <script>
   export default {
+
+    name: 'DialogChild',
+
     props: {
       open: {
         type: Boolean,
         default: false
       }
-    },
-
-    name: 'DialogChild',
-
-    components: {},
-
-    data () {
-      return {
-
-      }
-    },
-
-    created () {
     },
 
     methods: {

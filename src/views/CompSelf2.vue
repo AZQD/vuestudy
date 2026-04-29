@@ -49,9 +49,6 @@ import CompSelf2Child from './CompSelf2Child'
       });
     },
 
-    methods: {
-    },
-
     beforeDestroy() {
       // 注销监听事件
       this.$bus.$off(['showNewListData']);

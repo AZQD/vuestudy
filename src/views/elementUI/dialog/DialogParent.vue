@@ -23,10 +23,6 @@ import DialogChild from "@/views/elementUI/dialog/DialogChild";
       }
     },
 
-    created () {
-
-    },
-
     methods: {
       clickFun(){
         this.open = true;

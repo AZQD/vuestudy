@@ -24,7 +24,6 @@
 
     name: 'Demo051',
 
-    components: {},
     props:{
       parentMsg: String
     },
@@ -34,12 +33,6 @@
         msg: 'childMsg'
       }
     },
-
-    created () {
-
-    },
-
-    methods: {},
   }
 
 </script>

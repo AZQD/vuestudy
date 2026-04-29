@@ -23,17 +23,11 @@
 
     name: 'Cascader',
 
-    components: {},
-
     data () {
       return {
         defaultVal: 'daohang',
         options: cascaderOptions
       }
-    },
-
-    created () {
-
     },
 
     methods: {

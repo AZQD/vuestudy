@@ -10,18 +10,6 @@
   export default {
 
     name: 'Demo3',
-
-    components: {},
-
-    data () {
-      return {}
-    },
-
-    created () {
-
-    },
-
-    methods: {},
   }
 
 </script>

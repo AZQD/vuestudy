@@ -26,9 +26,6 @@
 import jQuery from 'jquery'
 
 export default {
-  data() {
-    return {}
-  },
   mounted() {
     jQuery(document).ready(function () {
       // 渲染diff界面

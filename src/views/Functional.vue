@@ -34,10 +34,6 @@ import FunctionalList from './FunctionalList'
       }
     },
 
-    created () {
-
-    },
-
     methods: {
       editorFun(row, index) {
         console.log('编辑：', row, index);
@@ -52,7 +48,7 @@ import FunctionalList from './FunctionalList'
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
   .box {
 

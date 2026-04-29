@@ -51,9 +51,9 @@
 
 <script>
 export default {
-  methods: {
-    handleClick(row) {
-      console.log(row);
+  data() {
+    return {
+      tableData: []
     }
   },
 
@@ -93,9 +93,9 @@ export default {
     // });
   },
 
-  data() {
-    return {
-      tableData: []
+  methods: {
+    handleClick(row) {
+      console.log(row);
     }
   }
 }

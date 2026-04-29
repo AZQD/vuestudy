@@ -31,13 +31,6 @@ export default {
   components: {
     VueQr
   },
-  data() {
-    return {
-    };
-  },
-  methods: {
-
-  }
 };
 </script>
 

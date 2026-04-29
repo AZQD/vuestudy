@@ -4,16 +4,6 @@ import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
-// 报错：NavigationDuplicated: Avoided redundant navigation to current location: “/“
-// 原因：路由重复导致
-//解决方案：
-// 获取原型对象上的push函数
-const originalPush = VueRouter.prototype.push
-//修改原型对象中的push方法
-VueRouter.prototype.push = function push(location) {
-  return originalPush.call(this, location).catch(err => err)
-}
-
 const routes = [
   {
     path: '/',

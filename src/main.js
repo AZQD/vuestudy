@@ -19,20 +19,6 @@ Vue.use(VueBus);
 
 
 
-// Service Worker注册
-if ('serviceWorker' in window.navigator) {
-  navigator.serviceWorker.register('./service-worker.js').then(function(registration) {
-    console.log(registration);
-    // 注册成功
-    console.log('Service Worker Registered （可以通过控制台-应用程序，查看manifest.json和Service Worker状态）');
-  }).catch(function(err) {
-    console.log(err);
-    // 注册失败
-    console.log('Service Worker Registration Failed');
-  });
-} else {
-  console.log('不支持Service Worker （需要HTTPS协议）');
-}
 
 
 Vue.config.productionTip = false // 阻止显示生产模式的消息。

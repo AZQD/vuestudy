@@ -8,18 +8,6 @@
   export default {
 
     name: 'Demo32',
-
-    components: {},
-
-    data () {
-      return {}
-    },
-
-    created () {
-
-    },
-
-    methods: {},
   }
 
 </script>

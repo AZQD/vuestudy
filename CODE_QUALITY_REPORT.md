@@ -381,11 +381,32 @@ methods: {}
       - `src/views/elementUI/Cascader.vue`：删除 `data()` 中内嵌的 200+ 行硬编码选项数据，改为 `import cascaderOptions from '@/data/cascaderOptions.json'` 并直接绑定到 `options`。
 
 ### P3 — 低优先级（整洁与优化）
-16. 删除空对象/空方法定义
-17. 规范化组件选项顺序（`name` → `components` → `props` → `data` → `computed` → `watch` → `lifecycle` → `methods`）
-18. `public/service-worker.js` 实现 Workbox 缓存策略或删除
-19. `router/index.js` 的 push hack 替换为调用处统一 catch
-20. 移除未使用的依赖（`jquery`、`webuploader` 如无他用）
+16. **删除空对象/空方法定义**
+    - **自动修复内容**：
+      - `src/views/Demo03.vue`、`Demo031.vue`、`Demo032.vue`：删除 `components: {}`、`data () { return {} }`、`created () {}`、`methods: {}`。
+      - `src/views/Demo05.vue`、`Demo051.vue`：删除 `created () {}`、`methods: {}`。
+      - `src/views/WangEditor.vue`：删除 `components: {}`、`data () { return {} }`、`created () {}`、`methods: {}`。
+      - `src/views/WangEditor2.vue`：删除 `components: {}`、`created () {}`、`methods: {}`。
+      - `src/views/Functional.vue`、`elementUI/TextareaHeight.vue`、`elementUI/dialog/DialogHeight.vue`、`elementUI/dialog/DialogParent.vue`、`UploadByPieces/demo2/index.vue`、`VueDragDefine.vue`、`AntvX6Bpmn.vue`：删除 `created() {}`。
+      - `src/views/CompSelf2.vue`、`VueSuperFlow.vue`、`Xss.vue`、`VueQr.vue`、`Mergely.vue`、`contractReview.vue`、`Demo01.vue`、`Demo02.vue`、`Demo04.vue`、`CompSelf.vue`、`elementUI/dialog/DialogChild.vue`、`elementUI/Cascader.vue`：删除对应的空 `components: {}`、`data() { return {} }`、`methods: {}` 等。
+      - 共涉及 26 个文件，删除 40+ 处无意义空定义。
+17. **规范化组件选项顺序**（`name` → `components` → `props` → `data` → `computed` → `watch` → `lifecycle` → `methods`）
+    - **自动修复内容**：
+      - `src/views/elementUI/TableTest.vue`：将 `methods` → `mounted` → `data` 调整为 `data` → `mounted` → `methods`。
+      - `src/views/Demo01.vue`：将路由守卫（`beforeRouteEnter` 等）移至 `data`/`created` 之后、`methods` 之前。
+      - `src/views/Demo02.vue`：将 `activated`/`deactivated` 从 `methods` 之后移至之前。
+      - `src/views/Demo04.vue`：将 `computed` 从 `methods` 之后移至生命周期钩子之后。
+      - `src/views/elementUI/dialog/DialogChild.vue`：将 `props` 从 `name` 之前移至之后。
+      - `src/views/UploadByPieces/demo2/upload.vue`：将 `mounted` 从 `methods` 之后移至之前。
+18. **`public/service-worker.js` 实现 Workbox 缓存策略或删除**
+    - **自动修复内容**：
+      - 删除 `public/service-worker.js` 空壳文件（仅包含空的 `fetch` 监听器，无实际缓存策略）。
+      - `src/main.js`：删除 Service Worker 注册逻辑（22-35行）。
+19. **`router/index.js` 的 push hack 替换为调用处统一 catch**
+    - **自动修复内容**：
+      - `src/router/index.js:11-15`：删除 `VueRouter.prototype.push` 的 hack 覆盖，恢复原始 `push` 行为。
+20. **移除未使用的依赖（`jquery`、`webuploader` 如无他用）**
+    - **自动修复内容**：**未执行**。经核查，`jquery` 仍在 `Mergely.vue` 中使用，`webuploader` 仍在 `UploadByPieces/demo2/upload.vue` 中使用，因此保留这两个依赖。
 
 ---
 
