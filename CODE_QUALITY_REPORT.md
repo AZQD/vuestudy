@@ -464,3 +464,11 @@ methods: {}
 3. **UploadByPieces/demo2/upload.vue 全局 CSS Reset 隔离**
    - **操作**：该文件已添加 `scoped` 属性，80+ 行全局 Reset 已被 Vue scoped CSS 机制隔离，不再污染项目全局样式。
    - **文件**：`src/views/UploadByPieces/demo2/upload.vue`
+
+### 2026-05-07 修复记录（修改人：Claude）
+
+1. **App.vue 左侧菜单结构重组**
+   - **操作**：删除一级菜单「导航菜单」（原 index="4"）。
+   - **操作**：在「Vue基础总结」一级菜单下新建二级菜单「Demo汇总」（index="1-1"），将原平铺的 Demo01～Demo05 移入其中作为三级菜单项。
+   - **操作**：菜单项「Demo05 插槽」重命名为「Demo05」。
+   - **文件**：`src/App.vue`

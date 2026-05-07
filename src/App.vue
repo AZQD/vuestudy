@@ -43,11 +43,14 @@
 
               <template slot="title"><i class="el-icon-menu"></i>Vue基础总结</template>
               <el-menu-item index="/">Home</el-menu-item>
-              <el-menu-item index="/demo01" :route="{ path: '/demo01', query: { a: '1' }}">Demo01</el-menu-item>
-              <el-menu-item :index="'/demo02/'+type">Demo02</el-menu-item>
-              <el-menu-item index="/demo03">Demo03</el-menu-item>
-              <el-menu-item index="/demo04">Demo04</el-menu-item>
-              <el-menu-item index="/demo05">Demo05 插槽</el-menu-item>
+              <el-submenu index="1-1">
+                <template slot="title">Demo汇总</template>
+                <el-menu-item index="/demo01" :route="{ path: '/demo01', query: { a: '1' }}">Demo01</el-menu-item>
+                <el-menu-item :index="'/demo02/'+type">Demo02</el-menu-item>
+                <el-menu-item index="/demo03">Demo03</el-menu-item>
+                <el-menu-item index="/demo04">Demo04</el-menu-item>
+                <el-menu-item index="/demo05">Demo05</el-menu-item>
+              </el-submenu>
               <el-menu-item index="/compSelf">组件自调用</el-menu-item>
               <el-menu-item index="/compSelf2">组件自调用2</el-menu-item>
               <el-menu-item index="/functional">函数式组件</el-menu-item>
@@ -74,22 +77,6 @@
               <template slot="title"><i class="el-icon-menu"></i>WangEditor总结</template>
               <el-menu-item index="/wangEditor">WangEditor富文本</el-menu-item>
               <el-menu-item index="/wangEditor2">dialog中的WangEditor富文本</el-menu-item>
-            </el-submenu>
-
-            <el-submenu index="4"><!--第二部分-->
-              <template slot="title"><i class="el-icon-menu"></i>导航菜单</template>
-              <el-menu-item-group>
-                <template slot="title">分组一</template>
-                <el-menu-item index="2-1">选项1</el-menu-item>
-                <el-menu-item index="2-2">选项2</el-menu-item>
-              </el-menu-item-group>
-              <el-menu-item-group title="分组2">
-                <el-menu-item index="2-3">选项3</el-menu-item>
-              </el-menu-item-group>
-              <el-submenu index="2-4">
-                <template slot="title">选项4</template>
-                <el-menu-item index="2-4-1">选项4-1</el-menu-item>
-              </el-submenu>
             </el-submenu>
 
             <el-submenu index="5">
@@ -174,6 +161,11 @@ const MENU_ROUTE_MAP = {
   '7': ['/vueDragResize', '/vueDragDefine']
 }
 
+// 三级菜单路由映射：key 为父级 submenu index，value 为该 submenu 下的路由
+const NESTED_MENU_MAP = {
+  '1-1': ['/demo01', '/demo02', '/demo03', '/demo04', '/demo05']
+}
+
 export default {
   data(){
     return {
@@ -185,13 +177,21 @@ export default {
     toggleCollapse() {
       this.isCollapse = !this.isCollapse
     },
-    getMatchedMenu(path) {
+    getOpenedMenus(path) {
+      const opened = []
       for (const [index, paths] of Object.entries(MENU_ROUTE_MAP)) {
         if (paths.some(p => path === p || path.startsWith(p + '/'))) {
-          return index
+          opened.push(index)
+          break
         }
       }
-      return null
+      for (const [index, paths] of Object.entries(NESTED_MENU_MAP)) {
+        if (paths.some(p => path === p || path.startsWith(p + '/'))) {
+          opened.push(index)
+          break
+        }
+      }
+      return opened
     }
   },
   created(){
@@ -200,8 +200,7 @@ export default {
       this.$nextTick(() => {
         const menu = this.$refs.menu
         if (menu) {
-          const matched = this.getMatchedMenu(this.$route.path)
-          menu.openedMenus = matched ? [matched] : []
+          menu.openedMenus = this.getOpenedMenus(this.$route.path)
         }
       })
     })
