@@ -70,8 +70,10 @@
           }
           if(this.currentChecked) {
             // 为已选的数据重新排序，把已选的数据放在列表的最前面
-            this.listData_new = [...this.listData].sort((a) => {
-              return a.value === this.currentChecked ? -1 : 1;
+            this.listData_new = [...this.listData].sort((a, b) => {
+              if (a.value === this.currentChecked) return -1;
+              if (b.value === this.currentChecked) return 1;
+              return 0;
             });
           } else {
             this.listData_new = [...this.listData];

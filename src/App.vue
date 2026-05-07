@@ -13,13 +13,12 @@
         </div>
         <div class="menu-wrapper">
           <el-menu
-            :default-active="activeMenu"
-            :openeds="openeds"
+            ref="menu"
+            :default-active="$route.path"
             :collapse="isCollapse"
             :collapse-transition="false"
+            unique-opened
             router
-            @open="handleOpen"
-            @close="handleClose"
           >
 
             <el-submenu index="1"><!--第一部分-->
@@ -179,21 +178,7 @@ export default {
   data(){
     return {
       type: 1,
-      isCollapse: false,
-      activeMenu: '',
-      openeds: []
-    }
-  },
-  watch: {
-    '$route.path'(path) {
-      this.activeMenu = path
-      for (const [index, paths] of Object.entries(MENU_ROUTE_MAP)) {
-        const matched = paths.some(p => path === p || path.startsWith(p + '/'))
-        if (matched && !this.openeds.includes(index)) {
-          this.openeds = [...this.openeds, index]
-          break
-        }
-      }
+      isCollapse: false
     }
   },
   methods: {
@@ -207,25 +192,18 @@ export default {
         }
       }
       return null
-    },
-    handleOpen(index) {
-      if (!this.openeds.includes(index)) {
-        this.openeds = [...this.openeds, index]
-      }
-    },
-    handleClose(index) {
-      this.openeds = this.openeds.filter(i => i !== index)
-    },
-    syncMenuState(path) {
-      this.activeMenu = path
-      const matched = this.getMatchedMenu(path)
-      this.openeds = matched ? [matched] : []
     }
   },
   created(){
     console.log('App.vue ---- created');
     this.$router.onReady(() => {
-      this.syncMenuState(this.$route.path)
+      this.$nextTick(() => {
+        const menu = this.$refs.menu
+        if (menu) {
+          const matched = this.getMatchedMenu(this.$route.path)
+          menu.openedMenus = matched ? [matched] : []
+        }
+      })
     })
   }
 }

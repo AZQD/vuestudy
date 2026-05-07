@@ -19,17 +19,9 @@ import textreview from './textreview.json'
 
     created(){
       console.log(666, this.textreview);
-      this.aaa = JSON.parse(this.textreview)
+      this.aaa = JSON.stringify(this.textreview, null, 2)
     },
     methods: {
-      sub(){
-        console.log('sub');
-        this.number --
-      },
-      add(){
-        console.log('add');
-        this.number ++
-      }
     },
   }
 

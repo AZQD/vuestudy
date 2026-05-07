@@ -422,3 +422,45 @@ methods: {}
 4. **工程化基础薄弱**：大量无 scoped 样式、空定义、弃用依赖、双锁文件，与 Vue CLI 4.5 应有的工程化水准不符
 
 **建议**：在继续添加新 Demo 前，建立一份 `DEMO_GUIDELINE.md`，规定新增页面必须：通过 ESLint、使用 scoped 样式、禁止直接 v-html（除非有过滤）、数据量超过 100 条时必须抽取为 mock 文件。这将显著提升项目作为学习模板的可信度。
+
+---
+
+## 十二、修复记录
+
+### 2026-04-30 修复记录（修改人：Claude）
+
+#### 本次新增修复
+
+1. **App.vue 左侧菜单刷新展开问题（彻底根治）**
+   - **根因**：Element UI 内部 `default-active` 触发的 `initOpenedMenu` 与 Vue 响应式更新存在时序竞态，导致刷新时额外菜单被展开。
+   - **方案**：化繁为简，移除 `:openeds` + `@open/@close` 复杂受控逻辑；改用 `unique-opened` 属性确保只保持一个菜单展开；`default-active` 恢复直接绑定 `$route.path`；在 `$router.onReady` + `$nextTick` 中通过 `ref` 直接操作 `menu.openedMenus`，绕过所有 prop watch 竞态。
+   - **文件**：`src/App.vue`
+
+2. **SelectLoadMore.vue sort 比较函数缺陷**
+   - **问题**：`.sort((a) => {...})` 单参数回调不满足传递性，排序结果不稳定。
+   - **修复**：改为标准双参数比较函数 `.sort((a, b) => { if (a.value === this.currentChecked) return -1; if (b.value === this.currentChecked) return 1; return 0; })`。
+   - **文件**：`src/views/elementUI/SelectLoadMore.vue:73-77`
+
+3. **VueOfficeDocx.vue CSS 路径错误**
+   - **问题**：引入 Excel 样式文件 `import '@vue-office/excel/lib/index.css'`。
+   - **修复**：改为 Docx 专用样式 `import '@vue-office/docx/lib/index.css'`。
+   - **文件**：`src/views/VueOfficeDocx.vue:28`
+
+4. **contractReview.vue JSON 显示错误**
+   - **问题**：`JSON.parse(this.textreview)` 对已是对象的 JSON import 调用，返回 `[object Object]`。
+   - **修复**：改为 `JSON.stringify(this.textreview, null, 2)` 格式化输出。
+   - **文件**：`src/views/contractReview.vue:22`
+
+#### 采纳的后续改进建议
+
+1. **contractReview.vue 死代码清理**
+   - **操作**：删除 `methods` 中无意义的 `sub()` 和 `add()` 方法（操作未定义的 `this.number`）。
+   - **文件**：`src/views/contractReview.vue`
+
+2. **Demo03.vue 系列空定义残留清理**
+   - **操作**：经全局扫描（`components: {}`、`created() {}`、`methods: {}`、`data() { return {} }`），已无残留空定义，无需额外修改。
+   - **文件**：`src/views/Demo03.vue`、`Demo031.vue`、`Demo032.vue` 等
+
+3. **UploadByPieces/demo2/upload.vue 全局 CSS Reset 隔离**
+   - **操作**：该文件已添加 `scoped` 属性，80+ 行全局 Reset 已被 Vue scoped CSS 机制隔离，不再污染项目全局样式。
+   - **文件**：`src/views/UploadByPieces/demo2/upload.vue`
