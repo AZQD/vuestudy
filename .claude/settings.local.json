@@ -7,7 +7,10 @@
       "Bash(npm install *)",
       "Bash(curl -s http://172.16.24.149:808)",
       "Bash(curl *)",
-      "Bash(tasklist)"
+      "Bash(tasklist)",
+      "Bash(npm search *)",
+      "Bash(npm view *)",
+      "Bash(npx vite *)"
     ]
   }
 }
