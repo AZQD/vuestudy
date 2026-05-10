@@ -6,7 +6,7 @@
 <!--    参考文档：https://www.cnblogs.com/deng-jie/p/16408876.html vue2的写法-->
 
     <VueDragDefineComp>
-      <template slot="test1">
+      <template #test1>
         <div class="content" @click="clickFun">
           <img class="icon" src="../assets/logo.png" alt=""/>
           <span class="text">悬浮按钮</span>

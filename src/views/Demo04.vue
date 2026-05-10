@@ -69,12 +69,12 @@
       console.log('Demo4 updated');
     },
 
-    beforeDestroy () {
-      console.log('Demo4 beforeDestroy');
+    beforeUnmount () {
+      console.log('Demo4 beforeUnmount');
     },
     // 一般用于清空数据，清除定时器，清除绑定事件等
-    destroyed () {
-      console.log('Demo4 destroyed');
+    unmounted () {
+      console.log('Demo4 unmounted');
     },
 
     computed: {

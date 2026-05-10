@@ -2,7 +2,7 @@
   <div>
     <h3>学习重点：dialog中的WangEditor富文本</h3>
 
-    <el-dialog class="abow_dialog" title="提示" :visible.sync="open" width="60%">
+    <el-dialog class="abow_dialog" title="提示" v-model="open" width="60%">
       <div id="editorBox"></div>
     </el-dialog>
 

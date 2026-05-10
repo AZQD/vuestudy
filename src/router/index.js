@@ -1,8 +1,5 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-
-Vue.use(VueRouter)
 
 const routes = [
   {
@@ -22,17 +19,15 @@ const routes = [
   {
     path: '/demo01',
     name: 'Demo01',
-    // components：可匹配多路由，router-view组件根据name属性渲染对应组件
     components: {
-      default: () => import('../views/Demo01.vue'), // 路由懒加载：动态import
+      default: () => import('../views/Demo01.vue'),
       demo01AddComp: () => import('../views/Demo01.vue')
     },
   },
 
-
   // 学习重点：获取参数；this.$router多种跳转方式；
   {
-    path: '/demo02/:type', // type为动态参数
+    path: '/demo02/:type',
     name: 'Demo02',
     meta: {
       keepAlive: true
@@ -40,9 +35,7 @@ const routes = [
     component: () => import('../views/Demo02.vue')
   },
 
-
   // 学习重点：有子路由children的场景
-  // 参考：https://zhuanlan.zhihu.com/p/95074683
   {
     path: '/demo03',
     name: 'Demo03',
@@ -247,9 +240,8 @@ const routes = [
   },
 ]
 
-const router = new VueRouter({
-  // mode: 'hash',//hash模式下，浏览器地址不规整,带有#
-  mode: 'history',//history模式下，浏览器地址规整，但需要后台支持
+const router = createRouter({
+  history: createWebHistory(),
   routes
 })
 

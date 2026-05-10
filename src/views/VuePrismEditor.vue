@@ -1,26 +1,20 @@
 <template>
   <div>
-    <h3>学习重点：vue-prism-editor代码块显示</h3>
-    <PrismEditor class="my-editor" v-model="code" :highlight="highlighter" line-numbers />
+    <h3>学习重点：prismjs代码块显示</h3>
+    <pre class="my-editor"><code class="language-javascript" v-html="highlightedCode"></code></pre>
   </div>
 </template>
 
 <script>
-// import Prism Editor
-import { PrismEditor } from 'vue-prism-editor';
-import 'vue-prism-editor/dist/prismeditor.min.css'; // import the styles somewhere
-
-// import highlighting library (you can use any library you want just return html string)
 import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike.js';
 import 'prismjs/components/prism-javascript';
-import 'prismjs/themes/prism-tomorrow.css'; // import syntax highlighting styles
-  export default {
-    name: 'VuePrismEditor',
-    components: {
-      PrismEditor
-    },
-    data: () => ({
+import 'prismjs/themes/prism-tomorrow.css';
+
+export default {
+  name: 'VuePrismEditor',
+  data() {
+    return {
       code: `
       console.log("Hello World"),
       console.log("Hello World"),
@@ -95,36 +89,39 @@ import 'prismjs/themes/prism-tomorrow.css'; // import syntax highlighting styles
             console.log("Hello World"),
             console.log("Hello World"),
             console.log("Hello World"),
-            --
+            console.log("Hello World"),
+            console.log("Hello World"),
+            console.log("Hello World"),
+            console.log("Hello World"),
+            console.log("Hello World"),
+            console.log("Hello World"),
+            console.log("Hello World"),
+            console.log("Hello World"),
+            console.log("Hello World"),
+            console.log("Hello World"),
+            console.log("Hello World"),
+      --
       `
-    }),
-    methods: {
-      highlighter(code) {
-        return highlight(code, languages.js); // languages.<insert language> to return html with markup
-      },
-    },
+    }
+  },
+  computed: {
+    highlightedCode() {
+      return highlight(this.code, languages.js);
+    }
   }
-
+}
 </script>
 
-
 <style lang="scss" scoped>
-/* required class */
 .my-editor {
-  /* we dont use `language-` classes anymore so thats why we need to add background and text color manually */
   background: #2d2d2d;
   color: #ccc;
-
-  /* you must provide font-family font-size line-height. Example: */
   font-family: Fira code, Fira Mono, Consolas, Menlo, Courier, monospace;
   font-size: 14px;
   line-height: 1.5;
   padding: 5px;
   height: 200px;
-}
-
-/* optional class for removing the outline */
-.prism-editor__textarea:focus {
-  outline: none;
+  overflow: auto;
+  text-align: left;
 }
 </style>

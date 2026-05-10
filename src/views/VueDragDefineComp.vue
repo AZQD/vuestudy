@@ -72,7 +72,7 @@ export default {
     // this.isScrollHidden && window.addEventListener('scroll', this.handleScroll);
     window.addEventListener('resize', this.handleResize);
   },
-  beforeDestroy() {
+  beforeUnmount() {
     this.floatDrag && this.floatDrag.removeEventListener('mousedown', this.mouseDown);
     this.floatDrag && this.floatDrag.removeEventListener('mouseup', this.mouseUp);
     this.floatDrag && this.floatDrag.removeEventListener('touchstart', this.toucheStart);

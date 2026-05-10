@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import FunctionalList from './FunctionalList'
+import FunctionalList from './FunctionalList.vue'
   export default {
 
     name: 'Functional',

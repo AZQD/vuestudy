@@ -33,7 +33,7 @@
     methods: {
       changeFun(val){
         console.log(val);
-        this.$refs.ref_cascader.dropDownVisible = false; //  选中后，隐藏选择框
+        this.$refs.ref_cascader.popperVisible = false; //  选中后，隐藏选择框
       }
     },
   }

@@ -1,13 +1,15 @@
 <template>
   <el-upload :data="data" action="" :http-request="uploadFile">
-    <el-button icon="el-icon-upload2">文件上传</el-button>
+    <el-button :icon="Upload">文件上传</el-button>
   </el-upload>
 </template>
 <script>
 // 引入上传文件方法
-import { Loading } from 'element-ui';
+import { ElLoading } from 'element-plus';
+import { Upload } from '@element-plus/icons-vue';
 import { upload, uploadByPieces } from "./upload.js";
 export default {
+  components: { Upload },
   data () {
     return {
       data: {}
@@ -17,7 +19,7 @@ export default {
     async uploadFile({ data, file }) {
       // data是上传时附带的额外参数，file是文件
       let url = "xxx" //上传文件接口
-      let loadingInstance = Loading.service({
+      let loadingInstance = ElLoading.service({
         text: "正在上传文件，请稍后...",
       });
       try {

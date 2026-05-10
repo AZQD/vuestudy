@@ -13,13 +13,15 @@
       <ul class="el-upload-list el-upload-list&#45;&#45;text">
         <li v-for="(file, index) in fileList" :class="['el-upload-list__item', 'is-' + file.status]" :key="index">
           <a class="el-upload-list__item-name">
-            <i class="el-icon-document"></i>{{file.name}}
+            <el-icon><Document /></el-icon>{{file.name}}
           </a>
           <label class="el-upload-list__item-status-label">
-            <i :class="{'el-icon-upload-success': true,'el-icon-circle-check': listType === 'text',
-     'el-icon-check': ['picture-card', 'picture'].indexOf(listType) > -1}"></i>
+            <el-icon class="el-icon-upload-success">
+              <CircleCheck v-if="listType === 'text'" />
+              <Check v-else-if="['picture-card', 'picture'].indexOf(listType) > -1" />
+            </el-icon>
           </label>
-          <i class="el-icon-close" @click="removeFile(file)"></i>
+          <el-icon class="el-icon-close" @click="removeFile(file)"><Close /></el-icon>
           <el-progress
               v-if="file.status === 'uploading'"
               :type="listType === 'picture-card' ? 'circle' : 'line'"
@@ -33,11 +35,10 @@
 </template>
 <script>
 import jQuery from 'jquery'
-// import '../js/jquery.js'
-// import '../js/webuploader.js'
 import WebUploader from "webuploader";
 import { Base64 } from 'js-base64'
 import CryptoJS from 'crypto-js'
+import { Document, CircleCheck, Check, Close } from '@element-plus/icons-vue'
 
 const AppConfig = {
   appId: 'AppConfig.appId',
@@ -48,6 +49,7 @@ const AppConfig = {
 }
 export default{
   name: 'fileUpload',
+  components: { Document, CircleCheck, Check, Close },
   props: {
     id: {
       type: String,

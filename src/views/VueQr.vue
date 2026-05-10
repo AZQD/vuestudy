@@ -15,23 +15,40 @@
     不适用logo-margin属性，而是编辑logo图片，周边留白，即可！
 
     <el-card>
-      <VueQr
-          :text="`Hello World !`"
-          :size="200"
-          :logo-src="require(`@/assets/logo-margin.png`)"
-      />
+      <div class="qr-wrapper">
+        <img :src="qrUrl" alt="QR Code" class="qr-img"/>
+        <img :src="logoSrc" alt="Logo" class="qr-logo"/>
+      </div>
     </el-card>
   </div>
 </template>
 
 <script>
-import VueQr from 'vue-qr';
+import QRCode from 'qrcode'
+import logoMargin from '@/assets/logo-margin.png'
 
 export default {
-  components: {
-    VueQr
+  data() {
+    return {
+      qrUrl: '',
+      logoSrc: logoMargin
+    }
   },
-};
+  mounted() {
+    QRCode.toDataURL('Hello World !', {
+      width: 200,
+      margin: 2,
+      color: {
+        dark: '#000000',
+        light: '#ffffff'
+      }
+    }).then(url => {
+      this.qrUrl = url
+    }).catch(err => {
+      console.error('QRCode generate error:', err)
+    })
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -40,5 +57,29 @@ export default {
     .el-card__body{
     }
   }
+}
+
+.qr-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+}
+
+.qr-img {
+  width: 100%;
+  height: 100%;
+}
+
+.qr-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  background: #fff;
+  padding: 2px;
 }
 </style>

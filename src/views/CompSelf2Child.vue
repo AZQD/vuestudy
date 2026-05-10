@@ -2,7 +2,7 @@
   <div class="testBox">
     <div v-for="(item, index) in listDataNew" :key="item.id">
       <span>{{`第${level}层-第${index}条规则：`}}</span>
-      <el-input v-model="item.value" type="text" size="mini" style="width: 100px;" />
+      <el-input v-model="item.value" type="text" size="small" style="width: 100px;" />
       <button @click="siblingFun(index)">新增同级节点</button>
       <button @click="addChildFun(index)">新增子节点</button>
       <div v-if="item.children" class="item.children">
@@ -46,7 +46,7 @@ export default {
     siblingFun(index){
       // 注册触发事件并传值
       this.listDataNew.push({});
-      this.$bus.$emit('showNewListData', this.level, index);
+      this.$bus.emit('showNewListData', this.level, index);
     },
     // 新增子分组
     addChildFun(index){

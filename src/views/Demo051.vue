@@ -13,7 +13,7 @@
     <input type="text" v-model="msg">
 
     <slot name="test5" color="red" :child-msg="msg"></slot>
-    <input type="text" v-model="parentMsg">
+    <input type="text" v-model="localParentMsg">
 
   </div>
 </template>
@@ -30,7 +30,8 @@
 
     data () {
       return {
-        msg: 'childMsg'
+        msg: 'childMsg',
+        localParentMsg: this.parentMsg
       }
     },
   }

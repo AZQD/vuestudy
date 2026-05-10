@@ -5,20 +5,29 @@
     <hr>
 
     <Demo051 :parentMsg="msg">
-      <h2>我是h2</h2>
+      <template #default="slotProps">
+        <h2>我是h2</h2>
 
-      <!--没有指定名称的插槽，也就是子组件有<slot></slot>才会被渲染-->
-      <div>div：{{msg}}</div>
+        <!--没有指定名称的插槽，也就是子组件有<slot></slot>才会被渲染-->
+        <div>div：{{msg}}</div>
 
-      <template v-slot:default="slotProps">
         slotProps：{{slotProps}}
+
+        <h3>
+          总结：
+          v-slot用法简记：
+          :后面是插槽名称
+          =后面是组件内部绑定作用域值得映射
+
+          参考文档：https://www.jianshu.com/p/2e73b8519bc2
+        </h3>
       </template>
 
-      <template slot="test1">
+      <template #test1>
         <h1>test1 {{msg}}</h1>
       </template>
 
-      <template v-slot:test2>
+      <template #test2>
         <h1>test2dd</h1>
       </template>
 
@@ -34,17 +43,6 @@
       <template #test5="{color}">
         <h1>test5 {{color}}</h1>
       </template>
-
-
-      <h3>
-        总结：
-        v-slot用法简记：
-        :后面是插槽名称
-        =后面是组件内部绑定作用域值得映射
-
-        参考文档：https://www.jianshu.com/p/2e73b8519bc2
-      </h3>
-
 
     </Demo051>
 

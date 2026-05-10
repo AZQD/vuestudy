@@ -6,7 +6,7 @@
   </div>
 </template>
 <script>
-import fileUpload from './upload'
+import fileUpload from './upload.vue'
 export default{
   name: 'hello',
   components: {fileUpload},

@@ -1,5 +1,5 @@
 <template>
-  <el-dialog title="dialog子组件详情" :visible.sync="open" width="800" :close-on-click-modal="false" destroy-on-close :before-close="beforeCloseFun">
+  <el-dialog title="dialog子组件详情" :model-value="open" @update:model-value="val => $emit('update:open', val)" width="800" :close-on-click-modal="false" destroy-on-close :before-close="beforeCloseFun">
     content
   </el-dialog>
 </template>

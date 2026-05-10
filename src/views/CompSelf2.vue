@@ -13,7 +13,7 @@
 // 组件子调用参考：https://blog.csdn.net/qq_41261490/article/details/110931013
 // EventBus参考：https://blog.csdn.net/weixin_43862492/article/details/99204383
 
-import CompSelf2Child from './CompSelf2Child'
+import CompSelf2Child from './CompSelf2Child.vue'
 
   export default {
 
@@ -43,15 +43,15 @@ import CompSelf2Child from './CompSelf2Child'
 
     created () {
       // 注册监听事件
-      this.$bus.$on('showNewListData', (level, index) => {
+      this.$bus.on('showNewListData', (level, index) => {
         console.log(`点击了：第${level}层-第${index}条数据`);
         console.log('最近数组为：', this.listData);
       });
     },
 
-    beforeDestroy() {
+    beforeUnmount() {
       // 注销监听事件
-      this.$bus.$off(['showNewListData']);
+      this.$bus.off('showNewListData');
     }
   }
 
