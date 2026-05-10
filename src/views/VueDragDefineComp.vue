@@ -73,6 +73,11 @@ export default {
     window.addEventListener('resize', this.handleResize);
   },
   beforeDestroy() {
+    this.floatDrag && this.floatDrag.removeEventListener('mousedown', this.mouseDown);
+    this.floatDrag && this.floatDrag.removeEventListener('mouseup', this.mouseUp);
+    this.floatDrag && this.floatDrag.removeEventListener('touchstart', this.toucheStart);
+    this.floatDrag && this.floatDrag.removeEventListener('touchmove', this.touchMove);
+    this.floatDrag && this.floatDrag.removeEventListener('touchend', this.touchEnd);
     window.removeEventListener('scroll', this.handleScroll);
     window.removeEventListener('resize', this.handleResize);
   },
@@ -92,8 +97,10 @@ export default {
      * 初始化draggable
      */
     initDraggable() {
+      this.floatDrag.addEventListener('mousedown', this.mouseDown);
+      this.floatDrag.addEventListener('mouseup', this.mouseUp);
       this.floatDrag.addEventListener('touchstart', this.toucheStart);
-      this.floatDrag.addEventListener('touchmove', (e) => this.touchMove(e));
+      this.floatDrag.addEventListener('touchmove', this.touchMove);
       this.floatDrag.addEventListener('touchend', this.touchEnd);
     },
     mouseDown(e) {
@@ -117,14 +124,14 @@ export default {
         // 鼠标移出可视区域后给按钮还原
         if (
             event.clientY < 0 ||
-            event.clientY > Number(this.clientHeight) ||
-            event.clientX > Number(this.clientWidth) ||
+            event.clientY > Number(that.clientHeight) ||
+            event.clientX > Number(that.clientWidth) ||
             event.clientX < 0
         ) {
-          this.right = 0;
-          this.top = this.clientHeight - this.floatDragDom.height - this.distanceBottom;
+          that.right = 0;
+          that.top = that.clientHeight - that.floatDragDom.height - that.distanceBottom;
           document.onmousemove = null;
-          this.floatDrag.style.transition = 'all 0.3s';
+          that.floatDrag.style.transition = 'all 0.3s';
           return;
         }
         if (that.left >= document.documentElement.clientWidth - floatDragWidth * 2) {
@@ -155,7 +162,7 @@ export default {
       this.canClick = true;
       if (e.targetTouches.length === 1) {
         // 单指拖动
-        let touch = event.targetTouches[0];
+        let touch = e.targetTouches[0];
         this.left = touch.clientX - this.floatDragDom.width / 2;
         this.top = touch.clientY - this.floatDragDom.height / 2;
       }
