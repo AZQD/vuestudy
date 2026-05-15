@@ -28,7 +28,7 @@
 
 | 文件 | 说明 |
 |------|------|
-| `vite.config.js` | Vite 构建配置，配置 `@` alias 指向 `src/` |
+| `vite.config.js` | Vite 构建配置；配置 `@` alias 指向 `src/`；配置 `css.preprocessorOptions.scss.api = 'modern-compiler'` 消除 Sass legacy JS API 弃用警告 |
 | `index.html` (根目录) | Vite 入口 HTML，替换原 `public/index.html` |
 
 ### 2.2 重写文件
@@ -238,7 +238,7 @@ npm install
 
 - `vue-super-flow` 页面已降级为提示信息，流程图功能暂不可用
 - `form-create` 相关表单设计器功能已移除（依赖包无 Vue 3 版本）
-- Sass deprecation 警告（legacy JS API）不影响功能，可通过升级 sass 配置消除
+- ~~Sass deprecation 警告（legacy JS API）~~ — 已在 `vite.config.js` 中配置 `css.preprocessorOptions.scss.api = 'modern-compiler'` 消除
 
 ---
 
@@ -246,7 +246,7 @@ npm install
 
 1. **流程图替代**：如需恢复流程图功能，建议调研 `@vue-flow/core`（Vue 3 原生）或 `vue-super-flow` 作者是否发布 Vue 3 版本
 2. **form-create 替代**：如需低代码表单，可调研 `@form-create/element-plus`（如有）或 `designable` 等 Vue 3 方案
-3. **Sass 配置升级**：在 `vite.config.js` 中配置 `css.preprocessorOptions.scss.api = 'modern'` 以消除 deprecation 警告
+3. ~~**Sass 配置升级**~~ — 已完成：已在 `vite.config.js` 中配置 `css.preprocessorOptions.scss.api = 'modern-compiler'` 消除 deprecation 警告
 4. **ESLint 配置**：可补充 Vue 3 + Vite 配套的 ESLint 配置（`eslint-plugin-vue@^9` + `vite-plugin-eslint`）
 5. **TypeScript 迁移**：作为学习项目，可考虑后续逐步引入 TypeScript 以提升可维护性
 

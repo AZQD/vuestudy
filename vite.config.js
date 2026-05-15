@@ -14,6 +14,13 @@ export default defineConfig({
     port: 8080,
     open: false,
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+      },
+    },
+  },
   optimizeDeps: {
     include: ['@kangc/v-md-editor', 'prismjs'],
   },
