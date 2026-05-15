@@ -12,7 +12,10 @@ export default defineConfig({
   },
   server: {
     port: 8080,
-    open: true,
+    open: false,
+  },
+  optimizeDeps: {
+    include: ['@kangc/v-md-editor', 'prismjs'],
   },
   build: {
     outDir: 'dist',

@@ -10,7 +10,14 @@
       "Bash(tasklist)",
       "Bash(npm search *)",
       "Bash(npm view *)",
-      "Bash(npx vite *)"
+      "Bash(npx vite *)",
+      "WebSearch",
+      "Bash(node *)",
+      "Bash(netstat -ano)",
+      "Bash(wmic process *)",
+      "Bash(tasklist /fi \"PID eq 2100\" /fo list)",
+      "Bash(powershell -Command \"Get-Process -Id 2100 | Select-Object ProcessName,Path,CommandLine\")",
+      "Bash(tasklist *)"
     ]
   }
 }

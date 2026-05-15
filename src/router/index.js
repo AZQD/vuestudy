@@ -125,6 +125,13 @@ const routes = [
     component: () => import('../views/VueQr.vue')
   },
 
+  // 学习重点：Vue3中使用v-md-editor渲染markdown表格（支持编辑、首列固定）
+  {
+    path: '/vueMdEditor',
+    name: 'VueMdEditor',
+    component: () => import('../views/VueMdEditor.vue')
+  },
+
   // 学习重点：级联选择器
   {
     path: '/cascader',

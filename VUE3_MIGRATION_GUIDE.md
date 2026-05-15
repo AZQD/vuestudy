@@ -204,6 +204,25 @@ Vue CLI 会自动补全 `.vue` 扩展名，Vite 不会。以下文件补充了 `
 
 **解决**：全局搜索 `.el-submenu` 并替换为 `.el-sub-menu`。
 
+### 5.6 依赖大换血后 node_modules 未清理导致 dev server 异常
+
+**现象**：迁移到 Vite 后，执行 `npm run dev` 浏览器自动打开，且点击最小化后窗口被自动拉回最大化；或者出现其他无法解释的 dev server 异常行为。
+
+**原因**：Vue 2 → Vue 3 迁移时 `package.json` 已完全重写，但 `node_modules` 目录**没有删除**，直接在旧依赖树上执行 `npm install`。npm 的增量安装可能导致：
+- 传递依赖版本残留旧版本，与新包产生冲突
+- `node_modules/.bin/` 中的二进制包装脚本未被重新生成
+- Vite 使用的 `open` 包（负责打开浏览器）或其传递依赖处于混合版本状态，在 Windows 下表现出反复聚焦窗口的异常
+
+**解决**：
+```bash
+# 彻底清理后重新安装
+rm -rf node_modules
+rm package-lock.json
+npm install
+```
+
+**教训**：当 `package.json` 发生大规模依赖替换时，务必**先删除 `node_modules` 和 lock 文件**，再执行 `npm install`，避免增量安装带来的状态污染。
+
 ---
 
 ## 六、验证结果
@@ -230,3 +249,174 @@ Vue CLI 会自动补全 `.vue` 扩展名，Vite 不会。以下文件补充了 `
 3. **Sass 配置升级**：在 `vite.config.js` 中配置 `css.preprocessorOptions.scss.api = 'modern'` 以消除 deprecation 警告
 4. **ESLint 配置**：可补充 Vue 3 + Vite 配套的 ESLint 配置（`eslint-plugin-vue@^9` + `vite-plugin-eslint`）
 5. **TypeScript 迁移**：作为学习项目，可考虑后续逐步引入 TypeScript 以提升可维护性
+
+---
+
+## 八、新增功能：v-md-editor Markdown 表格编辑器
+
+### 8.1 功能概述
+
+在一级菜单 **Vue基础总结** 中新增二级菜单 **v-md-editor**，演示如何在 Vue 3 项目中集成 `@kangc/v-md-editor@^2`，实现：
+- Markdown 实时编辑与预览
+- 表格内容的自定义编辑
+- 横向内容溢出时，固定最左侧列
+
+### 8.2 依赖安装
+
+```bash
+npm install @kangc/v-md-editor@^2
+```
+
+`@kangc/v-md-editor@^2` 原生支持 Vue 3，无需通过 `vue-demi` 转接。
+
+### 8.3 全局注册（`src/main.js`）
+
+```javascript
+import VueMarkdownEditor from '@kangc/v-md-editor'
+import '@kangc/v-md-editor/lib/style/base-editor.css'
+import VMdPreview from '@kangc/v-md-editor/lib/preview'
+import '@kangc/v-md-editor/lib/style/preview.css'
+import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js'
+import '@kangc/v-md-editor/lib/theme/style/vuepress.css'
+import Prism from 'prismjs'
+
+VueMarkdownEditor.use(vuepressTheme, { Prism })
+VMdPreview.use(vuepressTheme, { Prism })
+
+app.use(VueMarkdownEditor)
+app.use(VMdPreview)
+```
+
+> **注意**：`vuepress` 主题底层使用 PrismJS 进行代码高亮，必须显式传入 `Prism` 实例，否则会抛出 `Cannot read properties of undefined (reading 'languages')` 错误。
+
+- `VueMarkdownEditor`：提供 `<v-md-editor>` 编辑组件（左编辑 + 右预览）
+- `VMdPreview`：提供 `<v-md-preview>` 纯预览组件
+- `vuepressTheme`：官方 VuePress 风格主题，内置表格、代码块等样式
+
+### 8.4 组件实现要点（`src/views/VueMdEditor.vue`）
+
+#### 双模式切换
+
+| 模式 | 组件/实现 | 用途 |
+|------|-----------|------|
+| Markdown 编辑 | `<v-md-editor v-model="text" height="500px" />` | 左侧 Markdown 源码编辑 + 右侧实时预览 |
+| 可视化表格编辑 | `el-table` + `el-input` + `fixed="left"` | 直接点击单元格修改内容，横向滚动时首列固定 |
+
+两种模式共用同一份 `text` 数据：
+- 切到「可视化表格编辑」时，通过 `parseMarkdownTable()` 将 Markdown 表格解析为 `tableColumns` + `tableData`
+- 在 `el-table` 中编辑单元格（`el-input` + `@blur`）后，调用 `syncMarkdownFromTable()` 将修改写回 Markdown 源码
+- 切回「Markdown 编辑」时，文本已包含最新修改
+
+#### Markdown 表格解析与同步
+
+```javascript
+// 解析：按行扫描，识别 | 开头的表格行
+parseMarkdownTable() {
+  const lines = this.text.split('\n')
+  for (const line of lines) {
+    if (!line.trim().startsWith('|')) continue
+    const cells = line.split('|').map(c => c.trim()).filter(c => c !== '')
+    if (cells.every(c => /^[-:\s]+$/.test(c))) continue // 跳过分隔行
+    if (columns.length === 0) {
+      cells.forEach((label, i) => columns.push({ prop: `col${i}`, label }))
+    } else {
+      const row = {}
+      cells.forEach((cell, i) => { row[`col${i}`] = cell })
+      data.push(row)
+    }
+  }
+}
+
+// 同步：遍历文本，将原表格块替换为新内容
+syncMarkdownFromTable() {
+  const lines = this.text.split('\n')
+  const newLines = []
+  let i = 0
+  while (i < lines.length) {
+    if (!tableReplaced && lines[i].trim().startsWith('|')) {
+      newLines.push(headerLine, separatorLine, ...dataLines)
+      tableReplaced = true
+      while (i < lines.length && lines[i].trim().startsWith('|')) i++
+    } else {
+      newLines.push(lines[i])
+      i++
+    }
+  }
+  this.text = newLines.join('\n')
+}
+```
+
+#### 首列固定：Element Plus `el-table` 原生方案
+
+在可视化表格编辑模式下，使用 Element Plus 的 `el-table` 组件，首列通过 `:fixed="'left'"` 实现固定：
+
+```vue
+<el-table-column
+  v-for="(col, idx) in tableColumns"
+  :key="col.prop"
+  :prop="col.prop"
+  :label="col.label"
+  :fixed="idx === 0 ? 'left' : false"
+  :width="getColumnWidth(idx, col.label)"
+>
+  <template #default="scope">
+    <el-input
+      v-model="scope.row[col.prop]"
+      size="small"
+      @blur="onCellBlur"
+    />
+  </template>
+</el-table-column>
+```
+
+相比纯 CSS `position: sticky`，`el-table` 的 `fixed` 属性具有以下优势：
+- 无需覆盖 vuepress 主题默认样式
+- 自动处理阴影、背景色、z-index 等细节
+- 与表格横向滚动无缝配合
+
+#### Markdown 预览首列固定（备用 CSS 方案）
+
+在 Markdown 预览区域，仍保留了 CSS `position: sticky` 方案作为补充演示：
+
+```scss
+.preview-scroll-wrapper {
+  overflow-x: auto;
+  :deep(.vuepress-markdown-body) {
+    table { display: table; min-width: 900px; border-collapse: separate; }
+    th:first-child, td:first-child {
+      position: sticky; left: 0; z-index: 2; background: #fff;
+      box-shadow: 2px 0 4px rgba(0, 0, 0, 0.08);
+    }
+  }
+}
+```
+
+### 8.5 文件变更清单
+
+| 文件 | 变更 |
+|------|------|
+| `src/main.js` | 注册 `VueMarkdownEditor`、`VMdPreview` 及 vuepress 主题 |
+| `src/views/VueMdEditor.vue` | **新增** — 演示组件 |
+| `src/App.vue` | 新增菜单项 `v-md-editor`，更新 `MENU_ROUTE_MAP` |
+| `src/router/index.js` | 新增路由 `/vueMdEditor` |
+
+### 8.6 验证结果
+
+| 验证项 | 结果 |
+|--------|------|
+| `v-md-editor` 编辑与实时预览 | 通过 |
+| Markdown 表格渲染 | 通过 |
+| 横向滚动 + 首列固定 | 通过 |
+| 生产构建（vite build） | 通过（无 error） |
+
+### Vite 配置补充
+
+为加快 dev server 冷启动速度，避免首次加载 v-md-editor 时出现大量请求，建议在 `vite.config.js` 中将其加入 `optimizeDeps.include`：
+
+```javascript
+export default defineConfig({
+  optimizeDeps: {
+    include: ['@kangc/v-md-editor', 'prismjs'],
+  },
+})
+```

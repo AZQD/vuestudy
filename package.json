@@ -19,6 +19,7 @@
     "@antv/x6-plugin-stencil": "^2.0.2",
     "@antv/x6-plugin-transform": "^2.1.5",
     "@element-plus/icons-vue": "^2.3.2",
+    "@kangc/v-md-editor": "^2.3.18",
     "@vue-office/docx": "^1.6.2",
     "@vue-office/excel": "^1.7.8",
     "@vue-office/pdf": "^2.0.2",

@@ -60,6 +60,7 @@
               <el-menu-item index="/vueOfficeExcel">VueOfficeExcel</el-menu-item>
               <el-menu-item index="/vueMammoth">VueMammoth</el-menu-item>
               <el-menu-item index="/vueQr">VueQr</el-menu-item>
+              <el-menu-item index="/vueMdEditor">v-md-editor</el-menu-item>
             </el-sub-menu>
 
             <el-sub-menu index="2"><!--第二部分-->
@@ -155,7 +156,7 @@
 import { Expand, Fold, Menu } from '@element-plus/icons-vue'
 
 const MENU_ROUTE_MAP = {
-  '1': ['/', '/demo01', '/demo02', '/demo03', '/demo04', '/demo05', '/compSelf', '/compSelf2', '/functional', '/xss', '/contractReview', '/vueOfficeDocx', '/vueOfficeExcel', '/vueMammoth', '/vueQr'],
+  '1': ['/', '/demo01', '/demo02', '/demo03', '/demo04', '/demo05', '/compSelf', '/compSelf2', '/functional', '/xss', '/contractReview', '/vueOfficeDocx', '/vueOfficeExcel', '/vueMammoth', '/vueQr', '/vueMdEditor'],
   '2': ['/cascader', '/dialogParent', '/dialogHeight', '/textareaHeight', '/selectLoadMore', '/tableTest'],
   '3': ['/wangEditor', '/wangEditor2'],
   '5': ['/uploadByPieces/demo1', '/uploadByPieces/demo2', '/vuePrismEditor'],
