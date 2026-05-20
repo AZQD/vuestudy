@@ -420,3 +420,77 @@ export default defineConfig({
   },
 })
 ```
+
+---
+
+## 九、新增功能：iframe 父子页面通信
+
+### 9.1 功能概述
+
+在「Vue基础总结」一级菜单下新增二级菜单 **iframe通信**，演示 HTML5 `postMessage` API 在 iframe 场景下的双向通信机制，包括：
+- 父页面 → 子页面发送消息
+- 子页面 → 父页面发送消息
+- 同域与跨域场景下的安全校验（`event.origin`）
+
+### 9.2 核心 API
+
+#### 父页面向子页面发送
+
+```javascript
+// 获取 iframe 的 contentWindow，调用 postMessage
+const iframe = document.querySelector('iframe');
+iframe.contentWindow.postMessage(data, targetOrigin);
+```
+
+#### 子页面向父页面发送
+
+```javascript
+// 子页面中通过 window.parent 向父页面发送消息
+window.parent.postMessage(data, targetOrigin);
+```
+
+#### 接收消息（父子通用）
+
+```javascript
+window.addEventListener('message', (event) => {
+  // 生产环境务必校验 event.origin，防止恶意页面注入
+  if (event.origin !== 'https://trusted-domain.com') return;
+
+  console.log('收到消息：', event.data);
+});
+```
+
+### 9.3 组件结构
+
+| 页面 | 路由 | 说明 |
+|------|------|------|
+| 父页面 | `/iframeComm` | 包含 iframe 容器、消息发送控件、接收日志 |
+| 子页面 | `/iframeCommChild` | 独立的 Vue 组件，被嵌入 iframe 中运行 |
+
+父页面通过 `:src="childUrl"` 加载子页面，其中 `childUrl = window.location.origin + '/iframeCommChild'`，确保同域以便简化演示。
+
+### 9.4 安全注意点
+
+1. **targetOrigin 不要写 `*`**：发送时应指定具体域名，如 `window.location.origin`，防止消息被不可信页面截获。
+2. **接收端必须校验 origin**：收到消息后第一件事就是检查 `event.origin`，过滤不可信来源。
+3. **数据类型限制**：`postMessage` 使用结构化克隆算法，支持对象、数组等，但**函数和 DOM 节点不可传递**。
+4. **同域 shortcut 不推荐**：虽然同域下可以直接访问 `iframe.contentWindow.someVar`，但耦合度过高，且无法兼容跨域场景。
+
+### 9.5 文件变更清单
+
+| 文件 | 变更 |
+|------|------|
+| `src/views/IframeComm.vue` | **新增** — 父页面演示组件 |
+| `src/views/IframeCommChild.vue` | **新增** — 子页面演示组件 |
+| `src/App.vue` | 新增菜单项 `iframe通信`，更新 `MENU_ROUTE_MAP` |
+| `src/router/index.js` | 新增路由 `/iframeComm` 和 `/iframeCommChild` |
+
+### 9.6 验证结果
+
+| 验证项 | 结果 |
+|--------|------|
+| 父页面向子页面发送消息 | 通过 |
+| 子页面向父页面发送消息 | 通过 |
+| 消息实时日志展示 | 通过 |
+| 生产构建（vite build） | 通过（无 error） |
+
