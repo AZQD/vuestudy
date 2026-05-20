@@ -132,6 +132,18 @@ const routes = [
     component: () => import('../views/VueMdEditor.vue')
   },
 
+  // 学习重点：iframe父子页面通信
+  {
+    path: '/iframeComm',
+    name: 'IframeComm',
+    component: () => import('../views/IframeComm.vue')
+  },
+  {
+    path: '/iframeCommChild',
+    name: 'IframeCommChild',
+    component: () => import('../views/IframeCommChild.vue')
+  },
+
   // 学习重点：级联选择器
   {
     path: '/cascader',
