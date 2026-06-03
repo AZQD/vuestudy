@@ -494,3 +494,84 @@ window.addEventListener('message', (event) => {
 | 消息实时日志展示 | 通过 |
 | 生产构建（vite build） | 通过（无 error） |
 
+---
+
+## 十、新增功能：移动端智能审核结果页
+
+### 10.1 功能概述
+
+在「Vue基础总结」一级菜单下新增二级菜单 **智能审核**，演示一个移动端风格的信贷合同审核结果展示页面。页面还原了真实业务场景中 OCR + 信贷系统数据比对的视觉效果，包含：
+- 手机状态栏、标题栏（模拟原生 App）
+- 审核进度指示（材料提取 → 内容解析 → 智能审核）
+- 四栏对比表格（审核要点 | 材料内容 | 信贷系统 | 审核结果）
+- 一致/不一致状态标签（绿/红双色）
+
+### 10.2 页面结构
+
+| 区域 | 说明 |
+|------|------|
+| 状态栏 | 模拟 iOS 状态栏（运营商、时间、电量） |
+| 标题栏 | 「智能审核」标题 + 返回/刷新图标 |
+| 审核状态 | 扫描动画图标 + 「正在审核中…」提示 |
+| 进度步骤 | 三个横向步骤，当前步骤高亮 |
+| 廉政明白函 | 白色圆角卡片，内含对比表格 |
+| 资金用途承诺函 | 底部占位卡片，展示后续材料区域 |
+| 说明文档 | 页面下方的技术说明 |
+
+### 10.3 核心实现
+
+```vue
+<!-- 审核数据 -->
+<script>
+export default {
+  data() {
+    return {
+      auditList: [
+        { field: '机构', material: '中原银行股份有限公司焦作分行', system: '焦作分行', consistent: true },
+        { field: '产品名称', material: '产品名称', system: '流动资金贷款', consistent: false },
+        // ...
+      ]
+    }
+  }
+}
+</script>
+
+<!-- 表格行渲染 -->
+<div v-for="(item, idx) in auditList" :key="idx" class="table-row">
+  <span class="col-field">{{ item.field }}</span>
+  <span class="col-material">{{ item.material }}</span>
+  <span class="col-system">{{ item.system }}</span>
+  <span :class="['result-tag', item.consistent ? 'tag-green' : 'tag-red']">
+    {{ item.consistent ? '一致' : '不一致' }}
+  </span>
+</div>
+```
+
+### 10.4 样式要点
+
+| 要点 | 实现方式 |
+|------|---------|
+| 移动端容器 | `width: 375px` 居中，模拟手机屏幕宽度 |
+| 背景图 | 使用蓝紫渐变背景图覆盖主内容区 |
+| 状态标签 | 绿色 `rgba(3, 205, 80, 0.07)` 背景 + `rgba(3, 205, 80, 0.21)` 边框 |
+| 卡片阴影 | `box-shadow: 0 0 12px rgba(214, 231, 252, 0.15)` |
+| 表格分隔线 | 每行底部 1px `#e8e8e8` 分割线 |
+
+### 10.5 文件变更清单
+
+| 文件 | 变更 |
+|------|------|
+| `src/views/SmartAudit.vue` | **新增** — 智能审核演示组件 |
+| `public/img/smart-audit/*.png` | **新增** — 页面所需图片资源（背景、图标等） |
+| `src/App.vue` | 新增菜单项 `智能审核`，更新 `MENU_ROUTE_MAP` |
+| `src/router/index.js` | 新增路由 `/smartAudit` |
+
+### 10.6 验证结果
+
+| 验证项 | 结果 |
+|--------|------|
+| 移动端容器渲染 | 通过 |
+| 背景图与图标加载 | 通过 |
+| 审核表格与状态标签 | 通过 |
+| 生产构建（vite build） | 通过（无 error） |
+

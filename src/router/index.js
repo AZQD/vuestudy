@@ -138,6 +138,13 @@ const routes = [
     name: 'IframeComm',
     component: () => import('../views/IframeComm.vue')
   },
+
+  // 学习重点：移动端智能审核结果页
+  {
+    path: '/smartAudit',
+    name: 'SmartAudit',
+    component: () => import('../views/SmartAudit.vue')
+  },
   {
     path: '/iframeCommChild',
     name: 'IframeCommChild',
