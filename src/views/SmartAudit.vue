@@ -114,7 +114,7 @@ export default {
   data() {
     return {
       auditList: [
-        { field: '机构', material: '中原银行股份有限公司焦作分行', system: '焦作分行', consistent: true },
+        { field: '机构', material: '**银行股份有限公司焦作分行', system: '焦作分行', consistent: true },
         { field: '产品名称', material: '产品名称', system: '流动资金贷款', consistent: false },
         { field: '合同编号', material: '12045508', system: '12045508', consistent: true },
         { field: '用途', material: '购买小米产品', system: '河南城乡天成贸易有限公司', consistent: true },

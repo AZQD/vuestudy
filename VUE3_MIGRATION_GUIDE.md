@@ -527,7 +527,7 @@ export default {
   data() {
     return {
       auditList: [
-        { field: '机构', material: '中原银行股份有限公司焦作分行', system: '焦作分行', consistent: true },
+        { field: '机构', material: '**银行股份有限公司焦作分行', system: '焦作分行', consistent: true },
         { field: '产品名称', material: '产品名称', system: '流动资金贷款', consistent: false },
         // ...
       ]
