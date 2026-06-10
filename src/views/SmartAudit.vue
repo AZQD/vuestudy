@@ -131,8 +131,6 @@ export default {
 .smart-audit-page {
   padding: 20px;
   text-align: left;
-  overflow-y: auto;
-  height: 100%;
 }
 
 /* 移动端容器 */
@@ -155,6 +153,7 @@ export default {
   background: #fff;
   font-size: 12px;
   color: #030303;
+  position: relative;
 
   .status-left {
     display: flex;
