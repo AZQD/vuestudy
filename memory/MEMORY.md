@@ -1,1 +1,3 @@
 - [推送确认](feedback-push-confirm.md) — 推送代码前必须先询问用户确认
+- [保留注释](feedback-preserve-comments.md) — 修改代码时不删除项目原有的注释
+- [记录即持久化](feedback-record-means-persist.md) — 说"已记录/已保存"时必须实际写入文件
