@@ -87,12 +87,13 @@ C:\Users\8****9\.claude.json
 
 ### 2.3 已配置的 MCP Server 简介
 
-当前项目配置了两个 MCP server：
+当前项目配置了以下 MCP server：
 
 | 名称 | 类型 | 地址/命令 | 状态 |
 |------|------|----------|------|
-| `github` | HTTP | `https://api.githubcopilot.com/mcp/` | ❌ 连接失败（OAuth 不兼容） |
+| `github` | HTTP | `https://api.githubcopilot.com/mcp/` | ❌ 连接失败（OAuth 不兼容，已弃用） |
 | `github-stdio` | stdio | `npx -y @modelcontextprotocol/server-github` | ✅ 已连接 |
+| `figma-dev` | sse | `http://127.0.0.1:3845/sse` | ❌ 无服务监听，已移除 |
 
 `github-stdio` 是实际可用的 GitHub MCP server，下面 2.7 节会详细介绍它的配置方法。
 
@@ -457,7 +458,117 @@ Claude 会调用 `list_commits`，参数为 `{"owner": "AZQD", "repo": "vuestudy
 
 ---
 
-## 五、gh 与 github-stdio 安装使用速查
+## 六、Figma-Context-MCP 配置指南（从零开始）
+
+如果你希望 Claude Code 能读取 Figma 设计稿内容（如颜色、布局、文本、组件等），可以使用开源社区项目 **`Figma-Context-MCP`**（npm 包名 `@tmegit/figma-developer-mcp`）。
+
+### 6.1 它是什么？
+
+`Figma-Context-MCP` 是一个**本地 stdio 类型的 MCP server**，它通过 Figma REST API 读取设计稿，并把 Figma 内部格式转换成 CSS 对齐的属性（如 `backgroundColor`、`flexDirection`、`fontSize`），方便 Claude 生成前端代码。
+
+特点：
+
+- 完全免费，无需 Figma 插件
+- 需要 Figma Personal Access Token
+- 返回数据高度精简，保留 UI 关键信息
+- 适合"根据设计稿生成页面代码"的场景
+
+### 6.2 与之前 `figma-dev` 配置的区别
+
+| 对比项 | 旧的 `figma-dev` | `Figma-Context-MCP` |
+|--------|-----------------|---------------------|
+| 传输协议 | SSE（需本地服务监听端口 3845） | stdio（无需端口） |
+| 是否需要单独启动服务 | 是 | 否，Claude Code 自动启动进程 |
+| 是否需要 Figma 插件 | 未知（当时无服务运行） | 否 |
+| 认证方式 | 未知 | Figma Personal Access Token |
+| 当前状态 | 已移除 | 推荐从零配置 |
+
+### 6.3 配置步骤
+
+#### 第 1 步：创建 Figma Access Token
+
+1. 登录 Figma 网页版：https://www.figma.com/
+2. 点击头像 → **Settings**
+3. 左侧选择 **Personal access tokens**
+4. 点击 **Create new token**
+5. 填写名称，如 `claude-figma-mcp`
+6. 复制生成的 token（以一串随机字符形式出现）
+
+#### 第 2 步：添加 MCP server
+
+Windows 下使用 cmd 启动（避免 npx 路径问题）：
+
+```bash
+claude mcp add figma-context \
+  --command cmd \
+  --args "/c" "npx" "-y" "@tmegit/figma-developer-mcp" "--figma-api-key=你的FigmaToken" "--stdio"
+```
+
+或者直接修改 `C:\Users\8****9\.claude.json`：
+
+```json
+{
+  "projects": {
+    "D:/code/vuestudy": {
+      "mcpServers": {
+        "figma-context": {
+          "type": "stdio",
+          "command": "cmd",
+          "args": [
+            "/c",
+            "npx",
+            "-y",
+            "@tmegit/figma-developer-mcp",
+            "--figma-api-key=你的FigmaToken",
+            "--stdio"
+          ]
+        }
+      }
+    }
+  }
+}
+```
+
+#### 第 3 步：验证连接
+
+```bash
+claude mcp list
+```
+
+看到 `figma-context: ... - ✔ Connected` 即成功。
+
+### 6.4 如何使用
+
+配置好后，直接对 Claude 说：
+
+```text
+帮我读取这个 Figma 文件：https://www.figma.com/file/xxxxx/xxxx
+```
+
+或：
+
+```text
+根据这个 Figma 设计稿生成 Vue 组件代码
+```
+
+Claude 会自动调用 `figma-context` 提供的工具读取文件节点、样式、文本等信息。
+
+### 6.5 常见问题
+
+**Q：提示 "无法连接到 figma-context" 怎么办？**
+
+1. 确认 token 已正确替换，不是占位符
+2. 确认网络能访问 `api.figma.com`
+3. 确认 `npx` 能正常下载包（首次启动会自动下载）
+4. 运行 `claude mcp list` 查看具体错误信息
+
+**Q：这个 MCP server 能修改 Figma 文件吗？**
+
+目前主要是**读取**设计稿信息，不修改原文件。
+
+---
+
+## 七、gh 与 github-stdio 安装使用速查
 
 如果你是第一次配置，可以直接按下面的流程操作，不需要回头翻前面的章节。
 
