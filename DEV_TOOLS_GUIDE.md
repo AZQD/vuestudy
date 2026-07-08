@@ -2,7 +2,9 @@
 
 本文档记录本项目中常用的本地开发工具配置与 Claude Code 相关技巧，便于在新环境或后续会话中快速上手。
 
-## 一、GitHub CLI（gh）
+## 一、GitHub CLI（`gh`）
+
+> 官方名称是 **GitHub CLI**，`gh` 是它在终端中的命令名，类似 `git` 之于 Git。
 
 ### 1.1 安装
 
@@ -11,6 +13,8 @@ Windows 推荐使用 winget 安装：
 ```bash
 winget install --id GitHub.cli --accept-package-agreements --accept-source-agreements
 ```
+
+> 注意：这是安装 **GitHub CLI 命令行工具**，不是安装 GitHub MCP server。两者名字相似，但完全独立。
 
 安装完成后，新终端可能还找不到 `gh` 命令，因为 shell 的 PATH 尚未刷新。此时可直接使用完整路径：
 
@@ -157,7 +161,76 @@ claude mcp --help
 
 ---
 
-## 三、隐私安全建议
+## 三、GitHub CLI 与 GitHub MCP server 的关系（初学者必读）
+
+### 3.1 一句话区分
+
+| | GitHub CLI（`gh`） | GitHub MCP server |
+|--|-------------------|-------------------|
+| 官方名称 | GitHub CLI | Model Context Protocol server for GitHub |
+| 命令/工具名 | `gh` | 没有独立命令，通过 `claude mcp` 管理 |
+| 安装方式 | `winget install GitHub.cli` | `claude mcp add --transport http github <url>` |
+| 谁在用 | 你直接在终端使用 | Claude Code 内部调用 |
+| 当前状态 | ✅ 已登录，可用 | ❌ 当前连接失败 |
+
+### 3.2 真实执行流程
+
+#### 当你对 Claude 说"查我的 GitHub 仓库"
+
+**方式一：通过 GitHub CLI（当前实际使用的方式）**
+
+```
+你说 -> Claude -> 调用 Bash -> 在你的电脑上执行 gh repo list
+                              -> 读取你已登录的 token
+                              -> 返回仓库列表
+                              -> Claude 整理后回复你
+```
+
+关键点：
+- 命令运行在你的电脑上
+- 用的是你通过 `gh auth login` 登录后的身份
+- 没有使用 MCP
+
+**方式二：通过 GitHub MCP server（当前连接失败，未使用）**
+
+```
+你说 -> Claude -> 调用 github MCP 工具（如 list_repositories）
+                              -> MCP server 去请求 GitHub API
+                              -> 返回结构化数据
+                              -> Claude 整理后回复你
+```
+
+关键点：
+- 由 Claude 自动选择并调用合适的 MCP 工具
+- 不需要我写 `gh` 命令
+- 返回的是结构化数据，便于多步骤操作
+
+### 3.3 真实应用场景对比
+
+| 场景 | 用 GitHub CLI | 用 GitHub MCP server |
+|------|--------------|----------------------|
+| 查仓库列表 | `gh repo list` | Claude 调用 `list_repositories` |
+| 查开放 PR | `gh pr list --author @me --state open` | Claude 调用 `list_pull_requests` |
+| 查 PR 改了哪些文件 | 先 `gh pr view 123`，再 `gh pr diff 123` | Claude 连续调用多个工具自动完成 |
+| 复杂多步任务 | 需要手写多条命令，容易出错 | Claude 自动规划并调用工具链 |
+
+### 3.4 常见混淆点
+
+**Q：我用 `claude mcp add github https://api.github.com/mcp` 后就能查仓库了，这不是安装了 GitHub CLI 吗？**
+
+A：**不是。** 这条命令安装的是 GitHub MCP server。能查仓库通常有两种可能：
+1. 当时 MCP 是可用的，Claude 通过 MCP 查询
+2. 你的电脑上本来就有 `gh`，或者之前已安装过 GitHub CLI
+
+在本项目中，GitHub CLI 是通过 `winget install GitHub.cli` 单独安装的，和 `claude mcp add` 没有关系。
+
+**Q：为什么 Claude 能用 `gh` 查我的仓库？**
+
+A：因为 Claude Code 可以执行你电脑上的 Bash 命令。你已完成 `gh auth login`，所以 `gh` 在你的电脑上有权限。Claude 只是触发了这条命令，实际运行和认证都在你的本地完成。
+
+---
+
+## 四、隐私安全建议
 
 1. **不要提交 token**：任何配置文件、脚本、文档中都不应写入真实的 GitHub Token、密码或完整 userID。
 2. **凭据管理器优先**：使用 `gh auth login` 比手动保存 token 更安全。
@@ -166,7 +239,7 @@ claude mcp --help
 
 ---
 
-## 四、常见问题
+## 五、常见问题
 
 ### Q1：安装 gh 后当前终端找不到命令？
 
