@@ -377,6 +377,54 @@ Claude 会调用 `search_repositories`，参数为 `{"query": "user:AZQD", "per_
 
 > 说明：两者底层访问的都是 GitHub API，数据一致；数量差异主要来自 `gh repo list` 的默认过滤/分页行为与 `search_repositories` 不同。如果你需要完整列表，可在 `gh` 中增大 `--limit`，或在 MCP 调用中提高 `per_page`。
 
+### 3.6 实战对比：查询仓库的最近提交/推送信息
+
+再以「查看 AZQD/vuestudy 最近改动」为例，对比 `gh` 与 `github-stdio` 的差异。
+
+#### 方式一：GitHub CLI（`gh`）
+
+```bash
+gh api repos/AZQD/vuestudy/events --jq '[.[] | select(.type=="PushEvent")] | .[:5]'
+```
+
+返回的是**推送事件（PushEvent）**，关注的是"谁在什么时候把哪个 HEAD 推到了哪个分支"：
+
+| 推送时间 | 推送者 | 分支 | HEAD Commit |
+|----------|--------|------|-------------|
+| 2026-07-08 08:38:40 | AZQD | `develop_claude` | `547aeb5` |
+| 2026-07-08 03:20:21 | AZQD | `develop_claude` | `e2aad76` |
+| 2026-07-08 03:19:05 | AZQD | `develop_claude` | `900f330` |
+| 2026-06-22 09:32:14 | AZQD | `develop_claude` | `3176fc0` |
+| 2026-06-12 01:43:43 | AZQD | `develop_claude` | `d741c34` |
+
+> 注：`events` 接口的 `payload` 中不包含详细 commit 消息，只有 `before`/`head`/`ref` 等推送元信息。如需 commit 详情，需再用 `gh api repos/AZQD/vuestudy/commits/{sha}` 二次查询。
+
+#### 方式二：`github-stdio` MCP server
+
+对 Claude 说：
+
+> "用 github-stdio 查一下 vuestudy 最近 5 次提交"
+
+Claude 会调用 `list_commits`，参数为 `{"owner": "AZQD", "repo": "vuestudy", "sha": "develop_claude", "perPage": 5}`，返回的是**提交历史**：
+
+| Commit | 提交时间 | 提交说明 |
+|--------|----------|----------|
+| `547aeb5` | 2026-07-08 08:38:34 | 更新 DEV_TOOLS_GUIDE：补充 gh 与 github-stdio 实战对比 |
+| `e2aad76` | 2026-07-08 03:18:59 | 补充 DEV_TOOLS_GUIDE.md：厘清 GitHub CLI 与 MCP server 的区别 |
+| `3176fc0` | 2026-06-22 09:31:52 | 新增开发工具指南：gh CLI 与 Claude Code MCP Server 使用说明 |
+| `d741c34` | 2026-06-12 01:43:37 | 补充记忆规则：保留注释、记录即持久化 |
+| `5ad88d9` | 2026-06-12 01:38:53 | 优化 CLAUDE.md：拆分提示词模板并同步 Vue 3 技术栈描述 |
+
+#### 结果对比
+
+| 对比项 | `gh api .../events` | `github-stdio` `list_commits` |
+|--------|---------------------|-------------------------------|
+| 查询对象 | 推送事件（PushEvent） | 提交记录（Commit） |
+| 返回重点 | 谁、何时、推到哪个分支 | commit 消息、作者、SHA、parent |
+| 是否需写命令 | 是 | 否 |
+| 是否包含 commit 详情 | 否，需二次查询 | 是 |
+| 适用场景 | 审计推送行为 | 查看代码变更内容 |
+
 ---
 
 ## 四、隐私安全建议
