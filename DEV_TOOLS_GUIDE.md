@@ -89,13 +89,19 @@ C:\Users\8****9\.claude.json
 
 当前项目配置了以下 MCP server：
 
-| 名称 | 类型 | 地址/命令 | 状态 |
-|------|------|----------|------|
-| `github` | HTTP | `https://api.githubcopilot.com/mcp/` | ❌ 连接失败（OAuth 不兼容，已弃用） |
-| `github-stdio` | stdio | `npx -y @modelcontextprotocol/server-github` | ✅ 已连接 |
-| `figma-dev` | sse | `http://127.0.0.1:3845/sse` | ❌ 无服务监听，已移除 |
+| 名称 | 类型 | 命令/地址 | 状态 | 用途 |
+|------|------|----------|------|------|
+| `github` | HTTP | `https://api.githubcopilot.com/mcp/` | ❌ 已弃用 | GitHub Copilot 官方 MCP，因 OAuth 不兼容无法使用 |
+| `github-stdio` | stdio | `npx -y @modelcontextprotocol/server-github` | ✅ 已连接 | 查询 GitHub 仓库、PR、提交等 |
+| `figma-context` | stdio | `npx -y @tmegit/figma-developer-mcp` | ✅ 已连接 | 读取 Figma 设计稿，生成前端代码 |
+| `figma-dev` | sse | `http://127.0.0.1:3845/sse` | ❌ 已移除 | 旧配置，无服务监听 |
 
-`github-stdio` 是实际可用的 GitHub MCP server，下面 2.7 节会详细介绍它的配置方法。
+**当前实际可用的两个 MCP server：**
+
+- **`github-stdio`**：替代 `gh` 命令，用自然语言查询 GitHub
+- **`figma-context`**：连接 Figma，读取设计稿信息
+
+下面 2.7 节和第六章会分别详细介绍它们的配置方法。
 
 #### `github`（HTTP 类型）配置示例
 
@@ -221,6 +227,23 @@ claude mcp list
 - "分析 AZQD/TypeScript 仓库最近提交了哪些文件"
 
 Claude 会自动调用 `github-stdio` 提供的工具（如 `list_repositories`、`get_file_contents`、`list_pull_requests` 等），获取结构化数据后回复你。
+
+### 2.9 本项目两个可用 MCP server 对比
+
+| 对比项 | `github-stdio` | `figma-context` |
+|--------|---------------|-----------------|
+| 连接的服务 | GitHub | Figma |
+| 用途 | 查询代码仓库、PR、Issue、提交 | 读取设计稿、生成前端代码 |
+| 认证方式 | GitHub PAT | Figma Personal Access Token |
+| 传输协议 | stdio | stdio |
+| 是否需要手动启动 | 否 | 否 |
+| 典型用法 | "列出我的 GitHub 仓库" | "读取这个 Figma 文件并生成 Vue 组件" |
+
+### 2.10 如何选择用哪个 MCP server？
+
+- **和代码相关的问题** → 用 `github-stdio`
+- **和设计稿相关的问题** → 用 `figma-context`
+- **两者可以共存**，Claude 会根据你的问题自动选择合适的工具
 
 ---
 
@@ -496,13 +519,13 @@ Claude 会调用 `list_commits`，参数为 `{"owner": "AZQD", "repo": "vuestudy
 
 #### 第 2 步：添加 MCP server
 
-Windows 下使用 cmd 启动（避免 npx 路径问题）：
+Windows 下直接使用 `npx` 启动（推荐）：
 
 ```bash
-claude mcp add figma-context \
-  --command cmd \
-  --args "/c" "npx" "-y" "@tmegit/figma-developer-mcp" "--figma-api-key=你的FigmaToken" "--stdio"
+claude mcp add figma-context -- npx -y @tmegit/figma-developer-mcp --figma-api-key=你的FigmaToken --stdio
 ```
+
+> 注意：在 Windows 上实测 `cmd /c npx ...` 的写法会导致 MCP 连接失败，建议用上面的 `npx` 直接启动方式。
 
 或者直接修改 `C:\Users\8****9\.claude.json`：
 
@@ -513,10 +536,8 @@ claude mcp add figma-context \
       "mcpServers": {
         "figma-context": {
           "type": "stdio",
-          "command": "cmd",
+          "command": "npx",
           "args": [
-            "/c",
-            "npx",
             "-y",
             "@tmegit/figma-developer-mcp",
             "--figma-api-key=你的FigmaToken",
@@ -572,7 +593,7 @@ Claude 会自动调用 `figma-context` 提供的工具读取文件节点、样�
 
 如果你是第一次配置，可以直接按下面的流程操作，不需要回头翻前面的章节。
 
-### 5.1 GitHub CLI（`gh`）从安装到使用
+### 7.1 GitHub CLI（`gh`）从安装到使用
 
 #### 第 1 步：安装
 
@@ -626,7 +647,7 @@ gh api repos/AZQD/vuestudy/commits --method GET -f sha=develop_claude -f per_pag
 
 ---
 
-### 5.2 `github-stdio` 从安装到使用
+### 7.2 `github-stdio` 从安装到使用
 
 #### 第 1 步：创建 GitHub PAT
 
@@ -676,7 +697,7 @@ Claude 会自动调用 `github-stdio` 的对应工具（如 `search_repositories
 
 ---
 
-### 5.3 两者核心差异一句话总结
+### 7.3 两者核心差异一句话总结
 
 | | `gh` | `github-stdio` |
 |--|------|----------------|
@@ -685,6 +706,59 @@ Claude 会自动调用 `github-stdio` 的对应工具（如 `search_repositories
 | **认证方式** | `gh auth login` | GitHub PAT |
 | **使用方式** | 在终端敲命令 | 用自然语言对 Claude 说 |
 | **最佳场景** | 精确单步操作、脚本化 | 多步骤自动化、对话式查询 |
+
+---
+
+## 八、Figma-Context-MCP 安装使用速查
+
+如果你只想快速让 Claude Code 读取 Figma 设计稿，按下面四步操作即可。
+
+### 8.1 第 1 步：创建 Figma Access Token
+
+1. 打开 https://www.figma.com/ 并登录
+2. 点击头像 → **Settings**
+3. 左侧选择 **Personal access tokens**
+4. 点击 **Create new token**
+5. 名称填 `claude-figma-mcp`
+6. 复制生成的 token
+
+### 8.2 第 2 步：添加 MCP server
+
+```bash
+claude mcp add figma-context -- npx -y @tmegit/figma-developer-mcp --figma-api-key=你的FigmaToken --stdio
+```
+
+> 注意：Windows 下不要用 `cmd /c npx ...`，实测会连接失败。
+
+### 8.3 第 3 步：验证
+
+```bash
+claude mcp list
+```
+
+显示 `figma-context: ... - ✔ Connected` 即成功。
+
+### 8.4 第 4 步：使用
+
+对 Claude 说：
+
+```text
+读取这个 Figma 文件：https://www.figma.com/file/xxxxx/xxxx
+```
+
+或：
+
+```text
+根据这个 Figma 设计稿生成 Vue 组件代码
+```
+
+Claude 会自动调用 `figma-context` 读取设计稿信息。
+
+### 8.5 安全提醒
+
+- token 保存在 `C:\Users\8****9\.claude.json` 中
+- `claude mcp list` 会明文显示 token，不要截图发给别人
+- token 泄露后及时在 Figma Settings 中撤销并重新生成
 
 ---
 
