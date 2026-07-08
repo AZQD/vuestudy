@@ -457,4 +457,124 @@ Claude 会调用 `list_commits`，参数为 `{"owner": "AZQD", "repo": "vuestudy
 
 ---
 
+## 五、gh 与 github-stdio 安装使用速查
+
+如果你是第一次配置，可以直接按下面的流程操作，不需要回头翻前面的章节。
+
+### 5.1 GitHub CLI（`gh`）从安装到使用
+
+#### 第 1 步：安装
+
+Windows 用 winget：
+
+```bash
+winget install --id GitHub.cli --accept-package-agreements --accept-source-agreements
+```
+
+安装后如果当前终端找不到 `gh`，可直接用完整路径：
+
+```bash
+"/c/Program Files/GitHub CLI/gh.exe" --version
+```
+
+#### 第 2 步：登录
+
+```bash
+gh auth login
+```
+
+按提示选择：
+
+1. **GitHub.com**
+2. **HTTPS**
+3. 浏览器登录（推荐）或粘贴 Personal Access Token
+
+#### 第 3 步：验证
+
+```bash
+gh auth status
+```
+
+看到 `Logged in to github.com as AZQD` 即表示成功。
+
+#### 第 4 步：常用查询
+
+```bash
+# 列出我的仓库
+gh repo list --limit 100
+
+# 查看分配给我的开放 PR
+gh pr list --assignee @me --state open
+
+# 查看仓库事件（如推送）
+gh api repos/AZQD/vuestudy/events
+
+# 查看最近提交
+gh api repos/AZQD/vuestudy/commits --method GET -f sha=develop_claude -f per_page=5
+```
+
+---
+
+### 5.2 `github-stdio` 从安装到使用
+
+#### 第 1 步：创建 GitHub PAT
+
+1. 打开 https://github.com/settings/tokens
+2. 点击 **Generate new token (classic)**
+3. 名称填 `claude-mcp-github`
+4. 有效期建议 **30 天**
+5. 勾选权限：
+   - `repo`
+   - `read:org`
+   - `read:user`
+   - `gist`
+   - `workflow`（可选）
+6. 复制 token（以 `ghp_` 开头）
+
+#### 第 2 步：添加 MCP server
+
+```bash
+claude mcp add github-stdio \
+  --env GITHUB_PERSONAL_ACCESS_TOKEN=ghp_你的token \
+  -- npx -y @modelcontextprotocol/server-github
+```
+
+#### 第 3 步：验证
+
+```bash
+claude mcp list
+```
+
+显示 `github-stdio: ... - ✔ Connected` 即成功。
+
+#### 第 4 步：使用
+
+配置好后，直接对 Claude 说：
+
+```text
+列出我的 GitHub 仓库
+```
+
+或：
+
+```text
+查一下 AZQD/vuestudy 最近 5 次提交
+```
+
+Claude 会自动调用 `github-stdio` 的对应工具（如 `search_repositories`、`list_commits`），不需要你手写命令。
+
+---
+
+### 5.3 两者核心差异一句话总结
+
+| | `gh` | `github-stdio` |
+|--|------|----------------|
+| **本质** | 独立命令行工具 | Claude Code 的扩展能力 |
+| **安装对象** | 你的操作系统 | Claude Code 内部配置 |
+| **认证方式** | `gh auth login` | GitHub PAT |
+| **使用方式** | 在终端敲命令 | 用自然语言对 Claude 说 |
+| **最佳场景** | 精确单步操作、脚本化 | 多步骤自动化、对话式查询 |
+
+---
+
 *本文档随工具版本变化可能需要更新。*
