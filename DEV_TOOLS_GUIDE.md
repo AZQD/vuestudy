@@ -87,7 +87,16 @@ C:\Users\8****9\.claude.json
 
 ### 2.3 已配置的 MCP Server 简介
 
-当前项目已配置一个 GitHub MCP Server：
+当前项目配置了两个 MCP server：
+
+| 名称 | 类型 | 地址/命令 | 状态 |
+|------|------|----------|------|
+| `github` | HTTP | `https://api.githubcopilot.com/mcp/` | ❌ 连接失败（OAuth 不兼容） |
+| `github-stdio` | stdio | `npx -y @modelcontextprotocol/server-github` | ✅ 已连接 |
+
+`github-stdio` 是实际可用的 GitHub MCP server，下面 2.7 节会详细介绍它的配置方法。
+
+#### `github`（HTTP 类型）配置示例
 
 ```json
 {
@@ -104,20 +113,7 @@ C:\Users\8****9\.claude.json
 }
 ```
 
-| 字段 | 说明 |
-|------|------|
-| `name`（`github`） | 自定义名称，方便在 Claude Code 中识别 |
-| `type`（`http`） | MCP server 的传输协议，当前为 HTTP |
-| `url` | MCP server 的接入地址，这里是 GitHub Copilot 提供的 MCP 服务 |
-
-**功能说明：**
-
-该 MCP server 让 Claude Code 能够直接调用 GitHub 相关能力，例如：
-- 查询仓库列表、PR、Issue
-- 获取仓库文件内容
-- 在授权范围内执行仓库操作
-
-实际可用能力取决于 MCP server 暴露的接口和当前账号的权限。
+该配置因 GitHub OAuth 服务器不支持动态客户端注册，导致 `claude mcp login` 无法完成认证，目前已弃用。
 
 ### 2.4 常用 MCP 命令
 
@@ -159,6 +155,72 @@ claude mcp --help
 
 > 重要：`gh` 登录成功 **不等于** MCP server 自动可用。MCP server 是否需要重新认证，取决于该服务自身的机制。如果调用失败，可能需要检查浏览器中 GitHub / GitHub Copilot 是否仍处于登录状态。
 
+### 2.7 社区版 GitHub MCP server（推荐）
+
+如果 GitHub Copilot 提供的 HTTP MCP server 因 OAuth 问题无法连接，可以使用社区版 MCP server：`@modelcontextprotocol/server-github`。
+
+#### 为什么推荐社区版？
+
+| 对比项 | GitHub Copilot MCP（HTTP） | 社区版 GitHub MCP（stdio） |
+|--------|---------------------------|---------------------------|
+| 认证方式 | OAuth（需动态客户端注册） | Personal Access Token |
+| 与 Claude Code 兼容性 | ❌ 不兼容当前 OAuth 机制 | ✅ 兼容 |
+| 是否需要 Copilot 订阅 | 可能需要 | 不需要 |
+| 配置复杂度 | 高 | 中 |
+
+#### 配置步骤
+
+**第 1 步：创建 GitHub PAT**
+
+1. 打开 https://github.com/settings/tokens
+2. 点击 **Generate new token (classic)**
+3. 填写名称，如 `claude-mcp-github`
+4. 建议有效期选 **30 天**
+5. 勾选以下权限：
+   - `repo`（访问仓库）
+   - `read:org`（读取组织）
+   - `read:user`（读取用户信息）
+   - `gist`（读取/创建 gist）
+   - `workflow`（可选，读取工作流）
+6. 生成并复制 token（以 `ghp_` 开头）
+
+**第 2 步：添加 MCP server**
+
+```bash
+claude mcp remove github
+
+claude mcp add github-stdio \
+  --env GITHUB_PERSONAL_ACCESS_TOKEN=ghp_你的token \
+  -- npx -y @modelcontextprotocol/server-github
+```
+
+**第 3 步：验证连接**
+
+```bash
+claude mcp list
+```
+
+如果显示 `github-stdio: ... - ✔ Connected`，说明配置成功。
+
+#### 安全提醒
+
+- PAT 会保存在 `C:\Users\8****9\.claude.json` 中，注意保护好该文件
+- 不要截图或发送 token 给他人
+- token 过期后及时更新
+- 在公共电脑上不建议保存 token
+- **不要执行 `claude mcp get <server-name>`**：该命令会以明文形式输出 token，容易在截图或对话中泄露
+
+### 2.8 MCP 应用示例
+
+配置好 `github-stdio` 后，你可以直接对 Claude 说：
+
+- "列出我的 GitHub 仓库"
+- "查看 AZQD/vuestudy 仓库的 README 内容"
+- "我有哪些开放的 PR？"
+- "分析 AZQD/TypeScript 仓库最近提交了哪些文件"
+
+Claude 会自动调用 `github-stdio` 提供的工具（如 `list_repositories`、`get_file_contents`、`list_pull_requests` 等），获取结构化数据后回复你。
+
 ---
 
 ## 三、GitHub CLI 与 GitHub MCP server 的关系（初学者必读）
@@ -171,7 +233,7 @@ claude mcp --help
 | 命令/工具名 | `gh` | 没有独立命令，通过 `claude mcp` 管理 |
 | 安装方式 | `winget install GitHub.cli` | `claude mcp add --transport http github <url>` |
 | 谁在用 | 你直接在终端使用 | Claude Code 内部调用 |
-| 当前状态 | ✅ 已登录，可用 | ❌ 当前连接失败 |
+| 当前状态 | ✅ 已登录，可用 | ✅ `github-stdio` 已连接，可用 |
 
 ### 3.2 真实执行流程
 
@@ -227,6 +289,93 @@ A：**不是。** 这条命令安装的是 GitHub MCP server。能查仓库通�
 **Q：为什么 Claude 能用 `gh` 查我的仓库？**
 
 A：因为 Claude Code 可以执行你电脑上的 Bash 命令。你已完成 `gh auth login`，所以 `gh` 在你的电脑上有权限。Claude 只是触发了这条命令，实际运行和认证都在你的本地完成。
+
+### 3.5 实战对比：查询我的 GitHub 仓库列表
+
+下面以「列出 AZQD 账号下的仓库」为例，演示两种方式的真实输出对比。
+
+#### 方式一：GitHub CLI（`gh`）
+
+```bash
+gh repo list --limit 100
+```
+
+返回示例（终端表格，共 17 个）：
+
+| 名称 | 描述 | 可见性 | 最近更新 |
+|------|------|--------|----------|
+| vuestudy | vuestudy项目学习总结 | public | 2026-07-08 |
+| TypeScript | This is my TypeScript project . | public | 2026-06-12 |
+| Profile | 个人相关 | private | 2026-04-29 |
+| WebStorm | 常用知识总结 | public | 2025-10-30 |
+| command | 开发常用命令行&快捷键 | public | 2025-01-17 |
+| NPM | NPM包管理 | public | 2025-02-17 |
+| neighbour | neighbour | private | 2021-04-12 |
+| JOB_ZX | — | public | 2024-03-01 |
+| WeChat | 微信小程序 | public | 2024-04-23 |
+| ReactStudy | React学习总结 | public | 2021-03-02 |
+| miniprogram-init | 小程序项目初始化CLI | public | 2021-03-29 |
+| server | 启动本地服务 localhost:3000 | public | 2026-01-06 |
+| webpackPluginDefined | weppack 自定义插件 | public | 2021-03-04 |
+| microBlog | Do Better ! | public | 2018-08-24 |
+| NodeStudy | Node.js学习总结 | public | 2019-11-20 |
+| summary | 采坑总结、随笔 | public | 2020-10-10 |
+| MyLearning | Github入门 | public | 2020-09-23 |
+
+> 注：`gh repo list` 默认过滤或分页策略与 API 搜索略有差异，因此显示数量可能少于 API 搜索总数。
+
+#### 方式二：`github-stdio` MCP server
+
+对 Claude 说：
+
+> "用 github-stdio 查询我的 GitHub 仓库列表"
+
+Claude 会调用 `search_repositories`，参数为 `{"query": "user:AZQD", "per_page": 10}`，返回结构化 JSON：
+
+```json
+{
+  "total_count": 24,
+  "incomplete_results": false,
+  "items": [
+    { "name": "vuestudy", "description": "vuestudy项目学习总结", "private": false },
+    { "name": "WeChat", "description": "微信小程序", "private": false },
+    { "name": "ReactStudy", "description": "React学习总结", "private": false },
+    { "name": "miniprogram-init", "description": "小程序项目初始化CLI", "private": false },
+    { "name": "NPM", "description": "NPM包管理", "private": false },
+    { "name": "NodeStudy", "description": "Node.js学习总结", "private": false },
+    { "name": "kxhtml", "description": null, "private": false },
+    { "name": "JOB_ZX", "description": null, "private": false },
+    { "name": "summary", "description": "采坑总结、随笔", "private": false },
+    { "name": "neighbour", "description": "neighbour", "private": true },
+    { "name": "microBlog", "description": "Do Better !", "private": false },
+    { "name": "WebStorm", "description": "常用知识总结", "private": false },
+    { "name": "Interview", "description": "面试宝典", "private": false },
+    { "name": "JOB_LAAN", "description": null, "private": false },
+    { "name": "gitTest", "description": "Git命令应用", "private": false },
+    { "name": "MyLearning", "description": "Github入门", "private": false },
+    { "name": "server", "description": "启动本地服务 localhost:3000", "private": false },
+    { "name": "webpackPluginDefined", "description": "weppack 自定义插件", "private": false },
+    { "name": "Part-time-job", "description": "项目开发应用实战", "private": false },
+    { "name": "TypeScript", "description": "This is my TypeScript project .", "private": false },
+    { "name": "Profile", "description": "个人相关", "private": true },
+    { "name": "command", "description": "开发常用命令行&快捷键", "private": false },
+    { "name": "YOUPIN_NEW", "description": null, "private": false },
+    { "name": "redux-app", "description": "redux学习总结", "private": false }
+  ]
+}
+```
+
+#### 结果对比
+
+| 对比项 | `gh repo list` | `github-stdio` |
+|--------|----------------|----------------|
+| 调用命令/工具 | `gh repo list --limit 100` | `search_repositories`（MCP 工具） |
+| 返回总数 | 17 个 | 24 个 |
+| 数据格式 | 终端表格 | JSON |
+| 是否需要写命令 | 是 | 否（自然语言即可） |
+| 是否可直接用于后续操作 | 需要手动复制/解析 | Claude 可直接读取字段继续操作 |
+
+> 说明：两者底层访问的都是 GitHub API，数据一致；数量差异主要来自 `gh repo list` 的默认过滤/分页行为与 `search_repositories` 不同。如果你需要完整列表，可在 `gh` 中增大 `--limit`，或在 MCP 调用中提高 `per_page`。
 
 ---
 
